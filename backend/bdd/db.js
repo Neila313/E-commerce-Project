@@ -19,7 +19,7 @@ con.connect(function(err) {
                 (id_admin INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
                 lastname VARCHAR(150) NOT NULL, 
                 firstname VARCHAR(150) NOT NULL, 
-                email VARCHAR(250) NOT NULL, 
+                email VARCHAR(250) NOT NULL UNIQUE, 
                 password VARCHAR(250) NOT NULL)`);   
 
       //Création de la table articles
@@ -28,7 +28,7 @@ con.connect(function(err) {
                 (id_article INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                  title VARCHAR(250) NOT NULL, 
                  paragraphe MEDIUMTEXT NOT NULL,
-                 image BLOB NOT NULL, 
+                 image TEXT(500) NOT NULL,
                  published_on DATE NOT NULL,
                  id_admin INT,
                  FOREIGN KEY (id_admin) REFERENCES admin(id_admin))`);
@@ -39,19 +39,18 @@ con.connect(function(err) {
                (id_product INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                 name VARCHAR(150) NOT NULL, 
                 description TEXT(1000) NOT NULL,
-                category VARCHAR(250) NOT NULL,
+                id_category INT NOT NULL,
                 price DECIMAL(10,2) NOT NULL,
                 image TEXT(500) NOT NULL,
                 id_admin INT NOT NULL,
-                FOREIGN KEY (id_admin) REFERENCES admin(id_admin))`);
+                FOREIGN KEY (id_admin) REFERENCES admin(id_admin),
+                FOREIGN KEY (id_category) REFERENCES category(id_category))`);
         
              //Création de la table catégorie
 
     con.query(`CREATE TABLE IF NOT EXISTS category 
                 (id_category INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                 denomination VARCHAR(250) NOT NULL,
-                 id_product INT,
-                 FOREIGN KEY (id_product) REFERENCES products(id_product))`);
+                 denomination VARCHAR(250) NOT NULL)`);
             
               //Création de la table client
     
