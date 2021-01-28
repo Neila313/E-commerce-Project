@@ -9,10 +9,10 @@ class Header extends React.Component {
             if(localStorage.getItem("MyToken")){
 
                 return (
-                    <Nav variant="pills" defaultActiveKey="/admin">
-                       
+                    <Nav variant="pills" defaultActiveKey="/dashboard">
                         <Nav.Item>
                         <Nav.Link as={Link} to="/admin/product">Ajouter un produit</Nav.Link>
+                        <Nav.Link as={Link} to="/admin/listproduct">Vos produits</Nav.Link>
                         </Nav.Item>
                     
                     </Nav>

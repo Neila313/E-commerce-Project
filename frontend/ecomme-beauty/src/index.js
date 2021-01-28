@@ -20,7 +20,9 @@ import AdminSignup from './admin_signup';
 import AdminSignin from './admin_signin';
 import allAdmin from './admin_all';
 import ProductClient from './client_product';
-import ProductAdmin from './admin_addproduct';
+import AddProduct from './admin_addproduct';
+import ListProduct from './admin_listproduct';
+import PutProduct from './admin_putproduct';
 import ClientSignup from './client_signup';
 import ClientSignin from './client_signin';
 import DashboardAdmin from './admin_dashboard';
@@ -41,7 +43,9 @@ const myRouter = (
 				<Route exact path="/admin/signup" component={AdminSignup} />
 				<Route exact path="/admin/signin" component={AdminSignin} />
 				<PrivateRoute exact path="/admin/dashboard" component={DashboardAdmin} />
-				<Route exact path="/admin/product" component={ProductAdmin} />
+				<Route exact path="/admin/product" component={AddProduct}/>
+				<Route exact path="/admin/listproduct" component={ListProduct}/>
+				<Route exact path="/admin/modifyproduct/:id_product" component={PutProduct}/>
 			</Switch>
 		</Router>
   </Provider>

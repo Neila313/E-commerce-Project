@@ -35,7 +35,7 @@ class AdminSignup extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		axios.post('http://localhost:8080/auth_admin/sign-up', admin).then((res) => {
+		axios.post('http://localhost:8080/sign-up', admin).then((res) => {
 			if (res.status === 200) {
 				console.log(res);
 

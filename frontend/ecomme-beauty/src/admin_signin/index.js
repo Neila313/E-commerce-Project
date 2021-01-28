@@ -28,7 +28,7 @@ class AdminSignin extends React.Component {
         email: this.state.email,
         password: this.state.password,};
 
-    axios.post("http://localhost:8080/auth_admin/sign-in",  adminSignin )
+    axios.post("http://localhost:8080/sign-in",  adminSignin )
   .then(res => {
     if(res.status === 200){
       console.log(res);

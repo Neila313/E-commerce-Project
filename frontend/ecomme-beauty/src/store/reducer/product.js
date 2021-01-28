@@ -1,13 +1,26 @@
-const initialStates = {
-    products: []
-    
- };
+ const initialStates = {
+  products: []
+  
+};
 
- const productsReducer = (state = initialStates, action) => {
+const productsReducer = (state = initialStates, action) => {
+ switch (action.type) {
+  case "GET_PRODUCTS":
     return {
-        ...state,
-        products: action.products
-      };
- }
+      ...state,
+      products: action.products
+    };
+     case "ADD_PRODUCTS":
+     return {
+       ...state,
+       products: [...state.products, action.payload]
+     };
 
- export default productsReducer;
+   default:
+     return {
+       ...state,
+     };
+ }
+};
+
+export default productsReducer;
