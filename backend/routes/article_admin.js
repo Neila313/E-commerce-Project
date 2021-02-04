@@ -38,7 +38,6 @@ router.post('/articles', function(req,res){
             console.log(thearticle);
             
              con.query(`SELECT * FROM articles WHERE id = '${thearticle.insertId}'`, function(err, results){
-                console.log(results);
 
                  res.status(200).send("Article added successfully")
              })

@@ -33,24 +33,24 @@ con.connect(function(err) {
                  id_admin INT,
                  FOREIGN KEY (id_admin) REFERENCES admin(id_admin))`);
       
+             //Création de la table catégorie
+
+             con.query(`CREATE TABLE IF NOT EXISTS category 
+             (id_category INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+              denomination VARCHAR(250) NOT NULL)`);                 
                //Création de la table produits
         
     con.query(`CREATE TABLE IF NOT EXISTS products
                (id_product INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                 name VARCHAR(150) NOT NULL, 
                 description TEXT(1000) NOT NULL,
-                id_category INT NOT NULL,
                 price DECIMAL(10,2) NOT NULL,
-                image TEXT(500) NOT NULL,
+                image TEXT(1000) NOT NULL,
                 id_admin INT NOT NULL,
+                id_category INT NOT NULL,
                 FOREIGN KEY (id_admin) REFERENCES admin(id_admin),
                 FOREIGN KEY (id_category) REFERENCES category(id_category))`);
-        
-             //Création de la table catégorie
 
-    con.query(`CREATE TABLE IF NOT EXISTS category 
-                (id_category INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                 denomination VARCHAR(250) NOT NULL)`);
             
               //Création de la table client
     
@@ -75,18 +75,14 @@ con.connect(function(err) {
       con.query(`CREATE TABLE IF NOT EXISTS cart
                   (id_cart INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                     id_customer INT,
-                    id_product INT,
-                    FOREIGN KEY (id_customer) REFERENCES customer(id_customer),
-                    FOREIGN KEY (id_product) REFERENCES products(id_product))`)
+                    FOREIGN KEY (id_customer) REFERENCES customer(id_customer))`)
       
       con.query(`CREATE TABLE IF NOT EXISTS cartproduct
                  (id_cartproduct INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                   quantity VARCHAR(600) NOT NULL,
-                  id_product INT,
-                  id_customer INT,
                   id_cart INT,
+                  id_product INT,
                   FOREIGN KEY (id_product) REFERENCES products(id_product),
-                  FOREIGN KEY (id_customer) REFERENCES customer(id_customer),
-                  FOREIGN KEY (id_cart) REFERENCES cart(id_cart) )`)
+                  FOREIGN KEY (id_cart) REFERENCES cart(id_cart))`)
   });
 module.exports = con

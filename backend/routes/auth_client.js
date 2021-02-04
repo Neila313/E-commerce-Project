@@ -39,17 +39,17 @@ con.connect(function(err){
                 
                 if(result.length == 0) {
                     console.log(result)
-                    res.send("Sorry, we don't know this user")
+                    res.status(203).send("Adresse email inconnue")
 
                 } else {
                     console.log(req.body)
                     bcrypt.compare(req.body.password, result[0].password, function(err,resulta){
                         if(resulta) {
-                            let token = jwt.sign({id : result[0].id_customer, lastname: result[0].name, firstname: result[0].firstname}, config.secret, {expiresIn: 86400});
+                            let token = jwt.sign({id : result[0].id_customer, email : result[0].email}, config.secret, {expiresIn: 86400});
                             console.log(token)
                             res.status(200).send({ token: token });
                         } else {
-                            res.send("Sorry, we don't know this user")
+                            res.status(203).send("Mots de passe incorrect")
                         }
                      }) 
                 }

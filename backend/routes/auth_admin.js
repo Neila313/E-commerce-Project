@@ -6,6 +6,7 @@ const saltRounds = 10;
 var cors = require('cors');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
+const middlewares = require('../middlewares/middlewares.js')
 
 router.use(cors());
 
@@ -15,11 +16,9 @@ con.connect(function(err){
 
     // Route permettant à l'administrateur de se créer un compte 
     // Nous avons hasher le mots de passe pour sécurisé le compte et chaque admin aura un token "jeton" permettra à l'admin de se connecter pour sécuriser le compte 
-
+    router.use('/sign-up', middlewares.checkEmail)
     router.post('/sign-up', function(req,res){
-
         bcrypt.hash(req.body.password, saltRounds, function(err,hash){
-
             try {
                 let dataAdmin = `INSERT INTO admin (lastname, firstname, email, password) VALUES
                 ('${req.body.lastname}', '${req.body.firstname}', '${req.body.email}', '${hash}')`;
@@ -27,7 +26,6 @@ con.connect(function(err){
                 con.query(dataAdmin, (err,result) => {
                     if(err) throw err;
                     res.status(200).send('New Admin added');
-                
                 })
                 
             } catch (error) {
@@ -45,22 +43,21 @@ con.connect(function(err){
                 con.query(`SELECT * FROM admin WHERE email = '${req.body.email}'`,function(err, result){
                     
                     if(result.length == 0) {
-                        console.log(result)
-                        res.send("Sorry, we don't know this admin")
+                        console.log(result.length)
+                        res.status(203).send("Adresse email inconnue")
     
                     } else {
                         console.log(req.body)
     
                         bcrypt.compare(req.body.password, result[0].password, function(err,resulta){
                             if(resulta) {
-                                console.log(result);
                                 
-                                let token = jwt.sign({id : result[0].id_admin, lastname: result[0].name, firstname: result[0].firstname}, config.secret, {expiresIn: 86400});
-                                console.log(token)
+                                let token = jwt.sign({id : result[0].id_admin, 
+                                    email: result[0].email, admin: true}, config.secret, {expiresIn: 86400});
                                 res.status(200).send({ token: token });
                             } else {
                                 
-                                res.send("Sorry, we don't know this admin")
+                                res.status(203).send("Mots de passe incorrect")
                             }
                          }) 
                     }
