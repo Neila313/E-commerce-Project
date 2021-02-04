@@ -9,15 +9,19 @@ const initialStates = {
       return {
         ...state,
         categories: action.categories
+        
       };
-    //    case "ADD_PRODUCTS":
-    //    return {
-    //      ...state,
-    //      products: [...state.products, action.payload]
-    //    };
-  
+       case "ADD_CATEGORY":
+       return {
+         ...state,
+         categories: [...state.categories, action.payload]
+         
+        //  
+       };
+
      default:
        return {
+         
          ...state,
        };
    }

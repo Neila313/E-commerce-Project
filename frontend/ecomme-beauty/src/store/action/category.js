@@ -3,3 +3,7 @@ export const listCategory = (categories) => ({
     categories: categories
 });
 
+export const newCategory = (categorie) => ({
+    type: "ADD_CATEGORY",
+    payload: categorie
+})

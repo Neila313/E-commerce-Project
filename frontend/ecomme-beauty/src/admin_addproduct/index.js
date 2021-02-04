@@ -3,7 +3,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import './style.css';
 import { connect } from 'react-redux';
 import { newProduct } from '../store/action/products';
-import { listCategory } from '../store/action/category';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Alert } from 'react-bootstrap';
@@ -15,10 +14,11 @@ class AddProduct extends React.Component {
 		description: '',
 		price: '',
 		image: '',
-		id_category: '',
-		msgSuccess: '',
-		categories: []
+        msgSuccess: '',
+		selectedOption: '',
+		// categories: []
 	};
+	
 
 	returnSubmit = () => {
 		this.props.history.push('/admin/dashboard');
@@ -38,26 +38,10 @@ class AddProduct extends React.Component {
 	inputImage = (event) => {
 		this.setState({ image: event.target.value });
 	};
-	inputCategory = (event) => {
-		this.setState({ id_category: event.target.value });
+
+    handleSelect = ({target}) => {
+		this.setState({ selectedOption: target.value });
 	};
-
-	componentDidMount() {
-		axios
-			.get('http://localhost:8080/category', {
-				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
-			})
-			.then((res) => {
-				this.setState({ categories: res.data });
-				console.log(res.data);
-
-				this.props.listCategory(res.data);
-			})
-			.catch((error) => {
-				// this.setState({ error : res.data });
-				console.log(error);
-			});
-	}
 
 	handleSubmit = (event) => {
 		event.preventDefault();
@@ -67,7 +51,7 @@ class AddProduct extends React.Component {
 			description: this.state.description,
 			price: this.state.price,
 			image: this.state.image,
-			id_category: this.state.id_category
+			id_category: this.state.selectedOption
 		};
 
 		axios
@@ -90,7 +74,7 @@ class AddProduct extends React.Component {
 	};
 
 	render() {
-		return (
+			return (
 			<div>
 				<Jumbotron>
 					<h1>Gérer nos produits</h1>
@@ -120,16 +104,24 @@ class AddProduct extends React.Component {
 					</Form.Group>
 					<Form.Group controlId="formGroupCategory">
 						<Form.Label>Catégorie</Form.Label>
-						<Form.Control
+						<select value={this.state.selectedOption} onChange={this.handleSelect}>
+							<option>Veuillez selectionnez une categorie</option>
+							{this.props.categories.map(({ id_category, denomination }) => (
+								<option key={id_category} value={id_category}>{denomination}</option>
+							))}
+						</select>
+						{/* <Form.Control
 							type="category"
 							placeholder="Choose the category"
 							as="select"
+							value={this.state.selectedOption}
 							custom
-                            onChange={this.inputCategory}> 
-                            {this.categories}
-							<option>1</option>
-						
-						</Form.Control>
+							onChange={this.handleSelect}
+						>
+							{this.state.categories.map(({ id_category, denomination }) => {
+								return <option value={id_category}>{denomination}</option>;
+							})}
+						</Form.Control> */}
 					</Form.Group>
 					<Form.Group controlId="formGroupPrice">
 						<Form.Label>Prix</Form.Label>
@@ -149,12 +141,13 @@ class AddProduct extends React.Component {
 }
 
 const mapStateToProps = (state /*, ownProps*/) => {
+	console.log(state)
 	return {
 		product: state.productsReducer.payload,
-		category: state.categoryReducer.categories
+		categories: state.categoryReducer.categories
 	};
 };
 
-const mapDispatchToProps = { newProduct, listCategory };
+const mapDispatchToProps = { newProduct};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
-import mainReducer from './store/reducer';
+import mainReducer from './store/reducer/index';
 
 import { composeWithDevTools } from 'redux-devtools-extension'
 
@@ -26,13 +26,16 @@ import PutProduct from './admin_putproduct';
 import ClientSignup from './client_signup';
 import ClientSignin from './client_signin';
 import DashboardAdmin from './admin_dashboard';
+import AddCategory from './admin_addcategory';
+import ListCateg from './admin_category';
 import PrivateRoute from './privateroute'
 
 const store = createStore(mainReducer, composeWithDevTools());
 
+
 const myRouter = (
 <Provider store={store}>
-		<Router>
+		<Router>			
       <Header></Header>
 			<Switch>
 				<Route path="/home" component={Home} />
@@ -46,6 +49,8 @@ const myRouter = (
 				<Route exact path="/admin/product" component={AddProduct}/>
 				<Route exact path="/admin/listproduct" component={ListProduct}/>
 				<Route exact path="/admin/modifyproduct/:id_product" component={PutProduct}/>
+				<Route exact path="/admin/category" component={AddCategory}/>
+				<Route exact path="/admin/listcategory" component={ListCateg}/>
 			</Switch>
 		</Router>
   </Provider>
