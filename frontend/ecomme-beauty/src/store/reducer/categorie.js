@@ -18,6 +18,21 @@ const initialStates = {
          
         //  
        };
+       case "DELETE_CATEGORY":
+      let indexOfElemToDelete  = state.categories.map(e => e.id_category).indexOf(action.payload);
+      return {
+        ...state,
+        categories: [
+                ...state.categories.slice(0, indexOfElemToDelete),
+                ...state.categories.slice(
+                  indexOfElemToDelete + 1,
+                  state.categories.length
+                ),
+              ],
+      };
+
+
+       
 
      default:
        return {

@@ -16,6 +16,19 @@ const productsReducer = (state = initialStates, action) => {
        products: [...state.products, action.payload]
      };
 
+     case "DELETE_PRODUCTS":
+      let indexOfElemToDelete  = state.products.map(e => e.id_product).indexOf(action.payload);
+      return {
+        ...state,
+              products: [
+                ...state.products.slice(0, indexOfElemToDelete),
+                ...state.products.slice(
+                  indexOfElemToDelete + 1,
+                  state.products.length
+                ),
+              ],
+      };
+
    default:
      return {
        ...state,

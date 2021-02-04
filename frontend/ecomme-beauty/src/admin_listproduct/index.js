@@ -1,41 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { listProducts } from '../store/action/products';
+import { listProducts, deleteProduct } from '../store/action/products';
 import axios from 'axios';
 // import Card from 'react-bootstrap/Card';
 // import ListGroup from 'react-bootstrap/ListGroup';
 // import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table'
-import Image from 'react-bootstrap/Image'
-import '../admin_listproduct/style.css'
-import {Alert} from 'react-bootstrap';
-
+import Table from 'react-bootstrap/Table';
+import Image from 'react-bootstrap/Image';
+import '../admin_listproduct/style.css';
+import { Alert } from 'react-bootstrap';
 
 // import { Link } from 'react-router-dom';
 // import Button from 'react-bootstrap/esm/Button';
 
 class ListProducts extends React.Component {
 	state = {
-		// products: [],
-		msgSuccess: ""
+		products: [],
+		msgSuccess: ''
 	};
 
 	returnSubmit = () => {
 		this.props.history.push('/admin/dashboard');
-    };
-    
+	};
+
 	ModifProductSubmit = (id_product) => {
 		this.props.history.push('/admin/modifyproduct/' + id_product);
 	};
 
-
 	componentDidMount() {
-		console.log(this);		
+		console.log(this);
+
 		axios
 			.get('http://localhost:8080/products')
 			.then((res) => {
-				// this.setState({ products: res.data });
+				this.setState({ products: res.data });
 				this.props.listProducts(res.data);
 			})
 			.catch((error) => {
@@ -44,21 +43,26 @@ class ListProducts extends React.Component {
 			});
 	}
 
-	deleteRow(id_product, e){
-		axios.delete(`http://localhost:8080/products/${id_product}`, {headers: {authorization: `Bearer ${localStorage.getItem('MyToken')}`}})
-		  .then(res => {
-			console.log(res);
-			console.log(res.data);
-	  
-			const products = this.state.products.filter(item => item.id_product !== id_product);
-			this.setState({ products });
-			this.setState({msgSuccess: "Produit supprimé avec succès"})
+	deleteRow(id_product, e) {
+		axios
+			.delete(`http://localhost:8080/products/${id_product}`, {
+				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
+			})
+			.then((res) => {
+				if(res.status === 200) {
+					this.props.deleteProduct(id_product)
+					this.setState({ msgSuccess: 'Produit supprimé avec succès' });
 
-		  })
-	  }
+				} 
+				// console.log(res);
+				// console.log(res.data);
+		
+				// const products = this.state.products.filter((item) => item.id_product !== id_product);
+				// this.setState({ products });
+			});
+	}
 
-	render() {	
-			
+	render() {
 		return (
 			<div>
 				<Button variant="info" type="submit" onClick={this.returnSubmit.bind(this)}>
@@ -66,7 +70,9 @@ class ListProducts extends React.Component {
 				</Button>
 
 				<p>Vos produits</p>
-                        <Table striped bordered hover size="sm">
+				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
+
+				<Table striped bordered hover size="sm">
 					<thead>
 						<tr>
 							<th>ID Produit</th>
@@ -80,27 +86,47 @@ class ListProducts extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-					{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
 
-                        {this.props.products.map((elem) =>
-                        { return (
-                            <tr key={elem.id_product}>
-                            <td>{elem.id_product}</td>
-							<td>{elem.id_admin}</td>
-							<td>{elem.name}</td>
-							<td>{elem.description}</td>
-							<td>{elem.id_category}</td>
-							<td>{elem.price}</td>
-							<td><Image src={elem.image} className="image-table"thumbnail /></td>
-							<td><Button variant="info" type="submit" onClick={this.ModifProductSubmit.bind(this, elem.id_product)}>modifier produits</Button></td>
-							<td><Button variant="info" type="submit" onClick={(e) => this.deleteRow(elem.id_product, e)}>supprimer produits</Button></td>
-						</tr>
-               
-                        )}
-                        )} 
-                        </tbody>
+						{this.props.products.map((elem) => {
+							return (
+								<tr key={elem.id_product}>
+									<td>{elem.id_product}</td>
+									<td>{elem.id_admin}</td>
+									<td>{elem.name}</td>
+									<td>{elem.description}</td>
+									<td>{
+										this.props.categories.filter((ele) => 
+											ele.id_category === elem.id_category
+										)[0].denomination
+									}
+									</td>
+									<td>{elem.price}</td>
+									<td>
+										<Image src={elem.image} className="image-table" thumbnail />
+									</td>
+									<td>
+										<Button
+											variant="info"
+											type="submit"
+											onClick={this.ModifProductSubmit.bind(this, elem.id_product)}
+										>
+											modifier produits
+										</Button>
+									</td>
+									<td>
+										<Button
+											variant="info"
+											type="submit"
+											onClick={(e) => this.deleteRow(elem.id_product, e)}
+										>
+											supprimer produits
+										</Button>
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
 				</Table>
-						
 			</div>
 		);
 	}
@@ -113,6 +139,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = {listProducts};
+const mapDispatchToProps = { listProducts, deleteProduct};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);

@@ -7,3 +7,9 @@ export const newProduct = (product) => ({
     type: "ADD_PRODUCTS",
     payload: product
 })
+
+
+export const deleteProduct = (id_product) => ({
+    type: "DELETE_PRODUCTS",
+    payload: id_product
+})
