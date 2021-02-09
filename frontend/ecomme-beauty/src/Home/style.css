@@ -1,0 +1,91 @@
+.Section1 {
+	height: auto;
+	padding: 8%;
+	background: url('./img/AdobeStock_209858112.jpeg') center / cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.titleHome {
+	/* border: 3px solid yellow; */
+	width: 40vw;
+	height: 80vh;
+}
+
+.titleHomebis {
+	text-align: center;
+	text-align: center;
+	font-family: 'Dancing Script', cursive;
+	text-transform: capitalize;
+	color: #7b3f27;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 80px;
+	line-height: 90px;
+}
+
+.Section2 {
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.img1Home {
+	/* border: 3px solid blue; */
+	background: url('./img/Rectangle\ 3.png') center / cover;
+	margin: 20px;
+	height: 90vh;
+	width: 45vw;
+}
+
+.para1Home {
+	/* border: 3px solid lightblue; */
+	height: 70vh;
+	margin-right: 100px;
+	padding-top: 15%;
+	width: 40vw;
+}
+
+.para1Homebis {
+	font-family: Josefin Sans;
+	padding: 10px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	line-height: 216.5%;
+	letter-spacing: 0.09em;
+}
+
+.Section3 {
+	/* border: 3px solid red; */
+	background: rgba(200, 163, 123, 0.17);
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.para2Home {
+	/* border: 3px solid yellow; */
+	height: 80vh;
+	margin: 60px;
+	padding-top: 10%;
+	width: 50vw;
+}
+
+.para2Homebis {
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	line-height: 216.5%;
+	letter-spacing: 0.09em;
+}
+
+.img2Home {
+	/* border: 3px solid blue; */
+	background: url('./img/Rectangle\ 5.png') center / cover;
+	margin: 20px;
+	height: 90vh;
+	width: 55vw;
+}
