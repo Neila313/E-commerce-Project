@@ -2,12 +2,26 @@ import React from 'react';
 import '../header/style.css';
 import { connect } from 'react-redux';
 import { listCategory } from '../store/action/category';
+import {listProducts} from '../store/action/products'
 import Nav from 'react-bootstrap/Nav';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class Header extends React.Component {
 	componentDidMount() {
+
+        axios
+			.get('http://localhost:8080/products')
+			.then((res) => {
+				// this.setState({ products: res.data });
+				this.props.listProducts(res.data);
+			})
+			.catch((error) => {
+				// this.setState({ error : res.data });
+				console.log(error);
+			});
+
+        
 		axios
 			.get('http://localhost:8080/category', {
 				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
@@ -112,11 +126,12 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
+        products: state.productsReducer.products,
 		categories: state.categoryReducer.categories
 	};
 };
 
-const mapDispatchToProps = { listCategory };
+const mapDispatchToProps = { listCategory, listProducts };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
 

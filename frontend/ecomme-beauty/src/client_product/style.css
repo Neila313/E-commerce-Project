@@ -1,0 +1,12 @@
+.CardAll {
+	/* border: 3px solid red; */
+	display: flex;
+	flex-wrap: wrap;
+	padding: 30px;
+	margin: 10px;
+	justify-content: space-between;
+}
+
+.oneProd {
+	margin-bottom: 30px;
+}
