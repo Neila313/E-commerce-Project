@@ -3,6 +3,8 @@ import './style.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import {connect} from 'react-redux'
+import { loginAdmin } from '../store/action/admin_connect';
 import {Alert} from 'react-bootstrap';
 var jwt = require('jsonwebtoken');
 
@@ -38,8 +40,9 @@ class AdminSignin extends React.Component {
         id: decoded.id,
         email: decoded.email
       };         
+      this.props.loginAdmin(loggedAdmin)
       localStorage.setItem("MyToken", res.data.token) 
-      this.props.history.push('/admin/dashboard');
+      this.props.history.push('/admin/dashboard/');
 
       console.log(decoded)
       console.log(loggedAdmin)
@@ -84,4 +87,18 @@ render() {
 }
 }
 
-export default AdminSignin;
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = { loginAdmin }
+
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminSignin) ;
+ 

@@ -3,6 +3,8 @@ import './style.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import {connect} from 'react-redux'
+// import { loginClient } from '../store/action/admin_connect';
 import {Alert} from 'react-bootstrap';
 var jwt = require('jsonwebtoken');
 
@@ -38,6 +40,9 @@ class ClientSignin extends React.Component {
         id: decoded.id,
         email: decoded.email
       }; 
+      // this.props.loginClient(loggedUser)
+      localStorage.setItem("tokenUser", res.data.token) 
+
       console.log(decoded)
       console.log(loggedUser)
     } else if (res.status === 203){
@@ -81,5 +86,16 @@ render() {
     )
 }
 }
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {}
+}
 
-export default ClientSignin;
+const mapDispatchToProps = {  }
+
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClientSignin) ;
+ 

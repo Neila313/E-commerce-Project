@@ -19,15 +19,19 @@ import Header from './header/';
 import AdminSignup from './admin_signup';
 import AdminSignin from './admin_signin';
 import allAdmin from './admin_all';
-import ProductClient from './client_product';
-import AddProduct from './admin_addproduct';
-import ListProduct from './admin_listproduct';
-import PutProduct from './admin_putproduct';
-import ClientSignup from './client_signup';
-import ClientSignin from './client_signin';
 import DashboardAdmin from './admin_dashboard';
 import AddCategory from './admin_addcategory';
 import ListCateg from './admin_category';
+import AddProduct from './admin_addproduct';
+import ListProduct from './admin_listproduct';
+import PutProduct from './admin_putproduct';
+// ...........Partie client ......
+import ClientSignup from './client_signup';
+import ClientSignin from './client_signin';
+import ProductClient from './client_product';
+import OneProductPage from './one_product';
+import CartProduct from './cart_product';
+
 import PrivateRoute from './privateroute'
 
 const store = createStore(mainReducer, composeWithDevTools());
@@ -40,12 +44,15 @@ const myRouter = (
 			<Switch>
 				<Route path="/home" component={Home} />
 				<Route path="/catalogue" component={ProductClient} />
+				<Route path="/product/:id_product" component={OneProductPage} />
 				<Route path="/inscription" component={ClientSignup} />
 				<Route path="/connexion" component={ClientSignin} />
+				<Route path="/panier" component={CartProduct} />
+								{/* partie admin  */}
 				<Route exact path="/admin" component={allAdmin} />
 				<Route exact path="/admin/signup" component={AdminSignup} />
 				<Route exact path="/admin/signin" component={AdminSignin} />
-				<PrivateRoute exact path="/admin/dashboard" component={DashboardAdmin} />
+				<PrivateRoute exact path="/admin/dashboard/" component={DashboardAdmin} />
 				<Route exact path="/admin/product" component={AddProduct}/>
 				<Route exact path="/admin/listproduct" component={ListProduct}/>
 				<Route exact path="/admin/modifyproduct/:id_product" component={PutProduct}/>

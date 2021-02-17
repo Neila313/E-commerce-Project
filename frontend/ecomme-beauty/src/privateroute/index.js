@@ -9,7 +9,6 @@ class PrivateRoute extends React.Component {
         let decoded = jwt.decode(token)
         console.log(decoded);
         console.log(this.props.component);
-        console.log(decoded);
         return (
             <>
               {decoded && decoded.admin ? (

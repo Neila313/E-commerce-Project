@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { listProducts, deleteProduct } from '../store/action/products';
+import {  deleteProduct } from '../store/action/products';
 import axios from 'axios';
 // import Card from 'react-bootstrap/Card';
 // import ListGroup from 'react-bootstrap/ListGroup';
@@ -16,7 +16,7 @@ import { Alert } from 'react-bootstrap';
 
 class ListProducts extends React.Component {
 	state = {
-		products: [],
+		// products: [],
 		msgSuccess: ''
 	};
 
@@ -28,20 +28,20 @@ class ListProducts extends React.Component {
 		this.props.history.push('/admin/modifyproduct/' + id_product);
 	};
 
-	componentDidMount() {
-		console.log(this);
+	// componentDidMount() {
+	// 	console.log(this);
 
-		axios
-			.get('http://localhost:8080/products')
-			.then((res) => {
-				this.setState({ products: res.data });
-				this.props.listProducts(res.data);
-			})
-			.catch((error) => {
-				// this.setState({ error : res.data });
-				console.log(error);
-			});
-	}
+	// 	axios
+	// 		.get('http://localhost:8080/products')
+	// 		.then((res) => {
+	// 			this.setState({ products: res.data });
+	// 			this.props.listProducts(res.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			// this.setState({ error : res.data });
+	// 			console.log(error);
+	// 		});
+	// }
 
 	deleteRow(id_product, e) {
 		axios
@@ -88,14 +88,16 @@ class ListProducts extends React.Component {
 					<tbody>
 
 						{this.props.products.map((elem) => {
+							console.log(elem);
+							
 							return (
 								<tr key={elem.id_product}>
 									<td>{elem.id_product}</td>
 									<td>{elem.id_admin}</td>
 									<td>{elem.name}</td>
 									<td>{elem.description}</td>
-									<td>{
-										this.props.categories.filter((ele) => 
+									<td>
+										{this.props.categories.filter((ele) => 
 											ele.id_category === elem.id_category
 										)[0].denomination
 									}
@@ -139,6 +141,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { listProducts, deleteProduct};
+const mapDispatchToProps = {  deleteProduct};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);

@@ -1,12 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import Button from 'react-bootstrap/esm/Button';
+// import { newCartProduct } from '../store/action/cartproducts';
+import Button from 'react-bootstrap/esm/Button';
+import { Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import '../client_product/style.css';
+// import axios from 'axios';
+
 
 class ProductClient extends React.Component {
+
+
+
 	render() {
 		return (
 			<div className="Prod">
@@ -26,9 +33,7 @@ class ProductClient extends React.Component {
 									<ListGroupItem>{elem.price}</ListGroupItem>
 								</ListGroup>
 								<Card.Body>
-									{/* <Link to={`/product/${elem.id}`}> <Button variant="primary">Détails</Button></Link> */}
-									{/* <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link> */}
+								<Link to={`/product/${elem.id_product}`}> <Button variant="primary">Voir plus de détails</Button></Link>
 								</Card.Body>
 							</Card>
 					
@@ -45,5 +50,8 @@ const mapStateToProps = (state) => {
 		products: state.productsReducer.products
 	};
 };
+
+// const mapDispatchToProps = { newCartProduct };
+
 
 export default connect(mapStateToProps)(ProductClient);
