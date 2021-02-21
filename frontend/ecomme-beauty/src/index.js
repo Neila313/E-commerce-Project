@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './Home';
 import Header from './header/';
+import FooterPage from './Footer';
 import AdminSignup from './admin_signup';
 import AdminSignin from './admin_signin';
 import allAdmin from './admin_all';
@@ -28,6 +29,7 @@ import PutProduct from './admin_putproduct';
 // ...........Partie client ......
 import ClientSignup from './client_signup';
 import ClientSignin from './client_signin';
+import DashboardClient from './client_dashboard';
 import ProductClient from './client_product';
 import OneProductPage from './one_product';
 import CartProduct from './cart_product';
@@ -42,12 +44,13 @@ const myRouter = (
 		<Router>			
       <Header></Header>
 			<Switch>
-				<Route path="/home" component={Home} />
-				<Route path="/catalogue" component={ProductClient} />
-				<Route path="/product/:id_product" component={OneProductPage} />
-				<Route path="/inscription" component={ClientSignup} />
-				<Route path="/connexion" component={ClientSignin} />
-				<Route path="/panier" component={CartProduct} />
+				<Route exact path="/home" component={Home} />
+				<Route exact path="/catalogue" component={ProductClient} />
+				<Route exact path="/product/:id_product" component={OneProductPage} />
+				<Route exact path="/inscription" component={ClientSignup} />
+				<Route exact path="/connexion" component={ClientSignin} />
+				<Route exact path="/mon-compte" component={DashboardClient} />
+				<Route exact path="/panier" component={CartProduct} />
 								{/* partie admin  */}
 				<Route exact path="/admin" component={allAdmin} />
 				<Route exact path="/admin/signup" component={AdminSignup} />
@@ -59,6 +62,7 @@ const myRouter = (
 				<Route exact path="/admin/category" component={AddCategory}/>
 				<Route exact path="/admin/listcategory" component={ListCateg}/>
 			</Switch>
+			<FooterPage></FooterPage>
 		</Router>
   </Provider>
 );

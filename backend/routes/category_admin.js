@@ -4,13 +4,13 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 var cors = require('cors');
- const middlewares = require('../middlewares/middlewares.js')
+ const middlewares = require('../middlewares/')
 
 router.use(cors());
 
-router.use('/category', middlewares.isAdmin)
 
-router.post('/category', function(req, res){
+
+router.post('/category',middlewares.isAdmin, function(req, res){
 
     try {
         const token = req.headers.authorization.split(' ')[1]

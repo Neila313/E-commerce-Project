@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import HTTP from '../provider/http';
 import {connect} from 'react-redux'
 // import { loginClient } from '../store/action/admin_connect';
 import {Alert} from 'react-bootstrap';
@@ -30,7 +30,7 @@ class ClientSignin extends React.Component {
         email: this.state.email,
         password: this.state.password,};
 
-    axios.post("http://localhost:8080/customer/sign-in",  userSignin )
+    HTTP.post('/customer/sign-in',  userSignin)
   .then(res => {
     if(res.status === 200){
       console.log(res);
@@ -42,6 +42,9 @@ class ClientSignin extends React.Component {
       }; 
       // this.props.loginClient(loggedUser)
       localStorage.setItem("tokenUser", res.data.token) 
+      //re-diriger vers dashboard
+      this.props.history.push('/mon-compte');
+
 
       console.log(decoded)
       console.log(loggedUser)

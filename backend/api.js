@@ -7,6 +7,8 @@ const routerCustomer = require('./routes/auth_client')
 const routerProduct = require('./routes/product_admin')
 const routerArticle = require('./routes/article_admin')
 const routerCategory = require('./routes/category_admin')
+const routerCart = require('./routes/cart_client')
+const routerCartProduct = require('./routes/cartproduct_client')
 
 app.use(
 	express.urlencoded({
@@ -16,10 +18,12 @@ app.use(
 app.use(express.json());
 
 app.use('/',routerAdmin)
-app.use('/',routerCustomer)
+app.use('/customer',routerCustomer)
 app.use('/',routerProduct)
 app.use('/',routerArticle)
 app.use('/',routerCategory)
+app.use('/',routerCart)
+app.use('/',routerCartProduct)
 
 
 app.listen(port, function(){

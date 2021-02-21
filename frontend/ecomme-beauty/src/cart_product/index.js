@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import HTTP from '../provider/http';
 import { connect } from 'react-redux';
 import { oneCartProducts } from '../store/action/cartproducts';
 // import Button from 'react-bootstrap/Button';
@@ -13,10 +13,7 @@ class CartProduct extends React.Component {
 
 	componentDidMount() {
 		console.log(this);
-		axios
-			.get(`http://localhost:8080/cartproduct/`, {
-				headers: { authorization: `Bearer ${localStorage.getItem('tokenUser')}` }
-			})
+		HTTP.get('/cartproduct')
 			.then((res) => {
 				console.log(res.data);
 				this.setState({ cartProduct: res.data });

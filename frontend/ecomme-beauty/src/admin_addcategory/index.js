@@ -31,7 +31,7 @@ class AddCategory extends React.Component {
 		};
 
 		axios
-			.post('http://localhost:8080/category', categ, {
+			.post(process.env.REACT_APP_API_URL + '/category', categ, {
 				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
 			})
 			//recuperation du token stocké dans le localStorage comme ca y'a plus "no token"

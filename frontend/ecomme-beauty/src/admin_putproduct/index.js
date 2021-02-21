@@ -76,9 +76,7 @@ class PutProduct extends React.Component {
             image: this.state.image,
             id_category: parseInt(this.state.id_category)
         };
-
-
-        axios.put('http://localhost:8080/products/' + id_product, product, {headers: {authorization: `Bearer ${localStorage.getItem('MyToken')}`}} )
+        axios.put(process.env.REACT_APP_API_URL + '/products/' + id_product, product, {headers: {authorization: `Bearer ${localStorage.getItem('MyToken')}`}} )
         //recuperation du token stocké dans le localStorage comme ca y'a plus "no token"
         .then(res => {
             if(res.status === 200){
@@ -86,7 +84,6 @@ class PutProduct extends React.Component {
                 console.log(res.data);
                 this.setState({msgSuccess: "Produit modifié avec succès"})
                 this.props.changeProduct(product)
-
             }
         })
         .catch(error => {
@@ -121,8 +118,7 @@ class PutProduct extends React.Component {
 							type="description"
                             placeholder="Enter the description of your product"
                             onChange={this.putDesc}
-                            value={this.state.description}
-						/>
+                            value={this.state.description}/>
 					</Form.Group>
 					<Form.Group controlId="formGroupCategory">
 						<Form.Label>Catégorie</Form.Label>
@@ -140,9 +136,6 @@ class PutProduct extends React.Component {
 						Ajouter mon produit
 					</Button>
 				</Form>
-
-               
-
             </div>
         )
     }

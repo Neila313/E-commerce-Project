@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 var cors = require('cors');
-const middlewares = require('../middlewares/middlewares.js')
+const middlewares = require('../middlewares/')
 
 
 router.use(cors());
@@ -58,7 +58,7 @@ router.post('/products', middlewares.isAdmin, function(req,res){
     
                 con.query(`SELECT * FROM products WHERE id_product = ${idProducts}`, function(err, result){
                     
-                    if (err) throw err;
+             if (err) throw err;
 				console.log(result);
                 res.status(200).send(result);    
                 })
@@ -82,7 +82,16 @@ router.post('/products', middlewares.isAdmin, function(req,res){
             // (?, ?, ?,
             // ?, ?, ?)`; 
 
-            let updateProduct = `UPDATE products SET name = '${req.body.name}', description = '${req.body.description}', price = '${req.body.price}', image =' ${req.body.image}', id_category = '${req.body.id_category}', id_admin = '${decoded.id}' WHERE id_product = '${idProducts}' `;
+            let desc = req.body.description
+            desc = desc.replace(/'/g, ' ')
+            desc = desc.replace(/`/g, ' ')
+
+            let nameProd = req.body.name
+            nameProd = nameProd.replace(/'/g, ' ')
+            nameProd = nameProd.replace(/`/g, ' ')
+            console.log(nameProd);
+
+            let updateProduct = `UPDATE products SET name = '${nameProd}', description = '${desc}', price = '${req.body.price}', image =' ${req.body.image}', id_category = '${req.body.id_category}', id_admin = '${decoded.id}' WHERE id_product = '${idProducts}' `;
 
         con.query(updateProduct, function(err, resulta){
             if (err) throw err;

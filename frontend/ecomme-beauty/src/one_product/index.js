@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+import HTTP from '../provider/http';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import { connect } from 'react-redux';
@@ -30,7 +30,7 @@ class OneProductPage extends React.Component {
     componentDidMount() {
         console.log(this)
         const { id_product } = this.props.match.params 
-    axios.get(`http://localhost:8080/products/${id_product}`)
+    HTTP.get(`/products/${id_product}`)
     .then(res => {
         this.props.oneProducts(res.data[0])
       // this.setState({productdetails: res.data[0]});
@@ -46,10 +46,8 @@ class OneProductPage extends React.Component {
 		};
 		console.log(cartProduct);
 
-		axios
-			.post('http://localhost:8080/cartproduct', cartProduct, {
-				headers: { authorization: `Bearer ${localStorage.getItem('tokenUser')}` }
-			})
+		HTTP
+			.post('/cartproduct', cartProduct)
 			//recuperation du token stocké dans le localStorage comme ca y'a plus "no token"
 			.then((res) => {
 				console.log(res);

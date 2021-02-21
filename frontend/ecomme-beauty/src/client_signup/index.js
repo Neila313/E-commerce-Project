@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import HTTP from '../provider/http';
 import {Alert} from 'react-bootstrap';
 
 class ClientSignup extends React.Component {
@@ -35,7 +35,7 @@ class ClientSignup extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		axios.post('http://localhost:8080/customer/sign-up', user).then((res) => {
+		HTTP.post('/sign-up', user).then((res) => {
 			if (res.status === 200) {
 				console.log(res);
 

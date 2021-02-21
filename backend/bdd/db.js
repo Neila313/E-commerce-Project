@@ -59,9 +59,7 @@ con.connect(function(err) {
                   lastname VARCHAR(150) NOT NULL, 
                   firstname VARCHAR(150) NOT NULL, 
                   email VARCHAR(250) NOT NULL, 
-                  password VARCHAR(250) NOT NULL,
-                  id_cart INT,
-                  FOREIGN KEY (id_cart) REFERENCES cart(id_cart))`);
+                  password VARCHAR(250) NOT NULL)`);
 
               //Création de la table favoris
 
@@ -74,15 +72,17 @@ con.connect(function(err) {
 
       con.query(`CREATE TABLE IF NOT EXISTS cart
                   (id_cart INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                    ordered BOOLEAN,
                     id_customer INT,
                     FOREIGN KEY (id_customer) REFERENCES customer(id_customer))`)
       
       con.query(`CREATE TABLE IF NOT EXISTS cartproduct
                  (id_cartproduct INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                  quantity VARCHAR(600) NOT NULL,
+                  quantity DECIMAL(10,2) NOT NULL,
                   id_cart INT,
                   id_product INT,
                   FOREIGN KEY (id_product) REFERENCES products(id_product),
                   FOREIGN KEY (id_cart) REFERENCES cart(id_cart))`)
   });
+
 module.exports = con

@@ -32,7 +32,7 @@ class ListProducts extends React.Component {
 	// 	console.log(this);
 
 	// 	axios
-	// 		.get('http://localhost:8080/products')
+	// 		.get(process.env.REACT_APP_API_URL + '/products')
 	// 		.then((res) => {
 	// 			this.setState({ products: res.data });
 	// 			this.props.listProducts(res.data);
@@ -45,18 +45,16 @@ class ListProducts extends React.Component {
 
 	deleteRow(id_product, e) {
 		axios
-			.delete(`http://localhost:8080/products/${id_product}`, {
+			.delete(`${process.env.REACT_APP_API_URL}/products/${id_product}`, {
 				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
 			})
 			.then((res) => {
 				if(res.status === 200) {
 					this.props.deleteProduct(id_product)
 					this.setState({ msgSuccess: 'Produit supprimé avec succès' });
-
 				} 
 				// console.log(res);
 				// console.log(res.data);
-		
 				// const products = this.state.products.filter((item) => item.id_product !== id_product);
 				// this.setState({ products });
 			});

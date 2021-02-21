@@ -6,7 +6,7 @@ const saltRounds = 10;
 var cors = require('cors');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
-const middlewares = require('../middlewares/middlewares.js')
+const middlewares = require('../middlewares/')
 
 router.use(cors());
 
@@ -45,18 +45,15 @@ con.connect(function(err){
                     if(result.length == 0) {
                         console.log(result.length)
                         res.status(203).send("Adresse email inconnue")
-    
                     } else {
-                        console.log(req.body)
-    
                         bcrypt.compare(req.body.password, result[0].password, function(err,resulta){
                             if(resulta) {
-                                
+                
                                 let token = jwt.sign({id : result[0].id_admin, 
                                     email: result[0].email, admin: true}, config.secret, {expiresIn: 86400});
+                                    console.log(token)
                                 res.status(200).send({ token: token });
-                            } else {
-                                
+                            } else { 
                                 res.status(203).send("Mots de passe incorrect")
                             }
                          }) 
@@ -71,10 +68,8 @@ con.connect(function(err){
         // route permettant de récupérer l'admin , par son id nous pourrons accéder à son nom et prénom. Je souhaite utiliser cela afin de personnaliser son dashboard.
         
         router.get('/admin', function(req,res){
-
             try {
-                
-                con.query(`SELECT id_admin, lastname, firstname  FROM admin`, function(err,result){
+                con.query(`SELECT id_admin, lastname, firstname FROM admin`, function(err,result){
                     if(err) throw err;
                     console.log(result[0])
                     res.status(200).send(result[0])
@@ -83,6 +78,40 @@ con.connect(function(err){
                 res.status(400).send(error);  
             }
         })
+
+        router.get('/admin/:id_admin', function(req, res){
+            try {
+                let idAdmin = req.params.id_admin
+            console.log(idAdmin)
+
+            con.query(`SELECT id_admin, lastname, firstname, email FROM admin WHERE id_admin = '${idAdmin}'`, function(err, results){
+                if(err) throw err;
+                console.log(results);
+                res.status(200).send(results)
+            })
+            } catch (error) {
+                res.status(400).send(error);  
+            }
+
+        })
+
+        router.put('/admin/:id_admin', middlewares.isAdmin, function (req, res) {
+           try {
+            
+            let modifAdmin = req.params.id_admin
+            console.log(modifAdmin)
+            con.query(`UPDATE admin SET lastname = '${req.body.lastname}', firstname = '${req.body.firstname}', email = '${req.body.email}' WHERE id_admin = '${modifAdmin}'`, function (error, resultss) {
+                if (error) throw error;
+                console.log(resultss);
+                res.status(200).send("PROFILE HAS BEEN UPDATED");
+              });
+           } catch (error) {
+            res.status(400).send(error);  
+
+           }
+            
+          });   
+
 })
 
 module.exports = router;

@@ -2,40 +2,35 @@ import React from 'react';
 import '../header/style.css';
 import { connect } from 'react-redux';
 import { listCategory } from '../store/action/category';
-import {listProducts} from '../store/action/products'
-import {listCartProducts} from '../store/action/cartproducts'
+import { listProducts } from '../store/action/products';
+import { listCartProducts } from '../store/action/cartproducts';
 import Nav from 'react-bootstrap/Nav';
 import { Link, withRouter } from 'react-router-dom';
-import axios from 'axios';
+import HTTP from '../provider/http';
 
 class Header extends React.Component {
-
 	constructor() {
-        super()
-          this.state = {
-            productdetails: {}
-            
-                  }
-          }
+		super();
+		this.state = {
+			productdetails: {}
+		};
+	}
 
 	componentDidMount() {
+		HTTP
+			.get('/category')
+			.then((res) => {
+				// this.setState({ categories: res.data });
+				// console.log(res.data);
+				this.props.listCategory(res.data);
+			})
+			.catch((error) => {
+				// this.setState({ error : res.data });
+				console.log(error);
+			});
 
-		axios
-		.get('http://localhost:8080/category', {
-			headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
-		})
-		.then((res) => {
-			// this.setState({ categories: res.data });
-			// console.log(res.data);
-			this.props.listCategory(res.data);
-		})
-		.catch((error) => {
-			// this.setState({ error : res.data });
-			console.log(error);
-		});
-
-        axios
-			.get('http://localhost:8080/products')
+		HTTP
+			.get('/products')
 			.then((res) => {
 				// this.setState({ products: res.data });
 				this.props.listProducts(res.data);
@@ -44,41 +39,27 @@ class Header extends React.Component {
 				// this.setState({ error : res.data });
 				console.log(error);
 			});
-
-        // axios
-		// 	.get('http://localhost:8080/cartproduct')
-		// 	.then((res) => {
-		// 		this.props.listCartProducts(res.data);
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 	});
-
-		
-
 	}
 	render() {
 		if (this.props.location.pathname.includes('admin')) {
 			if (localStorage.getItem('MyToken')) {
 				return (
-
 					<Nav variant="pills" defaultActiveKey="/dashboard">
-					<Nav.Item>
-						<Nav.Link as={Link} to="/admin/product">
-							Ajouter un produit
-						</Nav.Link>
-						<Nav.Link as={Link} to="/admin/listproduct">
-							Vos produits
-						</Nav.Link>
-						<Nav.Link as={Link} to="/admin/category">
-							Ajouter vos catégories
-						</Nav.Link>
-						<Nav.Link as={Link} to="/admin/listcategory">
-							Vos catégories
-						</Nav.Link>
-					</Nav.Item>
-				</Nav>
-			
+						<Nav.Item>
+							<Nav.Link as={Link} to="/admin/product">
+								Ajouter un produit
+							</Nav.Link>
+							<Nav.Link as={Link} to="/admin/listproduct">
+								Vos produits
+							</Nav.Link>
+							<Nav.Link as={Link} to="/admin/category">
+								Ajouter vos catégories
+							</Nav.Link>
+							<Nav.Link as={Link} to="/admin/listcategory">
+								Vos catégories
+							</Nav.Link>
+						</Nav.Item>
+					</Nav>
 				);
 			} else {
 				return (
@@ -106,9 +87,7 @@ class Header extends React.Component {
 					<div className="MasterHead">
 						<div className="ligne" />
 						<Nav.Item className="logoHead">
-							<Nav.Link className="homeImg" as={Link} to="/home">
-                
-                            </Nav.Link>
+							<Nav.Link className="homeImg" as={Link} to="/home" />
 						</Nav.Item>
 						<div className="ligne" />
 					</div>
@@ -122,22 +101,32 @@ class Header extends React.Component {
 							<Nav.Link className="NosProduits">Nos routines</Nav.Link>
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
-							<Nav.Link as={Link} to="/panier" className="cartP"></Nav.Link>
+							<Nav.Link as={Link} to="/panier" className="cartP" />
 						</Nav.Item>
 					</div>
 
-					<div className="headCustomConnect">
-						<Nav.Item>
-							<Nav.Link className="Seconnecter" as={Link} to="/connexion">
-								Se connecter
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link className="Sinscrire" as={Link} to="/inscription">
-								S'inscrire
-							</Nav.Link>
-						</Nav.Item>
-					</div>
+					{localStorage.getItem('tokenUser') ? (
+						<div className="headCustomConnect">
+							<Nav.Item>
+								<Nav.Link as={Link} className="Seconnecter"  to="/mon-compte">
+									Mon compte
+								</Nav.Link>
+							</Nav.Item>{' '}
+						</div>
+					) : (
+						<div className="headCustomConnect">
+							<Nav.Item>
+								<Nav.Link className="Seconnecter" as={Link} to="/connexion">
+									Se connecter
+								</Nav.Link>
+							</Nav.Item>
+							<Nav.Item>
+								<Nav.Link className="Sinscrire" as={Link} to="/inscription">
+									S'inscrire
+								</Nav.Link>
+							</Nav.Item>
+						</div>
+					)}
 				</Nav>
 			);
 		}
@@ -146,14 +135,12 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-        products: state.productsReducer.products,
-		categories: state.categoryReducer.categories,
-	
-
+		products: state.productsReducer.products,
+		categories: state.categoryReducer.categories
 	};
 };
 
-const mapDispatchToProps = { listCategory, listProducts, listCartProducts};
+const mapDispatchToProps = { listCategory, listProducts, listCartProducts };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
 

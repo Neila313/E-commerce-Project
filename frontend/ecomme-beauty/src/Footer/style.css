@@ -1,0 +1,36 @@
+.Allfooter {
+	height: 60vh;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+}
+
+.containerFooter {
+	border: 3px solid red;
+	height: 40vh;
+	width: 80vw;
+	margin: 90px;
+	padding: 50px;
+}
+
+.containername {
+	border: 3px solid red;
+	width: 50vw;
+	height: 20vh;
+}
+
+.nameFooter {
+	color: white;
+	font-family: Josefin Sans;
+	font-weight: bolder;
+	font-style: normal;
+	font-size: 20px;
+}
+
+.footersousname {
+	font-family: Josefin Sans;
+	font-weight: lighter;
+	font-style: italic;
+	font-size: 18px;
+	padding: 10px;
+}

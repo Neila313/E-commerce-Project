@@ -24,7 +24,7 @@ class ListCateg extends React.Component {
 
 	deleteRow(id_category, e) {
 		axios
-			.delete(`http://localhost:8080/category/${id_category}`, {
+			.delete(process.env.REACT_APP_API_URL + `/category/${id_category}`, {
 				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
 			})
 			.then((res) => {

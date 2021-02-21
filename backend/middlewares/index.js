@@ -18,12 +18,10 @@ const isAdmin = (req,res,next) => {
                     } else {
                         res.status(203).json({error: "Vous n'êtes pas autorisé à entrer"})
                     }
-                })
-               
+                })    
             } 
         })
     } else {
-        
         res.status(400).json({error: "Vous n'avez pas de token"})
     }
 };
@@ -40,22 +38,32 @@ const checkEmail = (req,res,next) => {
     })
 };
 
-// const decodedId = (req,res,next)=> {
-//     if(!req.headers.authorization) {
-//         throw "no token"
-//     } else {
-//         const test = req.headers.authorization
-//         const token = test.split(' ')[1]
-//         console.log(test)
-//         console.log(token);
+const isCustomer = (req,res,next) => {
+    req.user = null 
+    let tokenClient = req.headers.authorization
+    if (tokenClient) {
+        const token = tokenClient.split(' ')[1];
+        jwt.verify(token, 'supersecret', (err, decoded) => {
+            if(err){
+                res.status(401).json({error: "Vous n'êtes pas autorisé à entrer"})
+            }  
+            else {
+                con.query(`SELECT * FROM customer WHERE id_customer = '${decoded.id}'`, function(error, result){
+                    if(result.length === 1){
+                        req.user = result[0]
+                           next() 
+                    } else {
+                        res.status(401).json({error: "Vous n'êtes pas autorisé à entrer"})
+                    }
+                })
+               
+            } 
+        })
+    } else {
         
-//         let decoded = jwt.verify(token, 'supersecret');
-//         console.log(decoded);
-        
-//     } next()
+        next() 
+    }
+};
 
 
-// }
-
-
-module.exports = {isAdmin, checkEmail}
+module.exports = {isAdmin, checkEmail, isCustomer}
