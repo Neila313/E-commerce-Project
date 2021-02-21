@@ -1,0 +1,81 @@
+.headCustom {
+	/* border: 3px solid blue; */
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.headCustomConnect {
+	/* border: 3px solid pink; */
+	position: absolute;
+	left: 1150px;
+	top: 22px;
+	margin-bottom: 70px;
+	width: 20vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.Sinscrire,
+.Seconnecter,
+.NosProduits {
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+	color: #ad7c34;
+}
+
+.MasterHead {
+	/* border: 3px solid lightcoral; */
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+	height: 20vh;
+}
+
+.homeImg {
+	margin-top: 20px;
+	/* height: 15vh;
+	width: 7vw; */
+	width: 83px;
+	height: 120px;
+	background: url('./img/Rectangle\ 1.png') center / cover;
+}
+
+.ProductMaster {
+	display: flex;
+	justify-content: center;
+	margin: 40px;
+	padding-bottom: 30px;
+	/* border: 3px solid red; */
+	width: 40vw;
+	height: 7vh;
+}
+
+.ProductHead {
+	/* border: 3px solid black; */
+	width: 12vw;
+	/* margin-top: 80px; */
+}
+
+.ligne {
+	/* border: 1px solid #ad7c34; */
+	width: 50vw;
+	height: 3px;
+	margin-top: 80px;
+	margin-left: 20px;
+	margin-right: 20px;
+	background: url('./img/Line\ 1.png') center / cover;
+}
+
+.cartP {
+	/* border: 3px solid red; */
+	width: 30px;
+	height: 30px;
+	background: url('./img/icons8-caddie-64.png') center / cover;
+}
