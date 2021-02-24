@@ -23,17 +23,20 @@ class ProductClient extends React.Component {
 				{this.props.products.map((elem) => {
 					return (
 						
-							<Card className="oneProd"  key={elem.name} style={{ width: '18rem' }}>
-								<Card.Img variant="top" src={elem.image} className="elemPic" />
+							<Card className="oneProd"  key={elem.name} style={{ width: '23rem', height: '47rem' }}>
+						<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
+
+								<Card.Img variant="top" src={elem.image} style={{ width: '23rem', height: '30rem' }} className="elemPic" />
 								<Card.Body>
-									<Card.Title>{elem.name}</Card.Title>
-									<Card.Text>{elem.description}</Card.Text>
+									<Card.Title className="titleProd">{elem.name}</Card.Title>
+									<Card.Text className="descProd">{elem.description}</Card.Text>
 								</Card.Body>
 								<ListGroup className="list-group-flush">
-									<ListGroupItem>{elem.price}</ListGroupItem>
+									<ListGroupItem className="priceProd">{elem.price}€</ListGroupItem>
 								</ListGroup>
 								<Card.Body>
-								<Link to={`/product/${elem.id_product}`}> <Button variant="primary">Voir plus de détails</Button></Link>
+								<Link to={`/product/${elem.id_product}`}>
+									 <Button className="btn effect01" ><span>En savoir +</span></Button></Link>
 								</Card.Body>
 							</Card>
 					

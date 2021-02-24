@@ -102,6 +102,7 @@ class Header extends React.Component {
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
 							<Nav.Link as={Link} to="/panier" className="cartP" />
+							<Nav.Link className="favorisP" />
 						</Nav.Item>
 					</div>
 

@@ -6,16 +6,18 @@
 }
 
 .containerFooter {
-	border: 3px solid red;
-	height: 40vh;
-	width: 80vw;
-	margin: 90px;
-	padding: 50px;
+	/* border: 3px solid red; */
+	display: flex;
+	justify-content: space-between;
+	height: 50vh;
+	width: 90vw;
+	margin: 50px;
+	padding: 30px;
 }
 
 .containername {
-	border: 3px solid red;
-	width: 50vw;
+	/* border: 3px solid blue; */
+	width: 35vw;
 	height: 20vh;
 }
 
@@ -33,4 +35,61 @@
 	font-style: italic;
 	font-size: 18px;
 	padding: 10px;
+}
+
+.socialmedia {
+	/* border: 3px solid white; */
+	width: 7vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+}
+.facebook {
+	/* border: 3px solid pink; */
+	width: 40px;
+	height: 40px;
+	background: url('./icone/icons8-facebook-160.png') center / cover;
+	z-index: 7;
+}
+
+.instagram {
+	/* border: 3px solid pink; */
+	width: 40px;
+	height: 40px;
+	background: url('./icone/icons8-instagram-128.png') center / cover;
+	z-index: 7;
+}
+
+.containerFooter2 {
+	/* border: 3px solid lightblue; */
+	width: 30vw;
+}
+
+.infoess {
+	/* border: 3px solid lightcoral; */
+	color: white;
+	font-family: Josefin Sans;
+	font-weight:inherit;
+	text-transform: capitalize;
+	font-style: normal;
+	font-size: 20px;
+}
+
+.cgvall {
+	/* border: 3px solid lightgoldenrodyellow; */
+	color: #ad7c34;
+	font-family: Josefin Sans;
+	font-weight:inherit;
+	text-transform: uppercase;
+	font-style: normal;
+	font-size: 20px;
+}
+
+.hrfooter {
+	border: 1px solid white;
+	width: 30vw;
+	height: 1px;
+	color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

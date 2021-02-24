@@ -13,7 +13,26 @@ class FooterPage extends React.Component {
                 <div className="containerFooter">
                     <div className="containername">
                         <p className="nameFooter">My Precious Argan, 
-                        <span className="footersousname" >le pouvoir de l'argan</span></p>
+                        <span className="footersousname" >le pouvoir de l'argan du Maroc</span></p>
+                        <div className="socialmedia">
+                           <div className="facebook"></div>
+                           <div className="instagram"></div>
+                        </div>
+                    </div>
+                    <div className="containerFooter2">
+                        <div className="infoess">
+                            <p>contacts</p>
+                            <p>livraison</p>
+                            <p>paiement sécurisé</p>
+                            <p>parrainage</p>
+                            <p>points de vente</p>
+                        </div>
+                        <div className="hrfooter"></div>
+                        <div className="cgvall">
+                            <p>cgv / cgu</p>
+                            <p>mentions légales</p>
+                        </div>
+
                     </div>
 
                 </div>
