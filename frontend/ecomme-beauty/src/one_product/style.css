@@ -1,0 +1,114 @@
+.container {
+    /* border: 3px solid red; */
+    margin: 60px;
+}
+.containerPix {
+    /* border: 3px solid grey; */
+    background-color: rgba(173, 124, 52, 0.13);    
+}
+.pixProd {
+    /* border: 3px solid blue; */
+    width: 30vw;
+    height: 70vh;
+    margin: 14%;
+    /* margin-left: 14%; */
+}
+
+.containerDetails {
+    border: 3px solid black;
+    width: 40vw;
+    margin-left: 2%;
+    padding: 1%;
+    height: 70vh;
+}
+
+.titleOneProd {
+	text-align: left;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.descOneProd {
+	text-align: left;
+}
+
+.list-group {
+	text-align: left;
+}
+
+.priceOneProd {
+	font-size: 25px;
+	color: #7B3F27;
+	font-weight: 600;
+    text-align: left;
+
+}
+.btn2 {
+	letter-spacing: 0.1em;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 45px;
+	max-width: 30vw;
+    height: 8vh;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+  }
+  .btn2:hover {
+	text-decoration: none;
+  }
+  
+  /*btn_background*/
+  .effect02 {
+	color: #FFF;
+	border: 4px solid #000;
+	box-shadow:0px 0px 0px 1px #000 inset;
+	background-color: #000;
+	overflow: hidden;
+	position: relative;
+	transition: all 0.3s ease-in-out;
+	align-items: center;
+	width: 90vw;
+	/* height: 7vh; */
+  }
+  .effect02:hover {
+	border: 4px solid #666;
+	background-color: #FFF;
+	box-shadow:0px 0px 0px 4px #EEE inset;
+  }
+  
+  /*btn_text*/
+  .effect02 span {
+	transition: all 0.2s ease-out;
+	z-index: 2;
+  }
+  .effect02:hover span{
+	letter-spacing: 0.13em;
+	color: #333;
+  }
+  
+  /*highlight*/
+  .effect02:after {
+	background: #FFF;
+	border: 0px solid #000;
+	content: "";
+	height: 155px;
+	left: -75px;
+	opacity: .8;
+	position: absolute;
+	top: -50px;
+	-webkit-transform: rotate(35deg);
+			transform: rotate(35deg);
+	width: 50px;
+	transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);/*easeOutCirc*/
+	z-index: 1;
+  }
+  .effect02:hover:after {
+	background: #FFF;
+	border: 20px solid #000;
+	opacity: 0;
+	left: 120%;
+	-webkit-transform: rotate(40deg);
+			transform: rotate(40deg);
+  }
