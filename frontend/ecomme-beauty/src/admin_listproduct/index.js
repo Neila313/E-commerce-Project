@@ -77,6 +77,7 @@ class ListProducts extends React.Component {
 							<th>ID Admin</th>
 							<th>Nom du produit</th>
 							<th>Description produit</th>
+							<th>Détail du produit</th>
 							<th>Catégorie</th>
 							<th>Prix</th>
 							<th>Image</th>
@@ -94,6 +95,7 @@ class ListProducts extends React.Component {
 									<td>{elem.id_admin}</td>
 									<td>{elem.name}</td>
 									<td>{elem.description}</td>
+									<td>{elem.details}</td>
 									<td>
 										{this.props.categories.filter((ele) => 
 											ele.id_category === elem.id_category

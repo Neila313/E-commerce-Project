@@ -35,7 +35,7 @@ class ClientSignup extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		HTTP.post('/sign-up', user).then((res) => {
+		HTTP.post('customer/sign-up', user).then((res) => {
 			if (res.status === 200) {
 				console.log(res);
 

@@ -12,6 +12,7 @@ class AddProduct extends React.Component {
 	state = {
 		name: '',
 		description: '',
+		details: '',
 		price: '',
 		image: '',
         msgSuccess: '',
@@ -23,13 +24,15 @@ class AddProduct extends React.Component {
 	returnSubmit = () => {
 		this.props.history.push('/admin/dashboard');
 	};
-
 	// /!\ Bien écrire les elements exactement comme dans la db
 	inputNameProduct = (event) => {
 		this.setState({ name: event.target.value });
 	};
 	inputDesc = (event) => {
 		this.setState({ description: event.target.value });
+	};
+	inputDetails = (event) => {
+		this.setState({ details: event.target.value });
 	};
 
 	inputPrice = (event) => {
@@ -49,6 +52,7 @@ class AddProduct extends React.Component {
 		const product = {
 			name: this.state.name,
 			description: this.state.description,
+			details: this.state.details,
 			price: this.state.price,
 			image: this.state.image,
 			id_category: this.state.selectedOption
@@ -100,6 +104,14 @@ class AddProduct extends React.Component {
 							type="description"
 							placeholder="Enter the description of your product"
 							onChange={this.inputDesc}
+						/>
+					</Form.Group>
+					<Form.Group controlId="formGroupDetails">
+						<Form.Label>Détails</Form.Label>
+						<Form.Control
+							type="détails"
+							placeholder="Enter the details of your product"
+							onChange={this.inputDetails}
 						/>
 					</Form.Group>
 					<Form.Group controlId="formGroupCategory">

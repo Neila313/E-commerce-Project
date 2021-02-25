@@ -19,11 +19,11 @@ router.post('/products', middlewares.isAdmin, function(req,res){
         console.log(decoded);
 
         let newProduct = `INSERT INTO products 
-        (name, description, price, image, id_admin,id_category) VALUES
+        (name, description, details, price, image, id_admin,id_category) VALUES
         (?, ?, ?,
-        ?, ?, ?)`; 
+        ?, ?, ?, ?)`; 
 
-        con.query(newProduct, [req.body.name, req.body.description,req.body.price,req.body.image, decoded.id ,req.body.id_category], function(err, theproduct){
+        con.query(newProduct, [req.body.name, req.body.description,req.body.details,req.body.price,req.body.image, decoded.id ,req.body.id_category], function(err, theproduct){
             if(err) throw err;
              con.query(`SELECT * FROM products WHERE id_product = '${theproduct.insertId}'`, function(err, results){
                  res.status(200).json(results)
@@ -86,12 +86,16 @@ router.post('/products', middlewares.isAdmin, function(req,res){
             desc = desc.replace(/'/g, ' ')
             desc = desc.replace(/`/g, ' ')
 
+            let det = req.body.details
+            det = det.replace(/'/g, ' ')
+            det = det.replace(/`/g, ' ')
+
             let nameProd = req.body.name
             nameProd = nameProd.replace(/'/g, ' ')
             nameProd = nameProd.replace(/`/g, ' ')
             console.log(nameProd);
 
-            let updateProduct = `UPDATE products SET name = '${nameProd}', description = '${desc}', price = '${req.body.price}', image =' ${req.body.image}', id_category = '${req.body.id_category}', id_admin = '${decoded.id}' WHERE id_product = '${idProducts}' `;
+            let updateProduct = `UPDATE products SET name = '${nameProd}', description = '${desc}', details = '${det}', price = '${req.body.price}', image =' ${req.body.image}', id_category = '${req.body.id_category}', id_admin = '${decoded.id}' WHERE id_product = '${idProducts}' `;
 
         con.query(updateProduct, function(err, resulta){
             if (err) throw err;

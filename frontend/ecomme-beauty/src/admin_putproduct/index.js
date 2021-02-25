@@ -15,6 +15,7 @@ class PutProduct extends React.Component {
     state = {
         name: "",
         description: "",
+        details: "",
         price:"",
         image: "",
         id_category: 0,
@@ -35,6 +36,9 @@ class PutProduct extends React.Component {
     putDesc = event => {
         this.setState({description:event.target.value})
     };
+    putDetails = event => {
+        this.setState({details:event.target.value})
+    };
   
     putPrice = event => {
         this.setState({price:event.target.value})
@@ -53,6 +57,7 @@ class PutProduct extends React.Component {
    
         this.setState({name: product[0].name,
             description: product[0].description,
+            details: product[0].details,
             price: product[0].price,
             image: product[0].image,
             id_category: product[0].id_category});
@@ -72,6 +77,7 @@ class PutProduct extends React.Component {
             id_admin: parseInt(token.id),
             name: this.state.name,
             description: this.state.description,
+            details: this.state.details,
             price: parseInt(this.state.price),
             image: this.state.image,
             id_category: parseInt(this.state.id_category)
@@ -120,6 +126,14 @@ class PutProduct extends React.Component {
                             onChange={this.putDesc}
                             value={this.state.description}/>
 					</Form.Group>
+					<Form.Group controlId="formGroupDetails">
+						<Form.Label>Détails du produit</Form.Label>
+						<Form.Control
+							type="détails"
+                            placeholder="Enter the details of your product"
+                            onChange={this.putDetails}
+                            value={this.state.details}/>
+					</Form.Group>
 					<Form.Group controlId="formGroupCategory">
 						<Form.Label>Catégorie</Form.Label>
 						<Form.Control type="number" placeholder="Choose the category" value={this.state.id_category} onChange={this.putCategory}/>
@@ -133,7 +147,7 @@ class PutProduct extends React.Component {
                         <Form.Control placeholder="copy your link picture" value={this.state.image}  onChange={this.putImage}/>
 					</Form.Group>
 					<Button variant="info" type="submit">
-						Ajouter mon produit
+						Modifier mon produit
 					</Button>
 				</Form>
             </div>

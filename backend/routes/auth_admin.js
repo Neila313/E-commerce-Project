@@ -39,7 +39,6 @@ con.connect(function(err){
 
         router.post('/sign-in', function(req,res){
             try {
-    
                 con.query(`SELECT * FROM admin WHERE email = '${req.body.email}'`,function(err, result){
                     
                     if(result.length == 0) {

@@ -1,6 +1,5 @@
-const mySql = require('mysql2');
+const mySql = require('mysql2')
  
-
 const con = mySql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -8,7 +7,6 @@ const con = mySql.createConnection({
     password: 'root',
     database: 'ecomm-beaute'
 });
-
 con.connect(function(err) {
     if (err) throw err;
     console.log('ok')
@@ -44,6 +42,7 @@ con.connect(function(err) {
                (id_product INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                 name VARCHAR(150) NOT NULL, 
                 description TEXT(1000) NOT NULL,
+                details MEDIUMTEXT NOT NULL,
                 price DECIMAL(10,2) NOT NULL,
                 image TEXT(1000) NOT NULL,
                 id_admin INT NOT NULL,
@@ -58,22 +57,22 @@ con.connect(function(err) {
                   (id_customer INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                   lastname VARCHAR(150) NOT NULL, 
                   firstname VARCHAR(150) NOT NULL, 
-                  email VARCHAR(250) NOT NULL, 
+                  email VARCHAR(250) NOT NULL UNIQUE, 
                   password VARCHAR(250) NOT NULL)`);
 
               //Création de la table favoris
 
       con.query(`CREATE TABLE IF NOT EXISTS favoris
                  (id_favoris INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                  id_product INT,
-                  id_customer INT,
+                  id_product INT NOT NULL,
+                  id_customer INT NOT NULL,
                   FOREIGN KEY (id_product) REFERENCES products(id_product),
                   FOREIGN KEY (id_customer) REFERENCES customer(id_customer) )`)
 
       con.query(`CREATE TABLE IF NOT EXISTS cart
                   (id_cart INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                     ordered BOOLEAN,
-                    id_customer INT,
+                    id_customer INT NOT NULL,
                     FOREIGN KEY (id_customer) REFERENCES customer(id_customer))`)
       
       con.query(`CREATE TABLE IF NOT EXISTS cartproduct
