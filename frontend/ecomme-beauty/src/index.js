@@ -33,6 +33,8 @@ import DashboardClient from './client_dashboard';
 import ProductClient from './client_product';
 import OneProductPage from './one_product';
 import CartProduct from './cart_product';
+import FavorisClient from './favoris_product'
+import CommandeClient from './commande_client'
 
 import PrivateRoute from './privateroute'
 
@@ -51,6 +53,8 @@ const myRouter = (
 				<Route exact path="/connexion" component={ClientSignin} />
 				<Route exact path="/mon-compte" component={DashboardClient} />
 				<Route exact path="/panier" component={CartProduct} />
+				<Route exact path="/wishlist" component={FavorisClient} />
+				<Route exact path="/commande" component={CommandeClient} />
 								{/* partie admin  */}
 				<Route exact path="/admin" component={allAdmin} />
 				<Route exact path="/admin/signup" component={AdminSignup} />

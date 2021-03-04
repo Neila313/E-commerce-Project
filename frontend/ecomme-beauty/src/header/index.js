@@ -12,7 +12,8 @@ class Header extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			productdetails: {}
+			productdetails: {},
+			
 		};
 	}
 
@@ -102,7 +103,7 @@ class Header extends React.Component {
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
 							<Nav.Link as={Link} to="/panier" className="cartP" />
-							<Nav.Link className="favorisP" />
+							<Nav.Link as={Link} to="/wishlist" className="favorisP" />
 						</Nav.Item>
 					</div>
 
@@ -137,7 +138,9 @@ class Header extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		products: state.productsReducer.products,
-		categories: state.categoryReducer.categories
+		categories: state.categoryReducer.categories,
+		cartproducts: state.cartproductsReducer.cartproducts
+
 	};
 };
 

@@ -1,0 +1,112 @@
+.panier{
+    border: 23px solid rgb(235, 235, 235);
+	margin: 20px 110px 40px 110px;
+	padding: 10px;
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+}
+
+.suPanier {
+    width: 30px;
+	height: 30px;
+	background: url('./img/icons8-supprimer-100.png') center / cover; ;
+}
+
+.table td {
+	text-transform: capitalize;
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 24px;
+
+}
+
+.plus {
+	width: 30px;
+	height: 30px;
+	background: url('./img/icons8-plus-64.png') center / cover; ;
+}
+.moins {
+	width: 30px;
+	height: 30px;
+	background: url('./img/icons8-moins-64.png') center / cover; ;
+}
+
+.containersuPanier{
+width: 10px;
+}
+
+.ContainerPaniervide{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 30vh;
+
+}
+.paniervide {
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.breadcrumb {
+	background-color: white;
+	margin-left: 10px;
+	color: #ad7c34;
+}
+.breadcrumb-item {
+	height: 3vh;
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 24px;
+}
+
+
+.breadcrumb-item a {
+	text-decoration: none;
+	color:black;
+}
+.totalContainer{
+	padding: 20px;
+	margin: 10px 10px 40px 90px;
+	height: auto;
+	width: 40vw;
+}
+
+.totalPanier {
+	text-transform: uppercase;
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 25px;
+	line-height: 24px;
+	padding: 10px;
+}
+
+.defTotal {
+	display: flex;
+	background-color: rgb(233, 233, 233);
+	justify-content: space-between;
+	align-items: center;
+	width: 30vw;
+	padding: 20px;
+	margin-bottom: 20px;
+	font-family: Josefin Sans;
+	font-style: normal;
+	font-size: 18px;
+	text-transform: capitalize;
+}
+
+.price {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.prixtotal {
+	font-size: 20px;
+	text-transform: capitalize;
+}

@@ -3,10 +3,11 @@ export const listCartProducts = (cartproducts) => ({
     cartproducts: cartproducts
 });
 
-export const oneCartProducts = (onecartprod) => ({
-    type: "GET_ONEPRODUCT",
-    onecartprod: onecartprod
-});
+export const deleteCartProduct = (id_product) => ({
+    type: "DELETE_CARTPRODUCTS",
+    payload: id_product
+})
+
 
 export const newCartProduct = (cartproduct) => ({
     type: "ADD_CARTPRODUCTS",

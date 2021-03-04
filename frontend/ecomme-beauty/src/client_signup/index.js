@@ -26,6 +26,68 @@ class ClientSignup extends React.Component {
 	inputClientPassword = (event) => {
 		this.setState({ password: event.target.value });
 	};
+	validateForm = () => {
+        // let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        //----EMAIL
+        if (!this.state.email) {
+            formIsValid = false;
+            errors["email"] = "*Entrez votre email.";
+        }
+        if (typeof this.state["email"] !== "undefined") {
+            //regular expression for email validation
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (!pattern.test(this.state["email"])) {
+                formIsValid = false;
+                errors["email"] = "*svp entrez un email valide.";
+            }
+        }
+        //--PASSWORD
+        if (!this.state.password.length) {
+            formIsValid = false;
+            errors["password"] = "*svp entrez votre mot de passe.";
+        }
+        
+         else if (typeof this.state["password"] !== "undefined") {
+            if (this.state.password.length < 8) {
+                formIsValid = false;
+                errors["password"] = "*Entrez un mot de passe valide.";
+            }
+        }
+
+        //---PSEUDO            
+        if (!this.state["lastname"]) {
+            formIsValid = false;
+            errors["lastname"] = "*Entrez votre nom de famille.";
+        }
+
+        if (typeof this.state["lastname"] !== "undefined") {
+            if (!this.state["lastname"].match(/^[a-zA-Z ]*$/)) {
+                formIsValid = false;
+                errors["lastname"] = "*Entrez des caracteres seulement.";
+            }
+        }
+
+        //---PRENOM          
+        if (!this.state["firstname"]) {
+            formIsValid = false;
+            errors["firstname"] = "*Entrez votre prenom.";
+        }
+
+        if (typeof this.state["firstname"] !== "undefined") {
+            if (!this.state["firstname"].match(/^[a-zA-Z ]*$/)) {
+                formIsValid = false;
+                errors["pseudo"] = "*Entrez des caracteres seulement.";
+            }
+        }
+
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
+    }
 
 	handleSubmit = (event) => {
 		event.preventDefault();
@@ -58,6 +120,7 @@ class ClientSignup extends React.Component {
 					<Form.Group controlId="formGroupClientLastName">
 						<Form.Label>Last Name</Form.Label>
 						<Form.Control type="lastname" placeholder="Enter your lastname" onChange={this.inputClientLastName} />
+
 					</Form.Group>
 					<Form.Group controlId="formGroupClientFirstName">
 						<Form.Label>First Name</Form.Label>
