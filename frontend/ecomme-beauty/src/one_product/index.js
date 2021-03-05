@@ -14,32 +14,35 @@ import './style.css';
 
 class OneProductPage extends React.Component {
 	state = {
-		quantity: 1,
+		qty: 1,
 		id_product: '',
 		msgSuccess: ''
 	};
 
-	//   increment() {
-	//     this.setState(prevState => {quantity: ++prevState.quantity});
-	//   }
-
-	//   decrement() {
-	//     this.setState(prevState => {quantity: prevState.quantity > 0? --prevState.quantity : 0});
-	//   }
-
+	IncrementItem = () => {
+		this.setState({ qty: this.state.qty + 1 });
+	};
+	DecrementItem = () => {
+		if (this.state.qty > 1) {
+			this.setState({ qty: this.state.qty - 1 });
+		}
+	};
 	componentDidMount() {
 		console.log(this);
+		this.loadProduct();
+	}
+
+	loadProduct() {
 		const { id_product } = this.props.match.params;
 		HTTP.get(`/products/${id_product}`).then((res) => {
 			this.props.oneProducts(res.data[0]);
 			// this.setState({productdetails: res.data[0]});
 		});
 	}
-
 	handleSubmit = (id_product) => {
 		// event.preventDefault();
 		const cartProduct = {
-			quantity: this.state.quantity,
+			qty: this.state.qty,
 			id_product: id_product
 		};
 		console.log(cartProduct);
@@ -53,12 +56,16 @@ class OneProductPage extends React.Component {
 					this.setState({ msgSuccess: 'ajouté avec succès au panier' });
 					this.props.newCartProduct(cartProduct);
 				}
+				console.log(cartProduct);
 			})
+			
 			.catch((error) => {
 				// this.setState({ error : res.data });
 				console.log(error);
 			});
 	};
+
+
 
 	render() {
 		const details = this.props.productdetails ? (
@@ -73,15 +80,22 @@ class OneProductPage extends React.Component {
 							<Card.Body>
 								<Card.Title className="titleOneProd">{this.props.productdetails.name}</Card.Title>
 								<Card.Text className="descOneProd">{this.props.productdetails.description}</Card.Text>
-                                <Card.Text className="priceOneProd">{this.props.productdetails.price}€</Card.Text>
-{/* 
+								<Card.Text className="priceOneProd">{this.props.productdetails.price}€</Card.Text>
+								{/* 
 								<ListGroup className="list-group">
 									<ListGroupItem className="priceOneProd">
 										{this.props.productdetails.price}€
 									</ListGroupItem>
 								</ListGroup> */}
 
+								<Button onClick={this.DecrementItem}>-</Button>
+
+								<p>{this.state.qty}</p>
+								<Button onClick={this.IncrementItem}>+</Button>
+								<br />
+
 								<Button
+								variant="light"
 									className="btn2 effect02"
 									onClick={() => this.handleSubmit(this.props.productdetails.id_product)}
 								>
@@ -93,24 +107,17 @@ class OneProductPage extends React.Component {
 				</Row>
 			</div>
 		) : (
-			// <Card style={{ width: '18rem' }}>
-			// 	<Card.Img variant="top" src={this.props.productdetails.image} />
-			// 	<Card.Body>
-			// 		<Card.Title>{this.props.productdetails.name}</Card.Title>
-			// 		<Card.Text>{this.props.productdetails.price}</Card.Text>
-			// 		<Card.Text>{this.props.productdetails.description}</Card.Text>
-			// 		<Button variant="primary" onClick={() => this.handleSubmit(this.props.productdetails.id_product)}>
-			// 			Ajouter au panier
-			// 		</Button>
-			// 	</Card.Body>
-			// </Card>
+			
 			<div className="attente">Loading product...</div>
 		);
 		return (
 			// <div>
-            
+
 			<Container fluid>
-                						<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+					rel="stylesheet"
+				/>
 
 				<Row>
 					<Col className="container">{details}</Col>

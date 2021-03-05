@@ -10,7 +10,7 @@ router.use(cors());
 
 
 
-router.post('/category',middlewares.isAdmin, function(req, res){
+router.post('/category',middlewares.isAdmin, async function(req, res){
 
     try {
         const token = req.headers.authorization.split(' ')[1]
@@ -18,94 +18,75 @@ router.post('/category',middlewares.isAdmin, function(req, res){
         let decoded = jwt.decode(token);
         console.log(decoded);
 
-        let newCategory = `INSERT INTO category 
+      let newCategory = await `INSERT INTO category 
         (denomination) VALUES
         (?)`; 
 
-        con.query(newCategory, [req.body.denomination], function(err, thecategory){
-            if(err) throw err;
-             con.query(`SELECT * FROM category WHERE id_category = '${thecategory.insertId}'`, function(err, results){
+       const [thecategory] = await con.query(newCategory, [req.body.denomination]) 
+       
+        const [results] =   await con.query('SELECT * FROM category WHERE id_category = ?', [thecategory.insertId])
                  res.status(200).json(results)
                  console.log(thecategory);
                  console.log(results);
-             })
-           
-        })
 
     } catch (error) {
-
-        res.status(400).send(error);     
+        res.status(400).json({error: error.message});
     }
 })
 
-router.get('/category', function(req,res){
+router.get('/category', async function(req,res){
 
     try {
-        
-        con.query(`SELECT * FROM category`, function(err,categ){
-            if(err) throw err;
+        const [categ] = await con.query(`SELECT * FROM category`) 
             console.log(categ)
             res.status(200).json(categ)
-        })
     } catch (error) {
         console.log(error);
         res.status(400).send(error);  
     }
 });
-router.get('/category/:id_category', function(req,res){
+router.get('/category/:id_category', async function(req,res){
     try {
         let idCategori = req.params.id_category
         console.log(idCategori)
 
-            con.query(`SELECT * FROM category WHERE id_category = ${idCategori}`, function(err, result){
-                
-                if (err) throw err;
-            console.log(result);
-            res.status(200).send(result);    
-            })
+       const [result] = await con.query('SELECT * FROM category WHERE id_category = ?', [idCategori]);
+       console.log(result);
+       res.status(200).send(result);    
     
-        } catch (error) {
-    
+    } catch (error) {
         res.status(400);
     }
 })
 
-router.put('/category/:id_category', middlewares.isAdmin, function (req, res) {
+router.put('/category/:id_category', middlewares.isAdmin, async function (req, res) {
 
     try {
-       
         let idCategorie = req.params.id_category
-        console.log(req.body);
       
-        let updateCategory = `UPDATE category SET denomination = '${req.body.denomination}' WHERE id_category = '${idCategorie}' `;
+        let updateCategory =  'UPDATE category SET denomination = ? WHERE id_category = ?';
 
-    con.query(updateCategory, function(err, resulta){
-        if (err) throw err;
+        const [resulta] = await con.query(updateCategory, [req.body.denomination, idCategorie]);
         console.log(resulta);
         res.status(200).send(resulta)
-    })
     } catch (error) {
         res.status(400);
     }
     
  });
 
- router.delete('/category/:id_category', middlewares.isAdmin, function(req,res){
+ router.delete('/category/:id_category', middlewares.isAdmin, async function(req,res){
     try {
         let idCategorie = req.params.id_category
 
        let deleteCategories = `DELETE FROM category WHERE id_category = '${idCategorie}'`
-       con.query(deleteCategories, function(err,resultat){
-           
-           if (err) throw err;
-           console.log("Number of records deleted: " + resultat.affectedRows);
-           res.status(200).send(resultat)
-       })
+       const [resultat] = await con.query(deleteCategories);
+
+       console.log("Number of records deleted: " + resultat.affectedRows);
+       res.status(200).send(resultat)
     } catch (error) {
         res.status(400);
-        
     }
-  
 })
 
 

@@ -10,7 +10,7 @@ const middlewares = require('../middlewares/')
 router.use(cors());
 
 // router.use('/products', middlewares.isAdmin)
-router.post('/products', middlewares.isAdmin, function(req,res){
+router.post('/products', middlewares.isAdmin, async function(req,res){
     try {
       
         const token = req.headers.authorization.split(' ')[1]
@@ -23,53 +23,43 @@ router.post('/products', middlewares.isAdmin, function(req,res){
         (?, ?, ?,
         ?, ?, ?, ?)`; 
 
-        con.query(newProduct, [req.body.name, req.body.description,req.body.details,req.body.price,req.body.image, decoded.id ,req.body.id_category], function(err, theproduct){
-            if(err) throw err;
-             con.query(`SELECT * FROM products WHERE id_product = '${theproduct.insertId}'`, function(err, results){
-                 res.status(200).json(results)
-                 console.log(theproduct);
-                 console.log(results);
-             })
+        const [theproduct] = await con.query(newProduct, [req.body.name, req.body.description,req.body.details,req.body.price,req.body.image, decoded.id ,req.body.id_category]);
+        const [results] = await con.query(`SELECT * FROM products WHERE id_product = '${theproduct.insertId}'`);
+        res.status(200).json(results)
+        console.log(theproduct);
+        console.log(results);
            
-        })
     } catch (error) {
-        res.send(error)
+        res.send(error.message)
     }
 });
 
-    router.get('/products', function(req,res){
+    router.get('/products', async function(req,res){
 
         try {
-            con.query(`SELECT * FROM products`, function(err,prod){
-                if(err) throw err;
-                console.log(prod)
-                res.status(200).json(prod)
-            })
+            const [prod] = await con.query(`SELECT * FROM products`);
+            console.log(prod)
+            res.status(200).json(prod)
         } catch (error) {
             console.log(error);
             res.status(400).send(error);  
         }
     });
 
-    router.get('/products/:id_product', function(req,res){
+    router.get('/products/:id_product', async function(req,res){
         try {
             let idProducts = req.params.id_product
             console.log(idProducts)
-    
-                con.query(`SELECT * FROM products WHERE id_product = ${idProducts}`, function(err, result){
-                    
-             if (err) throw err;
-				console.log(result);
-                res.status(200).send(result);    
-                })
-        
-            } catch (error) {
-		
-			res.status(400);
+            const [result] = await con.query(`SELECT * FROM products WHERE id_product = ${idProducts}`);
+                
+			console.log(result);
+            res.status(200).send(result);    
+        } catch (error) {
+			res.status(400).json({error: error.message});
 		}
     })
 
-    router.put('/products/:id_product', middlewares.isAdmin, function (req, res) {
+    router.put('/products/:id_product', middlewares.isAdmin, async function (req, res) {
 
         try {
             const token = req.headers.authorization.split(' ')[1]
@@ -97,34 +87,28 @@ router.post('/products', middlewares.isAdmin, function(req,res){
 
             let updateProduct = `UPDATE products SET name = '${nameProd}', description = '${desc}', details = '${det}', price = '${req.body.price}', image =' ${req.body.image}', id_category = '${req.body.id_category}', id_admin = '${decoded.id}' WHERE id_product = '${idProducts}' `;
 
-        con.query(updateProduct, function(err, resulta){
-            if (err) throw err;
+            const [resulta] = await con.query(updateProduct);
             console.log(resulta);
             res.status(200).send(resulta)
-        })
         } catch (error) {
             res.status(400);
         }
         
      });
 
-     router.delete('/products/:id_product', middlewares.isAdmin, function(req,res){
+     router.delete('/products/:id_product', middlewares.isAdmin, async function(req,res){
          try {
             let idProducts = req.params.id_product
 
             let deleteProducts = `DELETE FROM products WHERE id_product = '${idProducts}'`
-            con.query(deleteProducts, function(err,resultat){
+            const [resultat] = con.query(deleteProducts);
                 
-                if (err) throw err;
-                console.log("Number of records deleted: " + resultat.affectedRows);
-                res.status(200).send(resultat)
-            })
+            console.log("Number of records deleted: " + resultat.affectedRows);
+            res.status(200).send(resultat)
          } catch (error) {
-             res.status(400);
-             
+             res.status(400).json({error: error.message});
          }
-       
-     })
+     });
 
 // router.put('/products', function (req, res) {
 //     connection.query('UPDATE `products` SET `name`=?,`description`=?,`category`=?, `price`=?, `image`=? WHERE `id_product`=?', [req.body.name,req.body.description, req.body.category, req.body.price, req.body.image, req.body.id_product], function (error, results, fields) {
