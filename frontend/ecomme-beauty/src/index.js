@@ -35,6 +35,8 @@ import OneProductPage from './one_product';
 import CartProduct from './cart_product';
 import FavorisClient from './favoris_product'
 import CommandeClient from './commande_client'
+import FilterCateg from './Filter'
+
 
 import PrivateRoute from './privateroute'
 
@@ -45,17 +47,7 @@ const myRouter = (
 <Provider store={store}>
 		<Router>			
       <Header></Header>
-			<Switch>
-				<Route exact path="/home" component={Home} />
-				<Route exact path="/catalogue" component={ProductClient} />
-				<Route exact path="/product/:id_product" component={OneProductPage} />
-				<Route exact path="/inscription" component={ClientSignup} />
-				<Route exact path="/connexion" component={ClientSignin} />
-				<Route exact path="/mon-compte" component={DashboardClient} />
-				<Route exact path="/panier" component={CartProduct} />
-				<Route exact path="/wishlist" component={FavorisClient} />
-				<Route exact path="/commande" component={CommandeClient} />
-								{/* partie admin  */}
+			<Switch>					{/* partie admin  */}
 				<Route exact path="/admin" component={allAdmin} />
 				<Route exact path="/admin/signup" component={AdminSignup} />
 				<Route exact path="/admin/signin" component={AdminSignin} />
@@ -65,6 +57,18 @@ const myRouter = (
 				<Route exact path="/admin/modifyproduct/:id_product" component={PutProduct}/>
 				<Route exact path="/admin/category" component={AddCategory}/>
 				<Route exact path="/admin/listcategory" component={ListCateg}/>
+									{/* partie client	  */}
+				<Route exact path="/home" component={Home} />
+				<Route exact path="/catalogue" component={ProductClient} />
+				<Route exact path="/product/:id_product" component={OneProductPage} />
+				<Route exact path="/inscription" component={ClientSignup} />
+				<Route exact path="/connexion" component={ClientSignin} />
+				<Route exact path="/mon-compte" component={DashboardClient} />
+				<Route exact path="/panier" component={CartProduct} />
+				<Route exact path="/wishlist" component={FavorisClient} />
+				<Route exact path="/commande" component={CommandeClient} />
+				<Route exact path="/filtre" component={FilterCateg} />
+			
 			</Switch>
 			<FooterPage></FooterPage>
 		</Router>

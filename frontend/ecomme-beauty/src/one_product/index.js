@@ -95,6 +95,7 @@ class OneProductPage extends React.Component {
 								<br />
 
 								<Button
+								variant="light"
 									className="btn2 effect02"
 									onClick={() => this.handleSubmit(this.props.productdetails.id_product)}
 								>
@@ -106,17 +107,7 @@ class OneProductPage extends React.Component {
 				</Row>
 			</div>
 		) : (
-			// <Card style={{ width: '18rem' }}>
-			// 	<Card.Img variant="top" src={this.props.productdetails.image} />
-			// 	<Card.Body>
-			// 		<Card.Title>{this.props.productdetails.name}</Card.Title>
-			// 		<Card.Text>{this.props.productdetails.price}</Card.Text>
-			// 		<Card.Text>{this.props.productdetails.description}</Card.Text>
-			// 		<Button variant="primary" onClick={() => this.handleSubmit(this.props.productdetails.id_product)}>
-			// 			Ajouter au panier
-			// 		</Button>
-			// 	</Card.Body>
-			// </Card>
+			
 			<div className="attente">Loading product...</div>
 		);
 		return (

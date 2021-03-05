@@ -94,12 +94,12 @@ class Header extends React.Component {
 					</div>
 					<div className="ProductMaster">
 						<Nav.Item className="ProductHead">
-							<Nav.Link className="NosProduits" as={Link} to="/catalogue">
+							<Nav.Link className="nav-link" as={Link} to="/catalogue">
 								Nos produits
 							</Nav.Link>
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
-							<Nav.Link className="NosProduits">Nos routines</Nav.Link>
+							<Nav.Link className="nav-link">Nos routines</Nav.Link>
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
 							<Nav.Link as={Link} to="/panier" className="cartP" />
