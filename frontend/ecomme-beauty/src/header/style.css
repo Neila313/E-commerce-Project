@@ -87,7 +87,7 @@
 .favorisP {
 	width: 26px;
 	height: 26px;
-	background: url('./img/icons8-coeurs-60.png') center / cover;
+	background: url('./img/coeur-transparent.png') center / cover;
 }
 
 .signIn {
@@ -96,4 +96,20 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.cartNumber{
+	position: absolute;
+	border-radius: 50%;
+	right: 10px;
+    bottom: 10px;
+	background-color: red;
+	color: white;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+}
+.cartLink {
+	position: relative;
+
 }

@@ -13,22 +13,23 @@ const initialStates = {
     };
 
        case "ADD_CARTPRODUCTS":
-       return {
-         ...state,
-         cartproducts: [...state.cartproducts, action.payload]
-       };
-
+         let cartProductIndex = state.cartproducts.findIndex(e => e.id_product === action.payload.id_product);
+         if (cartProductIndex == -1){
+          return {
+            ...state,
+            cartproducts: [...state.cartproducts, action.payload]
+          };
+         } 
+         state.cartproducts[cartProductIndex].qty += action.payload.qty
+         return {
+          ...state,
+          cartproducts: [...state.cartproducts]
+        };
+      
        case "DELETE_CARTPRODUCTS":
-        let indexOfElemToDelete  = state.cartproducts.map(e => e.id_product).indexOf(action.payload);
         return {
           ...state,
-                cartproducts: [
-                  ...state.cartproducts.slice(0, indexOfElemToDelete),
-                  ...state.cartproducts.slice(
-                    indexOfElemToDelete + 1,
-                    state.cartproducts.length
-                  ),
-                ],
+                cartproducts: state.cartproducts.filter(e => e.id_product !== action.payload)
         };
       
      default:

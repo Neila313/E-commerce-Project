@@ -1,0 +1,18 @@
+button.btn.btn-icone {
+	width: 40px;
+	height: 40px;
+	border: none;
+	background: url('./img/coeur-transparent.png') center / cover;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+  }
+ button.btn.btn-icone-fav {
+	width: 40px;
+	height: 40px;
+	border: none;
+	background: url('./img/coeur-red.png') center / cover;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+  }

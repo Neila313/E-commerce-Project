@@ -97,9 +97,9 @@ class ListProducts extends React.Component {
 									<td>{elem.description}</td>
 									<td>{elem.details}</td>
 									<td>
-										{this.props.categories.filter((ele) => 
+										{this.props.categories.find((ele) => 
 											ele.id_category === elem.id_category
-										)[0].denomination
+										).denomination
 									}
 									</td>
 									<td>{elem.price}</td>

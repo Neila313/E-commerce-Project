@@ -15,6 +15,11 @@ const initialStates = {
          ...state,
          favorisproducts: [...state.favorisproducts, action.payload]
        };
+       case "DELETE_FAVORIS":
+       return {
+         ...state,
+         favorisproducts: state.favorisproducts.filter(e => e.id_product !== action.payload)
+       };
 
       
      default:

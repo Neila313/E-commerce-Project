@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import HTTP from '../provider/http';
 // import { newCartProduct } from '../store/action/cartproducts';
 import Button from 'react-bootstrap/esm/Button';
-import { newFavorisProduct } from '../store/action/favoris';
+import { newFavorisProduct, deleteFavorisProduct } from '../store/action/favoris';
 import { Link } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
-// import FilterCateg from '../Filter';
+import FilterCateg from '../Filter';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
@@ -15,36 +15,19 @@ import '../client_product/style.css';
 
 class ProductClient extends React.Component {
 	state = {
-		id_product: '',
-		msgSuccess: '',
-		filteredProduct: []
+		selectedCategory: 0,
+		favoris: []
 	};
-	// componentDidMount() {
-	// 	console.log(this);
-	// 	this.loadProduct();
-	// }
-	// loadProduct() {
-	// 	const { id_product } = this.props.match.params;
-	// 	HTTP.get(`/products/${id_product}`).then((res) => {
-	// 		this.state.id_product(res.data[0]);
-	// 		// this.setState({productdetails: res.data[0]});
-	// 	});
-	// }
-	// filterProduct = async (e) => {
-	// 	console.log(e.target.value);
-	// 	if(e.target.value) {
-	// 		if(e.target.value === 'Categorie') {
-	// 			this.setState({filteredProduct : []})
-	// 			return
-	// 		}
-	// 		console.log(e);
-	// 		try {
-	// 			let
-	// 		}
-	// 	}
-	// }
+	componentDidMount() {
+		this.loadFavorite();
+	}
+	loadFavorite() {
+		HTTP.get('/favoris').then((res) => {
+			this.setState({favoris: res.data});
+		});
+	}
 
-	handleSubmit = (id_product) => {
+	toggleFavorite = (id_product) => {
 		// event.preventDefault();
 		const favorisProduct = {
 			id_product: id_product
@@ -58,7 +41,11 @@ class ProductClient extends React.Component {
 				if (res.status === 200) {
 					console.log(res.data);
 					this.setState({ msgSuccess: 'ajouté avec succès au favoris' });
-					this.props.newFavorisProduct(favorisProduct);
+					if (res.data.isFavoris){
+						this.props.newFavorisProduct(favorisProduct);
+					} else {
+						this.props.deleteFavorisProduct(favorisProduct.id_product)
+					}
 				}
 				console.log(favorisProduct);
 			})
@@ -72,9 +59,16 @@ class ProductClient extends React.Component {
 		return (
 			<div className="Prod">
 				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
-
+			<FilterCateg handleSelect={(val) => this.setState({selectedCategory : parseInt(val)})} />
+			
 				<div className="CardAll">
-					{this.props.products.map((elem) => {
+					{this.props.products.filter(elem => {
+						if (this.state.selectedCategory === 0){
+							return true;
+						}
+						return elem.id_category === this.state.selectedCategory;
+					
+					}).map((elem) => {
 						return (
 							<Card className="oneProd" key={elem.name} style={{ width: '23rem', height: '47rem' }}>
 								<link
@@ -88,11 +82,15 @@ class ProductClient extends React.Component {
 									style={{ width: '23rem', height: '30rem' }}
 									className="elemPic"
 								/>
-								<Button
+								{ (this.props.favoris.includes(elem.id_product)) ? <Button
 									variant="outline-light"
-									className="btn-icone"
-									onClick={() => this.handleSubmit(elem.id_product)}
-								/>
+									className="btn-icone-fav"
+									onClick={() => this.toggleFavorite(elem.id_product)}
+								/> : <Button
+								variant="outline-light"
+								className="btn-icone"
+								onClick={() => this.toggleFavorite(elem.id_product)}
+							/>}
 								<Card.Body>
 									<Card.Title className="titleProd">{elem.name}</Card.Title>
 									<Card.Text className="descProd">{elem.description}</Card.Text>
@@ -119,10 +117,11 @@ class ProductClient extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		products: state.productsReducer.products,
-		productdetails: state.productsReducer.productdetails
+		productdetails: state.productsReducer.productdetails,
+		favoris : state.favorisReducer.favorisproducts.map(p => p.id_product)
 	};
 };
 
-const mapDispatchToProps = { newFavorisProduct };
+const mapDispatchToProps = { newFavorisProduct, deleteFavorisProduct };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductClient);

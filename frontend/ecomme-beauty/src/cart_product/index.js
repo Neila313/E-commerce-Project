@@ -15,13 +15,12 @@ import './style.css';
 class CartProduct extends React.Component {
 	state = {
 		cartProduct: [],
+		commande: [],
 		qty: 1,
 		msgSuccess: '',
-		total:0
+		total:0,
 	};
-	ValidationCommandeSubmit = () => {
-		this.props.history.push('/commande');
-	};
+
 	componentDidMount() {
 		console.log(this);
 		this.loadCart();
@@ -41,7 +40,7 @@ class CartProduct extends React.Component {
 					};
 				})
 			}, this.calculTotal);
-		
+			this.props.listCartProducts(res.data)
 			// this.props.listCartProducts(res.data[0]);
 			// this.setState({productdetails: res.data[0]});
 		});
@@ -68,6 +67,7 @@ class CartProduct extends React.Component {
 			if (res.status === 200) {
 				this.setState({ cartProduct: this.state.cartProduct.filter((p) => p.id_product !== id_product) }, this.calculTotal);
 				// this.setState({ msgSuccess: 'Produit supprimé avec succès' });
+				this.props.deleteCartProduct(id_product)
 				console.log(this.state);
 			}
 			// console.log(res);
@@ -112,11 +112,31 @@ class CartProduct extends React.Component {
 				let cartProduct = this.state.cartProduct;
 				cartProduct[index].qty--;
 				this.setState({ cartProduct: cartProduct.filter((e) => e.qty > 0) }, this.calculTotal);
+				if (cartProduct[index].qty <= 0){
+					this.props.deleteCartProduct(id_product)
+				}
 				// this.setState({ msgSuccess: 'Produit supprimé avec succès' });
 				console.log(this.state);
 			}
 		});
 	}
+
+	ValidationCommandeSubmit = () => {
+		HTTP.post('/cart')
+			.then((res) => {
+				console.log(res);
+				if (res.status === 200) {
+					console.log(res.data);
+					this.setState({ commande: res.data });						
+				}
+				this.props.history.push('/commande');
+			})
+			.catch((error) => {
+				// this.setState({ error : res.data });
+				console.log(error);
+			});
+		
+	};
 
 	render() {
 		console.log(this.state);

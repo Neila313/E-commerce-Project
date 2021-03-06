@@ -8,12 +8,9 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { connect } from 'react-redux';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-import { listFavoris } from '../store/action/favoris';
+import { listFavoris, deleteFavorisProduct } from '../store/action/favoris';
 
 class FavorisClient extends React.Component {
-	state = {
-		favorisProduct: []
-	};
 
 	componentDidMount() {
 		console.log(this);
@@ -23,8 +20,8 @@ class FavorisClient extends React.Component {
 	loadFavoris() {
 		HTTP.get('/favoris').then((res) => {
 			console.log(res.data);
-			this.setState({ favorisProduct: res.data });
-			console.log('fav', this.state.favorisProduct);
+			// this.setState({ favorisProduct: res.data });
+			// console.log('fav', this.state.favorisProduct);
 			this.props.listFavoris(res.data);
 			// this.setState({productdetails: res.data[0]});
 		});
@@ -33,7 +30,8 @@ class FavorisClient extends React.Component {
     deleteFavoris(id_product) {
 		HTTP.delete(`/favoris/${id_product}`).then((res) => {
 			if (res.status === 200) {
-				this.setState({ favorisProduct: this.state.favorisProduct.filter((p) => p.id_product !== id_product) });
+				// this.setState({ favorisProduct: this.state.favorisProduct.filter((p) => p.id_product !== id_product) });
+				this.props.deleteFavorisProduct(id_product)
 				// this.setState({ msgSuccess: 'Produit supprimé avec succès' });
 				console.log(this.state);
 			}
@@ -51,7 +49,7 @@ class FavorisClient extends React.Component {
                      <h1>Mes favoris</h1>
 
 					<div className="CardAll">
-						{this.state.favorisProduct.map((elem) => {
+						{this.props.favorisproducts.map((elem) => {
 							return (
 								<Card className="oneProd" key={elem.name} style={{ width: '23rem', height: '47rem' }}>
 									<link
@@ -107,10 +105,11 @@ class FavorisClient extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		products: state.productsReducer.products
+		products: state.productsReducer.products,
+		favorisproducts: state.favorisReducer.favorisproducts
 	};
 };
 
-const mapDispatchToProps = { listFavoris };
+const mapDispatchToProps = { listFavoris, deleteFavorisProduct };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavorisClient);

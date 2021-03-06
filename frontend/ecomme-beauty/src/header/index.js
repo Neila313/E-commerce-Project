@@ -102,8 +102,11 @@ class Header extends React.Component {
 							<Nav.Link className="nav-link">Nos routines</Nav.Link>
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
-							<Nav.Link as={Link} to="/panier" className="cartP" />
-							<Nav.Link as={Link} to="/wishlist" className="favorisP" />
+							<div className="cartLink">
+							<Nav.Link as={Link} to="/panier" className="cartP"/>
+							{this.props.cartproducts.length > 0 && <div className="cartNumber">{this.props.cartproducts.length} </div> }
+							</div>
+						<Nav.Link as={Link} to="/wishlist" className="favorisP" />
 						</Nav.Item>
 					</div>
 

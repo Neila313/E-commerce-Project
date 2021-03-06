@@ -28,9 +28,10 @@ class DashboardClient extends React.Component {
 								<Nav.Item>
 									<Nav.Link eventKey="third">Détails du compte</Nav.Link>
 								</Nav.Item>
-								<Nav.Item>
-									<Nav.Link eventKey="fourth">Déconnexion</Nav.Link>
-								</Nav.Item>
+									<Button className="btn" onClick={this.logOutSubmit.bind(this)}>
+										Sign Out
+									</Button>
+							
 							</Nav>
 						</Col>
 						<Col sm={9}>
@@ -93,11 +94,11 @@ class DashboardClient extends React.Component {
 										</Button>
 									</Form>
 								</Tab.Pane>
-								<Tab.Pane eventKey="fourth">
+								{/* <Tab.Pane eventKey="fourth">
 									<Button className="btn" onClick={this.logOutSubmit.bind(this)}>
 										Sign Out
 									</Button>
-								</Tab.Pane>
+								</Tab.Pane> */}
 							</Tab.Content>
 						</Col>
 					</Row>

@@ -100,17 +100,7 @@
   }
 
  
-
-  .btn-icone {
-	width: 40px;
-	height: 40px;
-	border: none;
-	background: url('./img/icons8-coeurs-60.png') center / cover;
-	position: absolute;
-	right: 10px;
-	top: 10px;
-  }
-
+/* 
   .btn-icone:hover {
     background-color: #EEE;
-  }
+  } */
