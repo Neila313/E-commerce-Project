@@ -15,15 +15,28 @@ router.use(cors());
             if (req.user === null) {
                 throw new Error ("Vous n'êtes pas autorisé à entrer, testest")
             }
-            let newCart = `INSERT INTO cart 
-            (ordered,id_customer) VALUES
-            (?, ?)`; 
+            const [cartline] = await con.query(`SELECT * FROM cart_line WHERE id_customer = ?`, [req.user.id_customer])
+            if (cartline.length < 1) {
+                throw new Error("Votre panier est vide");
+            }
+            let newCart = `INSERT INTO commande 
+            (date_commande,status,id_customer) VALUES
+            (?, ?,?)`; 
     
-            const [thecart] = await con.query(newCart, [1,req.user.id_customer]);
-            const [results] = await con.query(`SELECT * FROM cart WHERE id_cart = '${thecart.insertId}'`);
-            res.status(200).json(results)
+            const [thecart] = await con.query(newCart, [new Date(),1,req.user.id_customer]);
+            await con.query(`INSERT INTO commande_line 
+            SELECT ?, id_product, qty, date_added 
+            FROM cart_line WHERE id_customer = ?`,[
+                thecart.insertId, 
+                req.user.id_customer
+            ]);
+
+            await con.query(`DELETE FROM cart_line 
+            WHERE id_customer = ? `, [
+                req.user.id_customer
+            ]);
+            res.status(200).json({message : "Votre commande a été validée"})
             console.log(thecart);
-            console.log(results);
         } catch (error) {
             res.status(401).json({error: error.message})
         }
@@ -32,7 +45,7 @@ router.use(cors());
 
     router.get('/cart', async function(req,res){
         try {
-            const [cart] = await con.query(`SELECT * FROM cart`);
+            const [cart] = await con.query(`SELECT * FROM commande`);
             res.status(200).json(cart)
         } catch (error) {
             console.log(error);

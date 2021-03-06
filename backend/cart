@@ -1,0 +1,41 @@
+
+
+
+
+order(
+  id_order,
+  id_customer
+)
+
+ligne_order(
+  id_order,
+  id_product,
+  qty
+)
+
+ligne_panier(
+  id_panier AUTOINCREMENT PRIMARY KEY,
+  id_customer FOREIGN KEY,
+  id_product FOREIGN KEY,
+  qty,
+  date
+)
+
+INSERT INTO ligne_panier {
+  id_panier: null,
+  id_customer: 1,
+  id_product: 1,
+  qty: 5,
+  order: false,
+  date: now
+}
+
+INSERT INTO ligne_panier {
+  id_panier: null,
+  id_customer: 1,
+  id_product: 2,
+  qty: 2,
+  order: false,
+  date: now
+}
+

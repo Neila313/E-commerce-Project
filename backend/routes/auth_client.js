@@ -12,12 +12,19 @@ router.use(cors());
 
 	router.post('/sign-up', async function(req, res) {
 		try {
-			const hash = await bcrypt.hash(req.body.password, saltRounds);
-			let dataCustomer = `INSERT INTO customer (lastname, firstname, email, password) VALUES
-               ('${req.body.lastname}', '${req.body.firstname}', '${req.body.email}', '${hash}')`;
 
-			const [result] = await con.query(dataCustomer);
-			res.status(200).send('New User added');
+			// if (req.body.lastname.length < 1) throw 'No name'
+			// // le req body est tjrs rempli
+			// if (req.body.firstname.length < 1) throw 'No lastname'
+			// if (req.body.email.length < 1) throw 'No email'
+			// if (req.body.password.length < 1) throw 'No password'
+
+			const hash = await bcrypt.hash(req.body.password, saltRounds);
+			let dataCustomer = `INSERT INTO customer (lastname, firstname, email, password) VALUES (?, ?, ?, ?)`;
+
+		await con.query(dataCustomer, [ req.body.lastname, req.body.firstname, req.body.email, hash ]);
+
+		res.status(200).json({ message: 'New User added' });
 		} catch (error) {
 			res.status(400).send(error.message);
 		}

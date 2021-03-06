@@ -6,7 +6,6 @@ const isAdmin = (req, res, next) => {
 	let tokenAdmin = req.headers.authorization;
 	if (tokenAdmin) {
 		const token = tokenAdmin.split(' ')[1];
-
 		jwt.verify(token, 'supersecret', async (err, decoded) => {
 			if (err) {
 				res.status(203).json({ error: "Vous n'êtes pas autorisé à entrer" });

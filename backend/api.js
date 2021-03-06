@@ -9,6 +9,7 @@ const routerArticle = require('./routes/article_admin')
 const routerCategory = require('./routes/category_admin')
 const routerCart = require('./routes/cart_client')
 const routerCartProduct = require('./routes/cartproduct_client')
+const routerFavoris = require('./routes/favoris_client')
 
 app.use(
 	express.urlencoded({
@@ -24,6 +25,7 @@ app.use('/',routerArticle)
 app.use('/',routerCategory)
 app.use('/',routerCart)
 app.use('/',routerCartProduct)
+app.use('/',routerFavoris)
 
 
 app.listen(port, function(){
