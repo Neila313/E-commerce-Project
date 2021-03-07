@@ -1,0 +1,89 @@
+.tabcontainer {
+    width: auto;
+    height: auto;
+    font-family: Josefin Sans;
+    /* border: 3px solid red; */
+
+    
+}
+
+.row {
+    margin: 2%;
+}
+/* .col {
+   margin-right: 0px;
+} */
+
+
+.iconeDashboard {
+    /* border: 3px solid grey; */
+    width: 20px;
+	height: 20px;
+	background: url('./img/icons8-dashboard-layout-24.png') center / cover; 
+    margin-right: 10px;
+}
+
+.iconeCommande {
+    width: 24px;
+	height: 24px;
+	background: url('./img/icons8-panier-2-24.png') center / cover; 
+    margin-right: 10px;
+}
+.iconeCompte {
+    width: 25px;
+	height: 25px;
+	background: url('./img/icons8-utilisateur-32.png') center / cover; 
+    margin-right: 10px;
+}
+.tabcontainer
+.nav-item
+.nav-link {    
+    /* border: 3px solid red; */
+    display: flex;
+    width: auto;
+    font-weight: 400;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.nameUser {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.nameUser span {
+    font-weight: bolder;
+}
+
+.welcomeUser {
+    font-size: 20px;
+}
+
+.formUser span{
+    font-size: 11px;
+}
+
+
+.tab-pane form {
+    /* border: 3px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    /* padding: 10px; */
+    /* width: 70vw; */
+}
+
+.tab-pane .form-label {
+    /* border: 3px solid red; */
+    font-size: 20px;
+}
+
+.tab-pane .custom {
+    /* border: 3px solid red; */
+    margin-bottom: 20px;
+}
+

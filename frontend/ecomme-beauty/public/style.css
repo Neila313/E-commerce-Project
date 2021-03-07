@@ -1,3 +1,13 @@
+/* * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+} */
+
+/* body {
+	overflow-x: hidden;
+} */
+
 button.btn.btn-icone {
 	width: 40px;
 	height: 40px;
