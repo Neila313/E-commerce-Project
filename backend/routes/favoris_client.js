@@ -24,7 +24,6 @@ router.post('/favoris', middlewares.isCustomer, async function(req, res) {
 			isFavoris: true
 		});
 	} catch (e) {
-		console.log(e);
 		if (e.errno === 1062) {
 			await con.query(`DELETE FROM favoris 
 			WHERE id_product = ? AND id_customer = ?`, [
@@ -51,7 +50,6 @@ router.get('/favoris/', middlewares.isCustomer, async function(req, res) {
 		LEFT JOIN products p ON p.id_product = f.id_product
 		WHERE f.id_customer = ?`, [req.user.id_customer]);
 		res.json(favoris);
-	console.log("ffff",favoris);
 	} catch (error) {
 		res.status(401).json({ error: error.message });
 	}

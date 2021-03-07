@@ -34,9 +34,7 @@ router.post('/sign-up', async function(req, res) {
 router.post('/sign-in', async function(req, res) {
 	try {
 		const [ result ] = await con.query('SELECT * FROM admin WHERE email = ?', [ req.body.email ]);
-		console.log(result[0]);
 		if (result.length == 0) {
-			console.log(result.length);
 			res.status(401).send('Adresse email inconnue');
 		} else {
 			const resulta = await bcrypt.compare(req.body.password, result[0].password);
@@ -50,14 +48,12 @@ router.post('/sign-in', async function(req, res) {
 					config.secret,
 					{ expiresIn: 86400 }
 				);
-				console.log(token);
 				res.status(200).send({ token: token });
 			} else {
 				res.status(203).send('Mots de passe incorrect');
 			}
 		}
 	} catch (error) {
-		console.log(error);
 		res.status(400).send(error.message);
 	}
 });
@@ -67,7 +63,6 @@ router.post('/sign-in', async function(req, res) {
 router.get('/admin', async function(req, res) {
 	try {
 		const [result] = await con.query(`SELECT id_admin, lastname, firstname FROM admin`);
-		console.log(result[0]);
 		res.status(200).send(result[0]);
 	} catch (error) {
 		res.status(400).send(error.message);
@@ -77,11 +72,8 @@ router.get('/admin', async function(req, res) {
 router.get('/admin/:id_admin', async function(req, res) {
 	try {
 		let idAdmin = req.params.id_admin;
-		console.log(idAdmin);
-
-		const [results] =	await con.query(`SELECT id_admin, lastname, firstname, email FROM admin WHERE id_admin = ?`, [idAdmin])
-		
-		console.log(results);
+		const [results] =	await con.query(`SELECT id_admin, lastname, firstname, email 
+		FROM admin WHERE id_admin = ?`, [idAdmin])
 		res.status(200).json(results);
 	} catch (error) {
 		res.status(400).send(error)
@@ -91,14 +83,13 @@ router.get('/admin/:id_admin', async function(req, res) {
 router.put('/admin/:id_admin', middlewares.isAdmin, async function(req, res) {
 	try {
 		let modifAdmin = req.params.id_admin;
-		console.log(modifAdmin);
-		const [resultss] = await con.query(`UPDATE admin SET lastname = ?, firstname = ?, email = ? WHERE id_admin = ?`, [
+		const [resultss] = await con.query(`UPDATE admin SET lastname = ?, firstname = ?, email = ? 
+		WHERE id_admin = ?`, [
 			req.body.lastname,
 			req.body.firstname,
 			req.body.email,
 			modifAdmin
 		]);
-		console.log(resultss);
 		res.status(200).json({message: 'PROFILE HAS BEEN UPDATED'});
 	} catch (error) {
 		res.status(400).send(error);

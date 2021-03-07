@@ -11,21 +11,17 @@ router.post('/articles', function(req,res){
         }
         const test = req.headers.authorization
         const token = test.split(' ')[1]
-        console.log(token);
         
         let decodedArticle = jwt.verify(token, 'supersecret');
         // console.log('wesh');
-        console.log(decodedArticle);
 
         // if(!decoded.id){
         //     throw "invalid token"
         // }
-        console.log(req.body);
         
         let lol = req.body.paragraphe
         lol = lol.replace(/'/g, ' ')
         lol = lol.replace(/`/g, ' ')
-        console.log(lol);
         
 
         let newArticle = `INSERT INTO articles 
@@ -35,7 +31,6 @@ router.post('/articles', function(req,res){
 
         con.query(newArticle, function(err, thearticle){
             if(err) throw err;
-            console.log(thearticle);
             
              con.query(`SELECT * FROM articles WHERE id = '${thearticle.insertId}'`, function(err, results){
 
@@ -52,7 +47,6 @@ router.post('/articles', function(req,res){
     try {
         con.query(`SELECT * FROM articles`, function(err,arti){
             if(err) throw err;
-            console.log(arti)
             res.status(200).send(arti)
         })
     } catch (error) {

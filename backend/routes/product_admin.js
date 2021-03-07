@@ -14,8 +14,6 @@ router.post('/products', middlewares.isAdmin, async function(req, res) {
 		const token = req.headers.authorization.split(' ')[1];
 
 		let decoded = jwt.decode(token);
-		console.log(decoded);
-
 		let newProduct = `INSERT INTO products 
         (name, description, details, price, image, id_admin,id_category) VALUES
         (?, ?, ?,
@@ -32,8 +30,6 @@ router.post('/products', middlewares.isAdmin, async function(req, res) {
 		]);
 		const [ results ] = await con.query(`SELECT * FROM products WHERE id_product = '${theproduct.insertId}'`);
 		res.status(200).json(results);
-		console.log(theproduct);
-		console.log(results);
 	} catch (error) {
 		res.send(error.message);
 	}
@@ -52,8 +48,6 @@ router.get('/products/:id_product', async function(req, res) {
 	try {
 		let idProducts = req.params.id_product;
 		const [ result ] = await con.query(`SELECT * FROM products WHERE id_product = ${idProducts}`);
-
-		console.log(result);
 		res.status(200).send(result);
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -64,9 +58,7 @@ router.put('/products/:id_product', middlewares.isAdmin, async function(req, res
 	try {
 		const token = req.headers.authorization.split(' ')[1];
 		let decoded = jwt.decode(token);
-		console.log(decoded);
 		let idProducts = req.params.id_product;
-		console.log(req.body);
 		// let updateProduct = `UPDATE products
 		// (name, description, price, image, id_admin,id_category) VALUES
 		// (?, ?, ?,
@@ -83,14 +75,12 @@ router.put('/products/:id_product', middlewares.isAdmin, async function(req, res
 		let nameProd = req.body.name;
 		nameProd = nameProd.replace(/'/g, ' ');
 		nameProd = nameProd.replace(/`/g, ' ');
-		console.log(nameProd);
 
 		let updateProduct = `UPDATE products SET name = '${nameProd}', description = '${desc}', details = '${det}', price = '${req
 			.body.price}', image =' ${req.body.image}', id_category = '${req.body
 			.id_category}', id_admin = '${decoded.id}' WHERE id_product = '${idProducts}' `;
 
 		const [ resulta ] = await con.query(updateProduct);
-		console.log(resulta);
 		res.status(200).send(resulta);
 	} catch (error) {
 		res.status(400);

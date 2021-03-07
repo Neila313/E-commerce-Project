@@ -36,7 +36,6 @@ router.use(cors());
                 req.user.id_customer
             ]);
             res.status(200).json({message : "Votre commande a été validée"})
-            console.log(thecart);
         } catch (error) {
             res.status(401).json({error: error.message})
         }
@@ -48,7 +47,6 @@ router.use(cors());
             const [cart] = await con.query(`SELECT * FROM commande`);
             res.status(200).json(cart)
         } catch (error) {
-            console.log(error);
             res.status(400).send(error);  
         }
     });

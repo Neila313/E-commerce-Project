@@ -49,11 +49,9 @@ router.get('/category/:id_category', async function(req,res){
     try {
         let idCategori = req.params.id_category
         console.log(idCategori)
-
        const [result] = await con.query('SELECT * FROM category WHERE id_category = ?', [idCategori]);
        console.log(result);
        res.status(200).send(result);    
-    
     } catch (error) {
         res.status(400);
     }
@@ -63,11 +61,8 @@ router.put('/category/:id_category', middlewares.isAdmin, async function (req, r
 
     try {
         let idCategorie = req.params.id_category
-      
         let updateCategory =  'UPDATE category SET denomination = ? WHERE id_category = ?';
-
         const [resulta] = await con.query(updateCategory, [req.body.denomination, idCategorie]);
-        console.log(resulta);
         res.status(200).send(resulta)
     } catch (error) {
         res.status(400);
