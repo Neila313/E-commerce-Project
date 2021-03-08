@@ -16,7 +16,7 @@ export class FilterCateg extends Component {
 	};
 
 	render() {
-		// const categories = this.state.categories
+		const count = this.props.products.length
 		return (
 			<div className="filter">
 				<div className="filterOrder">
@@ -29,14 +29,15 @@ export class FilterCateg extends Component {
 						))}
 					</select>
 				</div>
-				<div className="filterResutl">il y a {this.props.count} produits</div>
+				<div className="filterResutl">il y a {count} produits</div>
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
-	categories: state.categoryReducer.categories
+	categories: state.categoryReducer.categories, 
+	products: state.productsReducer.products,
 });
 
 const mapDispatchToProps = {};

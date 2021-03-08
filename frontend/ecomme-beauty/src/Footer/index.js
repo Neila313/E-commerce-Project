@@ -1,12 +1,19 @@
 import React from 'react';
+import {  withRouter } from 'react-router-dom';
 import './style.css';
 
 
 
 class FooterPage extends React.Component {
 	render() {
-      
+        console.log(this.props.location);
+        if (this.props.location.pathname.includes('admin')){
+            return (
+                <div></div>
+            )
+        } else {
 
+       
             return (
                 <main>
                   
@@ -40,11 +47,11 @@ class FooterPage extends React.Component {
                     </div>
                     </section>
                 </main>
-            );
+            ); }
 
         
 		
 	}
 }
 
-export default FooterPage;
+export default withRouter(FooterPage);

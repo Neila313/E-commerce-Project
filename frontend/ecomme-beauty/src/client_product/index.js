@@ -56,6 +56,8 @@ class ProductClient extends React.Component {
 	};
 
 	render() {
+		const count = this.props.products.length
+		console.log(count);
 		return (
 			<div className="Prod">
 				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}

@@ -28,7 +28,6 @@ class CartProduct extends React.Component {
 
 	loadCart() {
 		HTTP.get('/cartproduct').then((res) => {
-			console.log(res.data);
 			this.setState({
 				cartProduct: res.data.map(e =>{
 					return {
@@ -57,8 +56,10 @@ class CartProduct extends React.Component {
 			cartProduct,
 			total
 		})
+		this.props.listCartProducts(total)
 
 	}
+	
 
 	
 

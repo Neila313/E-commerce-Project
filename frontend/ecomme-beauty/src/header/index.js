@@ -7,19 +7,18 @@ import { listCartProducts } from '../store/action/cartproducts';
 import Nav from 'react-bootstrap/Nav';
 import { Link, withRouter } from 'react-router-dom';
 import HTTP from '../provider/http';
+// import Admin from '../admin_signin/index'
 
 class Header extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			productdetails: {},
-			
+			productdetails: {}
 		};
 	}
 
 	componentDidMount() {
-		HTTP
-			.get('/category')
+		HTTP.get('/category')
 			.then((res) => {
 				// this.setState({ categories: res.data });
 				// console.log(res.data);
@@ -30,8 +29,7 @@ class Header extends React.Component {
 				console.log(error);
 			});
 
-		HTTP
-			.get('/products')
+		HTTP.get('/products')
 			.then((res) => {
 				// this.setState({ products: res.data });
 				this.props.listProducts(res.data);
@@ -41,12 +39,17 @@ class Header extends React.Component {
 				console.log(error);
 			});
 	}
+	// ConnexionSubmit = () => {
+	// 	this.props.history.push('/admin/dashboard');
+	// };
 	render() {
 		if (this.props.location.pathname.includes('admin')) {
 			if (localStorage.getItem('MyToken')) {
 				return (
-					<Nav variant="pills" defaultActiveKey="/dashboard">
-						<Nav.Item>
+					<Nav  defaultActiveKey="/dashboard" className="navGestion">
+						{/* <div className="logoGestion"></div> */}
+						{/* <div className="habillageNav"></div> */}
+						{/* <Nav.Item className="navItemGestion">
 							<Nav.Link as={Link} to="/admin/product">
 								Ajouter un produit
 							</Nav.Link>
@@ -59,25 +62,22 @@ class Header extends React.Component {
 							<Nav.Link as={Link} to="/admin/listcategory">
 								Vos catégories
 							</Nav.Link>
-						</Nav.Item>
+						</Nav.Item> */}
 					</Nav>
 				);
 			} else {
 				return (
-					<Nav variant="pills" defaultActiveKey="/admin">
-						<Nav.Item>
-							<Nav.Link as={Link} to="/admin/signup">
-								Inscription
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item>
-							<Nav.Link as={Link} to="/admin/signin">
-								Me connecter
-							</Nav.Link>
-						</Nav.Item>
-					</Nav>
+					<div></div>
+					// <Nav variant="pills" defaultActiveKey="/admin/dashboard">
+					// 	<Nav.Item>
+					// 		<Nav.Link as={Link} to="/admin">
+								
+					// 		</Nav.Link>
+					// 	</Nav.Item>
+					// </Nav>
 				);
 			}
+
 		} else {
 			return (
 				<Nav variant="pills" defaultActiveKey="/home" className="headCustom">
@@ -103,17 +103,19 @@ class Header extends React.Component {
 						</Nav.Item>
 						<Nav.Item className="ProductHead">
 							<div className="cartLink">
-							<Nav.Link as={Link} to="/panier" className="cartP"/>
-							{this.props.cartproducts.length > 0 && <div className="cartNumber">{this.props.cartproducts.length} </div> }
+								<Nav.Link as={Link} to="/panier" className="cartP" />
+								{this.props.cartproducts.length > 0 && (
+									<div className="cartNumber">{this.props.cartproducts.length} </div>
+								)}
 							</div>
-						<Nav.Link as={Link} to="/wishlist" className="favorisP" />
+							<Nav.Link as={Link} to="/wishlist" className="favorisP" />
 						</Nav.Item>
 					</div>
 
 					{localStorage.getItem('tokenUser') ? (
 						<div className="headCustomConnect">
 							<Nav.Item>
-								<Nav.Link as={Link} className="Seconnecter"  to="/mon-compte">
+								<Nav.Link as={Link} className="Seconnecter" to="/mon-compte">
 									Mon compte
 								</Nav.Link>
 							</Nav.Item>{' '}
@@ -143,7 +145,6 @@ const mapStateToProps = (state) => {
 		products: state.productsReducer.products,
 		categories: state.categoryReducer.categories,
 		cartproducts: state.cartproductsReducer.cartproducts
-
 	};
 };
 

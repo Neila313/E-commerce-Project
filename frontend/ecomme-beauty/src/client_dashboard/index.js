@@ -8,6 +8,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import CommandeClient from '../commande_client/index'
+import { Alert } from 'react-bootstrap';
+
+
+import { connect } from 'react-redux';
+// import { listCommande } from '../store/action/commande_client';
 
 import './style.css';
 
@@ -19,6 +24,17 @@ class DashboardClient extends React.Component {
 		lastname: '',
 		firstname: '',
 		email: '',
+		msgSuccessModif:''
+
+	};
+	inputClientLastName = (event) => {
+		this.setState({ lastname: event.target.value });
+	};
+	inputClientFirstName = (event) => {
+		this.setState({ firstname: event.target.value });
+	};
+	inputClientEmail = (event) => {
+		this.setState({ email: event.target.value });
 	};
 
 	logOutSubmit = () => {
@@ -30,11 +46,38 @@ class DashboardClient extends React.Component {
 		this.loadCustomer();
 	}
 	loadCustomer() {
-		HTTP.get('/customer/customer').then((res) => {
-			this.setState({ dataUser: res.data });
-			console.log(this.state.dataUser);
+		HTTP.get('/customer/user').then((res) => {
+			this.setState({dataUser: res.data,
+				lastname: res.data[0].lastname,
+				firstname: res.data[0].firstname,
+				email: res.data[0].email
+			 });
+			console.log("user", this.state);
 		});
 	}
+
+	handleSubmitEdition = (event) => {
+		event.preventDefault();
+
+		const user = {
+			lastname: this.state.lastname,
+			firstname: this.state.firstname,
+			email: this.state.email,
+		};
+
+		HTTP.put('/customer/put-user/', user)
+			.then((res) => {
+				console.log(res.data);
+				this.setState({ msgSuccessModif: 'Votre profil a bien été modifié !' });
+			})
+			.catch((error) => {
+				console.log('catch error');
+				console.log(error);
+			});
+	};
+
+
+
 
 	render() {
 		return (
@@ -47,7 +90,7 @@ class DashboardClient extends React.Component {
 				</Breadcrumb>
 
 				<Tab.Container id="left-tabs-example" className="tabcontainer" defaultActiveKey="first">
-					<Row className="row">
+					<Row className="rowDash">
 						<Col className="col" sm={3}>
 							<Nav variant="link" className="flex-column">
 								<Nav.Item className="nav-item">
@@ -73,7 +116,7 @@ class DashboardClient extends React.Component {
 						<Col sm={9}>
 							<Tab.Content className="tab-content">
 								<Tab.Pane className="tab-pane" eventKey="first">
-									<p className="nameUser">Bienvenue, <span>{this.state.dataUser.firstname} </span> !</p>
+									<p className="nameUser">Bienvenue, <span>{this.state.firstname}</span> !</p>
 									<p className="welcomeUser">
 										À partir du tableau de bord de votre compte, vous pouvez visualiser vos
 										commandes récentes, gérer vos adresses de livraison et de facturation ainsi que
@@ -85,18 +128,21 @@ class DashboardClient extends React.Component {
 									<CommandeClient></CommandeClient>
 								</Tab.Pane>
 								<Tab.Pane className="tab-pane" eventKey="third">
-									<Form className="formUser">
+									<Form onSubmit={this.handleSubmitEdition} className="formUser">
+									{this.state.msgSuccessModif ? (
+						<Alert variant="success"> {this.state.msgSuccessModif} </Alert>
+					) : null}
 										<Form.Group controlId="formGroupClientLastName">
 											<Form.Label className="form-label">Nom</Form.Label>
-											<Form.Control className="custom" type="lastname"/>
+											<Form.Control value={this.state.lastname} className="custom" type="lastname" onChange={this.inputClientLastName}/>
 										</Form.Group>
 										<Form.Group controlId="formGroupClientFirstName">
 											<Form.Label>Prénom</Form.Label>
-											<Form.Control className="custom" type="firstname"/>
+											<Form.Control value={this.state.firstname} className="custom" type="firstname" onChange={this.inputClientFirstName}/>
 										</Form.Group>
 										<Form.Group controlId="formGroupClientEmail">
 											<Form.Label>Email</Form.Label>
-											<Form.Control className="custom" type="email"/>
+											<Form.Control value={this.state.email}  className="custom" type="email" onChange={this.inputClientEmail}/>
 										</Form.Group>
 										<Button className="btn2 effect02" type="submit">
 											<span>Enregistrez les modifications</span>
@@ -117,4 +163,18 @@ class DashboardClient extends React.Component {
 	}
 }
 
-export default DashboardClient;
+const mapStateToProps = (state) => {
+	return {
+
+		recapCommande:state.commandeReducer.recapCommande,
+		id: state.clientReducer.id,
+		email: state.clientReducer.email,
+
+
+		
+	};
+};
+
+// const mapDispatchToProps = { listCommande};
+
+export default connect(mapStateToProps)(DashboardClient);

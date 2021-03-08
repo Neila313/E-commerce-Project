@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import HTTP from '../provider/http';
 import { connect } from 'react-redux';
-// import { loginClient } from '../store/action/admin_connect';
+import { loginClient } from '../store/action/client_connect';
 import { Alert } from 'react-bootstrap';
 var jwt = require('jsonwebtoken');
 
@@ -41,7 +41,7 @@ class ClientSignin extends React.Component {
 							id: decoded.id,
 							email: decoded.email
 						};
-						// this.props.loginClient(loggedUser)
+						this.props.loginClient(loggedUser)
 						localStorage.setItem('tokenUser', res.data.token);
 						//re-diriger vers dashboard
 						this.props.history.push('/mon-compte');
@@ -120,6 +120,6 @@ const mapStateToProps = (state /*, ownProps*/) => {
 	return {};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {loginClient};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientSignin);

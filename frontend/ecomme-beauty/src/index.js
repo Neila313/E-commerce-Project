@@ -18,8 +18,7 @@ import Home from './Home';
 import Header from './header/';
 import FooterPage from './Footer';
 import AdminSignup from './admin_signup';
-import AdminSignin from './admin_signin';
-import allAdmin from './admin_all';
+import Admin from './admin_signin';
 import DashboardAdmin from './admin_dashboard';
 import AddCategory from './admin_addcategory';
 import ListCateg from './admin_category';
@@ -48,9 +47,9 @@ const myRouter = (
 		<Router>			
       <Header></Header>
 			<Switch>					{/* partie admin  */}
-				<Route exact path="/admin" component={allAdmin} />
+				{/* <Route exact path="/admin" component={allAdmin} /> */}
 				<Route exact path="/admin/signup" component={AdminSignup} />
-				<Route exact path="/admin/signin" component={AdminSignin} />
+				<Route exact path="/admin" component={Admin} />
 				<PrivateRoute exact path="/admin/dashboard/" component={DashboardAdmin} />
 				<Route exact path="/admin/product" component={AddProduct}/>
 				<Route exact path="/admin/listproduct" component={ListProduct}/>

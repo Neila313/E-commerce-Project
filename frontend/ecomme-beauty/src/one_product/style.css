@@ -1,16 +1,16 @@
 .container {
-    /* border: 3px solid red; */
+    border: 3px solid red;
+	width: auto;
     margin: 60px;
 }
 .containerPix {
-    /* border: 3px solid grey; */
     background-color: rgba(173, 124, 52, 0.13);    
 }
 .pixProd {
     /* border: 3px solid blue; */
-    width: 30vw;
-    height: 70vh;
-    margin: 14%;
+    width: 34vw;
+    height: 80vh;
+    margin: 11%;
     /* margin-left: 14%; */
 }
 
@@ -19,7 +19,14 @@
     width: 40vw;
     margin-left: 2%;
     padding: 1%;
-    height: 70vh;
+    height: auto;
+}
+.cardOne {
+	border: 3px solid blue;
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 .titleOneProd {
@@ -112,3 +119,25 @@
 	-webkit-transform: rotate(40deg);
 			transform: rotate(40deg);
   }
+
+  .plusOne {
+	width: 40px;
+	height: 40px;
+	background: url('./img/icons8-plus-64.png') center / cover; ;
+}
+.moinsOne {
+	width: 40px;
+	height: 40px;
+	background: url('./img/icons8-moins-64.png') center / cover; ;
+}
+
+.btnOne {
+	border: 3px solid red;
+	width: 10vw;
+	display: flex;
+	justify-content: space-evenly;
+	margin-bottom: 20px;
+}
+.qtyOne {
+	font-size: 20px;
+}

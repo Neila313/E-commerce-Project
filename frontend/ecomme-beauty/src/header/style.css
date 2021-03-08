@@ -92,7 +92,7 @@
 
 .signIn {
 	background-color: grey;
-	height: 100vh;
+	height: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -111,5 +111,86 @@
 }
 .cartLink {
 	position: relative;
+
+}
+.allAdminContainer{
+	/* border: 3px solid pink; */
+	display: flex;
+	height: 100vh;
+	flex-direction: row;
+}
+.containerImg {
+	/* border: 3px solid red; */
+	height: auto;
+	width: 50vw;
+	background: url('./img/adminall.jpg') center / cover;
+
+}
+
+.navAdmin {
+	/* border: 3px solid blue; */
+	background-color:white;
+	display: flex;
+	justify-content: center;
+	width: 46vw;
+	height: auto;
+}
+
+.conNav {
+	/* border: 3px solid green	; */
+	background-color: white;
+	height: auto;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.logoPrecious {
+	width: 20vw;
+	height: 22vh;
+	position: relative;
+	top: 11%;
+	background: url('./img/My\ Precious.png') center / cover;
+
+
+}
+
+.navItem {
+	/* border: 3px solid yellow; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-top: 20px;
+}
+.welcoAdmin {
+	padding: 20px;
+	margin: 20px;
+	font-family: Josefin Sans;
+	text-align: center;
+}
+
+.navLink {
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.navGestion {
+	background-color: black;
+	display: flex;
+	justify-content: center;
+}
+.navItemGestion {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.logoGestion {
+	width: 200px;
+	height:125px;
+	background: url('./img/My\ Precious.png') center / cover;
 
 }

@@ -77,7 +77,7 @@ class OneProductPage extends React.Component {
 					</Col>
 					<Row className="containerDetails" lg={1}>
 						<Col>
-							<Card.Body>
+							<Card.Body className="cardOne">
 								<Card.Title className="titleOneProd">{this.props.productdetails.name}</Card.Title>
 								<Card.Text className="descOneProd">{this.props.productdetails.description}</Card.Text>
 								<Card.Text className="priceOneProd">{this.props.productdetails.price}€</Card.Text>
@@ -87,13 +87,12 @@ class OneProductPage extends React.Component {
 										{this.props.productdetails.price}€
 									</ListGroupItem>
 								</ListGroup> */}
-
-								<Button onClick={this.DecrementItem}>-</Button>
-
-								<p>{this.state.qty}</p>
-								<Button onClick={this.IncrementItem}>+</Button>
+								<div className="btnOne">
+								<Button className="moinsOne" variant="link" onClick={this.DecrementItem}></Button>
+								<p className="qtyOne">{this.state.qty}</p>
+								<Button className="plusOne" variant="link"  onClick={this.IncrementItem}></Button>
 								<br />
-
+								</div>
 								<Button
 								variant="light"
 									className="btn2 effect02"

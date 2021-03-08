@@ -3,7 +3,9 @@ import productsReducer from './product';
 import categoryReducer from './categorie';
 import cartproductsReducer from './cartproduct';
 import adminReducer from './admin_connect';
+import clientReducer from './client_connect';
 import favorisReducer from './favoris'
+import commandeReducer from './commande_client'
 
 export default combineReducers(
     {
@@ -11,6 +13,8 @@ export default combineReducers(
        categoryReducer,
        cartproductsReducer,
        adminReducer,
-       favorisReducer
+       favorisReducer,
+       commandeReducer,
+       clientReducer
    }
 )

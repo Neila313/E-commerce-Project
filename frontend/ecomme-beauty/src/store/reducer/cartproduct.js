@@ -14,7 +14,7 @@ const initialStates = {
 
        case "ADD_CARTPRODUCTS":
          let cartProductIndex = state.cartproducts.findIndex(e => e.id_product === action.payload.id_product);
-         if (cartProductIndex == -1){
+         if (cartProductIndex === -1){
           return {
             ...state,
             cartproducts: [...state.cartproducts, action.payload]
