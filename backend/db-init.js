@@ -77,6 +77,24 @@ async function initDataBase(con) {
     id_admin: 1,
     id_category: 1
   });
+  await con.query('INSERT INTO products SET ?', {
+    name: 'Produit test 3',
+    description: 'test',
+    details: 'test',
+    price: 132,
+    image: 'https://images.unsplash.com/photo-1600428877878-1a0fd85beda8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80',
+    id_admin: 1,
+    id_category: 2
+  });
+  await con.query('INSERT INTO products SET ?', {
+    name: 'Produit test 4',
+    description: 'test',
+    details: 'test',
+    price: 39,
+    image: 'https://images.unsplash.com/photo-1600428877878-1a0fd85beda8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80',
+    id_admin: 1,
+    id_category: 3
+  });
 
   //Création de la table client
   await con.query(`DROP TABLE IF EXISTS customer`);
@@ -120,9 +138,9 @@ async function initDataBase(con) {
   // Création de la table commande 
   await con.query(`DROP TABLE IF EXISTS commande`);
   await con.query(`CREATE TABLE commande (
-    id_commande INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    date_commande DATETIME,
-    status BOOLEAN,
+    id_commande INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    date_commande DATETIME NOT NULL,
+    status BOOLEAN NOT NULL,
     id_customer INT NOT NULL,
     FOREIGN KEY (id_customer) REFERENCES customer(id_customer)
   )`);
@@ -130,7 +148,7 @@ async function initDataBase(con) {
   // Création de la table commande_line 
   await con.query(`DROP TABLE IF EXISTS commande_line`);
   await con.query(`CREATE TABLE commande_line (
-    id_commande INT UNSIGNED,
+    id_commande INT,
     id_product INT,
     qty INT NOT NULL,
     date_added DATETIME NOT NULL,

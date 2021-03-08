@@ -23,12 +23,12 @@ router.use(cors());
             (date_commande,status,id_customer) VALUES
             (?, ?,?)`; 
     
-            const [thecart] = await con.query(newCart, [new Date(),1,req.user.id_customer]);
+            const [thecart] = await con.query(newCart, [new Date(),1,req.user.id_customer, req.body.id_product]);
             await con.query(`INSERT INTO commande_line 
             SELECT ?, id_product, qty, date_added 
             FROM cart_line WHERE id_customer = ?`,[
                 thecart.insertId, 
-                req.user.id_customer
+                req.user.id_customer,
             ]);
 
             await con.query(`DELETE FROM cart_line 
@@ -41,14 +41,37 @@ router.use(cors());
         }
     });
 
+    router.get('/cart/', middlewares.isCustomer, async function(req, res) {
+	try {
+		if (req.user === null) {
+			throw new Error("Vous n'êtes pas autorisé à entrer, testest");
+		}
+        const [commande] = await con.query(`SELECT * 
+        FROM commande c
+        LEFT JOIN commande_line l ON l.id_commande = c.id_commande
+		WHERE c.id_customer = ?`,[req.user.id_customer]);
+		res.json(commande);
 
-    router.get('/cart', async function(req,res){
-        try {
-            const [cart] = await con.query(`SELECT * FROM commande`);
-            res.status(200).json(cart)
-        } catch (error) {
-            res.status(400).send(error);  
-        }
-    });
+	} catch (error) {
+		res.status(401).json({ error: error.message });
+	}
+});
+    router.get('/cart-line/', middlewares.isCustomer, async function(req, res) {
+	try {
+		if (req.user === null) {
+			throw new Error("Vous n'êtes pas autorisé à entrer, testest");
+		}
+        const [commande] = await con.query(`SELECT c.id_commande, c.id_product, l.status,l.date_commande ,p.name ,p.price unit_price, c.qty, (c.qty * p.price) total
+        FROM commande_line c
+        LEFT JOIN products p ON p.id_product = c.id_product
+        LEFT JOIN commande l ON l.id_commande = c.id_commande
+		WHERE l.id_customer = ?`,[req.user.id_customer]);
+		res.json(commande);
+
+	} catch (error) {
+		res.status(401).json({ error: error.message });
+	}
+});
+
 
 module.exports = router;

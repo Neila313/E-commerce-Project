@@ -6,6 +6,8 @@ const saltRounds = 10;
 var cors = require('cors');
 const jwt = require('jsonwebtoken');
 const config = require('./config');
+const middlewares = require('../middlewares/')
+
 // const fs = require('fs').promises;
 
 router.use(cors());
@@ -52,13 +54,39 @@ router.use(cors());
 		}
 	});
 
-	router.get('/customer', async function(req, res) {
-    const token = req.headers.authorization.split(' ')[1]
-    let decoded = jwt.decode(token);
+	// router.get('/customer', async function(req, res) {
+    // const token = req.headers.authorization.split(' ')[1]
+    // let decoded = jwt.decode(token);
 				
-		// TODO: Ajouter 
-		const [result] = await con.query(`SELECT id_customer, lastname, firstname  FROM customer`);
-		res.status(200).send(result[0]);
-	});
+	// 	// TODO: Ajouter 
+	// 	const [result] = await con.query(`SELECT id_customer, lastname, firstname  FROM customer`);
+	// 	res.status(200).send(result[0]);
+	// });
 
+	router.get('/user', middlewares.isCustomer, async function(req, res) {
+	try {
+		// let idAdmin = req.params.id_admin;
+		const [results] =	await con.query(`SELECT id_customer, lastname, firstname, email  FROM customer 
+		WHERE id_customer = ?`, [req.user.id_customer])
+		res.status(200).json(results);
+	} catch (error) {
+		res.status(400).send(error)
+	}
+}); 
+
+
+router.put('/put-user', middlewares.isCustomer, async function(req, res) {
+	try {
+		const [resultss] = await con.query(`UPDATE customer SET lastname = ?, firstname = ?, email = ? 
+		WHERE id_customer = ?`, [
+			req.body.lastname,
+			req.body.firstname,
+			req.body.email,
+			req.user.id_customer
+		]);
+		res.status(200).json({message: 'PROFILE HAS BEEN UPDATED'});
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
 module.exports = router;
