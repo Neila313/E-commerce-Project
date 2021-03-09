@@ -48,19 +48,18 @@
 	color: #7B3F27;
 	font-weight: 600;
 }
-.btn {
+.btn1 {
 	letter-spacing: 0.1em;
 	cursor: pointer;
 	font-size: 14px;
 	font-weight: 400;
-	line-height: 45px;
-	max-width: 15vw;
+	line-height: 20px;
+	width: auto;
 	position: relative;
 	text-decoration: none;
 	text-transform: uppercase;
-	width: auto;
   }
-  .btn:hover {
+  .btn1:hover {
 	text-decoration: none;
   }
   
@@ -74,7 +73,7 @@
 	position: relative;
 	transition: all 0.3s ease-in-out;
 	align-items: center;
-	width: 90vw;
+	width: 20vw;
 	height: auto;
   }
   .effect01:hover {
@@ -87,6 +86,7 @@
   .effect01 span {
 	transition: all 0.2s ease-out;
 	z-index: 2;
+
   }
   .effect01:hover span{
 	letter-spacing: 0.13em;
@@ -138,7 +138,7 @@
 		align-items: center;
 		margin: 0px;
 		margin-bottom: 40px;
-		padding: 10px;
+		padding: 0px;
 		width: auto;
 	
 	}
@@ -147,10 +147,10 @@
 		display: flex;
 		flex-flow:  row wrap;
 		justify-content: center;
-		width: auto;
 		padding: 10px;
 		margin: 30px;
 		height: auto;
+		width: auto;
 		/* border: 3px solid yellow; */
 	}
 	
@@ -160,6 +160,7 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 0px;
+		width: auto;
 	}
 	
 	.titleProd {
@@ -177,25 +178,30 @@
 		color: #7B3F27;
 		font-weight: 600;
 	}
-	.btn {
+	.btn1 {
 		letter-spacing: 0.1em;
 		font-size: 14px;
 		font-weight: 400;
-		line-height: 20px;
-		max-width: 50vw;
+		line-height: 10px;
 		position: relative;
 		text-decoration: none;
 		text-transform: uppercase;
 	  }
-	  .btn:hover {
+	  .btn1:hover {
 		text-decoration: none;
+
+	  }
+
+	  .btn1 span {
+		  font-size: 14px;
+
 	  }
 	  .card-img{
 		  padding-left: 5px;
 		  padding-right: 5px;
 		  padding-top: 5px;
 		  width: auto;
-		  height: 30vh;
+		  height: 50vh;
 
 	  }
 	  .filArianeProd {

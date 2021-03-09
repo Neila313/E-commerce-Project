@@ -160,7 +160,7 @@ class ClientSignup extends React.Component {
 						<Form.Control className="{'form-control'}" type="password" onChange={this.inputClientPassword} />
 						<div className="form">{this.state.errors.password}</div>
 					</Form.Group>
-					<Button className="btn2 effect02" type="submit" variant="light"
+					<Button className="btn1 effect01" type="submit" variant="light"
 >
 						<span>Créer mon compte</span>
 					</Button>

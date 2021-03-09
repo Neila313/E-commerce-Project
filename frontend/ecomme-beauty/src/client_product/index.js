@@ -114,7 +114,7 @@ class ProductClient extends React.Component {
 								</ListGroup>
 								<Card.Body>
 									<Link to={`/product/${elem.id_product}`}>
-										<Button className="btn effect01" variant="light">
+										<Button className="btn1 effect01" variant="light">
 											<span>En savoir +</span>
 										</Button>
 									</Link>

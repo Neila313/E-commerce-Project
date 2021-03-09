@@ -37,17 +37,11 @@ class ListCateg extends React.Component {
 	render() {
 		return (
 			<div>
-				<Button variant="info" type="submit" onClick={this.returnSubmit.bind(this)}>
-					Retour sur mon Dashboard
-				</Button>
-
-				<p>Vos catégorie</p>
-				<Table striped bordered hover size="sm">
+				<Table striped bordered hover size="lg">
 					<thead>
 						<tr>
 							<th>ID Categorie</th>
 							<th>Dénomination</th>
-							<th>Modifier votre catégorie</th>
 							<th>Supprimer votre catégorie</th>
 						</tr>
 					</thead>
@@ -60,15 +54,7 @@ class ListCateg extends React.Component {
 									<td>{elem.denomination}</td>
 									<td>
 										<Button
-											variant="info"
-											type="submit"
-										>
-											Modifier categorie
-										</Button>
-									</td>
-									<td>
-										<Button
-											variant="info"
+											variant="dark"
 											type="submit"
 											onClick={(e) => this.deleteRow(elem.id_category, e)}
 										>

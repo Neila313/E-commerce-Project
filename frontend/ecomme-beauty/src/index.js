@@ -23,7 +23,7 @@ import DashboardAdmin from './admin_dashboard';
 import AddCategory from './admin_addcategory';
 import ListCateg from './admin_category';
 import AddProduct from './admin_addproduct';
-import ListProduct from './admin_listproduct';
+// import ListProduct from './admin_listproduct';
 import PutProduct from './admin_putproduct';
 // ...........Partie client ......
 import ClientSignup from './client_signup';
@@ -49,11 +49,11 @@ const myRouter = (
 			<Switch>					{/* partie admin  */}
 				{/* <Route exact path="/admin" component={allAdmin} /> */}
 				<Route exact path="/admin/signup" component={AdminSignup} />
-				<Route exact path="/admin" component={Admin} />
+				<Route exact path="/admin/" component={Admin} />
 				<PrivateRoute exact path="/admin/dashboard/" component={DashboardAdmin} />
-				<Route exact path="/admin/product" component={AddProduct}/>
-				<Route exact path="/admin/listproduct" component={ListProduct}/>
-				<Route exact path="/admin/modifyproduct/:id_product" component={PutProduct}/>
+				<Route exact path="/admin/dashboard/product" component={AddProduct}/>
+				{/* <Route exact path="/admin/listproduct" component={ListProduct}/> */}
+				<Route exact path="/admin/dashboard/modifyproduct/:id_product" component={PutProduct}/>
 				<Route exact path="/admin/category" component={AddCategory}/>
 				<Route exact path="/admin/listcategory" component={ListCateg}/>
 									{/* partie client	  */}

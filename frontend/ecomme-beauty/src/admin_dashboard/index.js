@@ -9,11 +9,12 @@ import { connect } from 'react-redux';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 // import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { Link, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import AddProduct from '../admin_addproduct';
-import ListProducts from '../admin_listproduct';
+import ListProducts from '../admin_listproduct/index';
 import ListCateg from '../admin_category';
 import AddCategory from '../admin_addcategory';
+
 import './style.css';
 
 class DashboardAdmin extends React.Component {
@@ -68,7 +69,7 @@ class DashboardAdmin extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="AllDash">
 				<Nav className="navGestion">
 					<div className="logoGestion" />
 				</Nav>
@@ -79,26 +80,24 @@ class DashboardAdmin extends React.Component {
 							<Col className="col" sm={3}>
 								<Nav variant="link" className="flex-column">
 									<Nav.Item className="nav-item">
-										<Nav.Link className="nav-link" eventKey="first"
-										as={Link} to="/admin/product">
+										<Nav.Link className="nav-link" eventKey="first">
 											Tableau de bord
 											<span className="iconeDashboard" />
 										</Nav.Link>
 									</Nav.Item>
 
 									<Nav.Item>
-										<Nav.Link className="nav-link" eventKey="second" >
+										<Nav.Link  className="nav-link" eventKey="second" >
 											Ajoutez un produit
 										</Nav.Link>
 									</Nav.Item>
-
 									<Nav.Item>
-										<Nav.Link className="nav-link" eventKey="third">
+										<Nav.Link   className="nav-link" eventKey="third">
 											Les produits au catalogue
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
-										<Nav.Link className="nav-link" eventKey="fourth">
+										<Nav.Link  className="nav-link" eventKey="fourth">
 											Ajoutez vos catégories de produits
 										</Nav.Link>
 									</Nav.Item>
@@ -107,7 +106,7 @@ class DashboardAdmin extends React.Component {
 											Les catégories de produits
 										</Nav.Link>
 									</Nav.Item>
-									<Button className="btn2 effect02" onClick={this.logOutSubmit.bind(this)}>
+									<Button className="btn1 effect01" onClick={this.logOutSubmit.bind(this)}>
 										<span>Déconnexion</span>
 									</Button>
 								</Nav>
@@ -124,8 +123,8 @@ class DashboardAdmin extends React.Component {
 									</Tab.Pane>
 
 									<Tab.Pane className="tab-pane" eventKey="second">
-										<p>Ajouter un nouveau produit au catalogue</p>
-										<AddProduct />
+										{/* <p>Ajouter un nouveau produit au catalogue</p> */}
+										<AddProduct/>
 									</Tab.Pane>
 
 									<Tab.Pane className="tab-pane" eventKey="third">
@@ -133,13 +132,13 @@ class DashboardAdmin extends React.Component {
 										<ListProducts />
 									</Tab.Pane>
 
-									<Tab.Pane eventKey="fourth">
+									<Tab.Pane  eventKey="fourth">
 										<p>Ajouter une nouvelle catégorie de produits</p>
 										<AddCategory />
 									</Tab.Pane>
 									<Tab.Pane eventKey="fifth">
 										<p>Toutes les catégories de produits</p>
-										<ListCateg />
+										<ListCateg/>
 									</Tab.Pane>
 								</Tab.Content>
 							</Col>
@@ -153,6 +152,8 @@ class DashboardAdmin extends React.Component {
 
 const mapStateToProps = (state /*, ownProps*/) => {
 	return {
+		products: state.productsReducer.products,
+		categories: state.categoryReducer.categories,
 		token: state.adminReducer.token,
 		id: state.adminReducer.id
 	};

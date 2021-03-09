@@ -83,7 +83,7 @@ class Admin extends React.Component {
 											onChange={this.signinPassword}
 										/>
 									</Form.Group>
-									<Button className="btn2 effect02" variant="light" type="submit">
+									<Button className="btn1 effect01" variant="light" type="submit">
 										Connexion
 									</Button>
 								</Form>

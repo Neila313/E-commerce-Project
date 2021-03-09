@@ -198,7 +198,7 @@ class CartProduct extends React.Component {
 							<p className="prixtotal">total</p>
 							<p className="price">{this.state.total}€</p>
 						</div>
-						<Button className="btn2 effect02" onClick={this.ValidationCommandeSubmit}>
+						<Button className="btn1 effect01" onClick={this.ValidationCommandeSubmit}>
 							<span>Valider mon panier</span>
 						</Button>
 					</div>

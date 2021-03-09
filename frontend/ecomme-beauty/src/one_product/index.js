@@ -8,6 +8,7 @@ import { newCartProduct } from '../store/action/cartproducts';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Image from 'react-bootstrap/Image';
 import './style.css';
 // import { button } from '../boutton_quantity/index';
@@ -70,8 +71,16 @@ class OneProductPage extends React.Component {
 	render() {
 		const details = this.props.productdetails ? (
 			<div>
+				<div className="filArianeProd">
+					<Breadcrumb className="breadcrumb">
+					<Breadcrumb.Item className="breadcrumb-item" href="/catalogue">
+						Nos produits
+					</Breadcrumb.Item>
+					<Breadcrumb.Item active>{this.props.productdetails.name}</Breadcrumb.Item>
+				</Breadcrumb>
+			</div>
 				<Row>
-					<Col md={6} className="containerPix">
+					<Col lg={6} className="containerPix">
 						<Image className="pixProd" src={this.props.productdetails.image} />
 						{/* <div className="containerDetails" /> */}
 					</Col>
@@ -95,7 +104,7 @@ class OneProductPage extends React.Component {
 								</div>
 								<Button
 								variant="light"
-									className="btn2 effect02"
+									className="btn1 effect01"
 									onClick={() => this.handleSubmit(this.props.productdetails.id_product)}
 								>
 									<span>Ajouter au panier</span>

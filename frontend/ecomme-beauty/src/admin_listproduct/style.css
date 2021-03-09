@@ -1,4 +1,21 @@
 .image-table {
-	width: auto;
-	height: 40px;
+	width: 30vw;
+	height: 10vh;
 }
+
+.listProdAdmin {
+	width: auto;
+	height: auto;
+}
+.table {
+	width: 30vw;
+	margin-right: 10%;
+	height: auto;
+}
+
+.table-card Button{
+	width: 1vw;
+	height: 10vh;
+}
+
+

@@ -51,9 +51,9 @@ class AddCategory extends React.Component {
     render() {
         return (
            <div>
-				<Form onSubmit={this.handleSubmit}>
+				<Form onSubmit={this.handleSubmit} className="FormGroup">
 					{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
-					<Form.Group controlId="formGroupName">
+					<Form.Group controlId="formGroupName" className="form-group">
 						<Form.Label>Dénomination</Form.Label>
 						<Form.Control
 							type="denomination"
@@ -61,8 +61,8 @@ class AddCategory extends React.Component {
 							onChange={this.inputDenomination}
 						/>
 					</Form.Group>
-                    <Button variant="info" type="submit">
-						Ajouter ma catégorie
+                    <Button className="btn2 effect02" variant="light"type="submit">
+						<span>Ajouter ma catégorie</span>
 					</Button>
                     </Form>
                     </div>

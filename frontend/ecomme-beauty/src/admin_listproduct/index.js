@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {  deleteProduct } from '../store/action/products';
+import { deleteProduct } from '../store/action/products';
 import axios from 'axios';
 // import Card from 'react-bootstrap/Card';
 // import ListGroup from 'react-bootstrap/ListGroup';
@@ -10,66 +10,38 @@ import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
 import '../admin_listproduct/style.css';
 import { Alert } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import './style.css';
 
 // import { Link } from 'react-router-dom';
 // import Button from 'react-bootstrap/esm/Button';
 
 class ListProducts extends React.Component {
 	state = {
-		// products: [],
 		msgSuccess: ''
 	};
 
-	returnSubmit = () => {
-		this.props.history.push('/admin/dashboard');
-	};
-
 	ModifProductSubmit = (id_product) => {
-		this.props.history.push('/admin/modifyproduct/' + id_product);
+		this.props.history.push('/admin/dashboard/modifyproduct/' + id_product);
 	};
 
-	// componentDidMount() {
-	// 	console.log(this);
-
-	// 	axios
-	// 		.get(process.env.REACT_APP_API_URL + '/products')
-	// 		.then((res) => {
-	// 			this.setState({ products: res.data });
-	// 			this.props.listProducts(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			// this.setState({ error : res.data });
-	// 			console.log(error);
-	// 		});
-	// }
-
-	deleteRow(id_product, e) {
+	deleteRow(id_product) {
 		axios
 			.delete(`${process.env.REACT_APP_API_URL}/products/${id_product}`, {
 				headers: { authorization: `Bearer ${localStorage.getItem('MyToken')}` }
 			})
 			.then((res) => {
-				if(res.status === 200) {
-					this.props.deleteProduct(id_product)
+				if (res.status === 200) {
+					this.props.deleteProduct(id_product);
 					this.setState({ msgSuccess: 'Produit supprimé avec succès' });
-				} 
-				// console.log(res);
-				// console.log(res.data);
-				// const products = this.state.products.filter((item) => item.id_product !== id_product);
-				// this.setState({ products });
+				}
 			});
 	}
 
 	render() {
 		return (
-			<div>
-				<Button variant="info" type="submit" onClick={this.returnSubmit.bind(this)}>
-					Retour sur mon Dashboard
-				</Button>
-
-				<p>Vos produits</p>
+			<div className="listProdAdmin">
 				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
-
 				<Table striped bordered hover size="sm">
 					<thead>
 						<tr>
@@ -81,14 +53,14 @@ class ListProducts extends React.Component {
 							<th>Catégorie</th>
 							<th>Prix</th>
 							<th>Image</th>
-							<th>Modifier le produit</th>
+							<th>Modifier</th>
+							<th>Supprimer</th>
 						</tr>
 					</thead>
 					<tbody>
-
 						{this.props.products.map((elem) => {
 							console.log(elem);
-							
+
 							return (
 								<tr key={elem.id_product}>
 									<td>{elem.id_product}</td>
@@ -97,32 +69,24 @@ class ListProducts extends React.Component {
 									<td>{elem.description}</td>
 									<td>{elem.details}</td>
 									<td>
-										{this.props.categories.find((ele) => 
-											ele.id_category === elem.id_category
-										).denomination
-									}
+										{
+											this.props.categories.find((ele) => ele.id_category === elem.id_category)
+												.denomination
+										}
 									</td>
 									<td>{elem.price}</td>
 									<td>
 										<Image src={elem.image} className="image-table" thumbnail />
 									</td>
-									<td>
-										<Button
-											variant="info"
-											type="submit"
-											onClick={this.ModifProductSubmit.bind(this, elem.id_product)}
-										>
-											modifier produits
-										</Button>
+									<td >
+										<Button variant="dark"onClick={this.ModifProductSubmit.bind(this, elem.id_product)}>
+											Modifier
+											</Button>
 									</td>
-									<td>
-										<Button
-											variant="info"
-											type="submit"
-											onClick={(e) => this.deleteRow(elem.id_product, e)}
-										>
-											supprimer produits
-										</Button>
+									<td >
+										<Button variant="dark" onClick={this.deleteRow.bind(this, elem.id_product)}>
+											Supprimer
+											</Button>
 									</td>
 								</tr>
 							);
@@ -141,6 +105,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = {  deleteProduct};
+const mapDispatchToProps = { deleteProduct };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListProducts));

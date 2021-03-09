@@ -108,7 +108,7 @@ class DashboardClient extends React.Component {
 									<span className="iconeCompte"></span>
 									</Nav.Link>
 								</Nav.Item>
-								<Button className="btn2 effect02" onClick={this.logOutSubmit.bind(this)}>
+								<Button className="btn1 effect01" onClick={this.logOutSubmit.bind(this)}>
 									<span>Déconnexion</span>
 								</Button>
 							</Nav>
@@ -144,7 +144,7 @@ class DashboardClient extends React.Component {
 											<Form.Label>Email</Form.Label>
 											<Form.Control value={this.state.email}  className="custom" type="email" onChange={this.inputClientEmail}/>
 										</Form.Group>
-										<Button className="btn2 effect02" type="submit">
+										<Button className="btn1 effect01" type="submit">
 											<span>Enregistrez les modifications</span>
 										</Button>
 									</Form>

@@ -87,3 +87,100 @@
     margin-bottom: 20px;
 }
 
+@media all and (max-width: 1400px) {
+
+    .tabcontainer {
+        width: auto;
+        height: auto;
+        font-family: Josefin Sans;
+    }
+    
+    .rowDash{
+        margin: 0%;
+        align-items: center;
+        width: auto;
+        height: auto;
+
+
+    }
+    /* .col {
+       margin-right: 0px;
+    } */
+    
+    
+    .iconeDashboard {
+        /* border: 3px solid grey; */
+        width: 20px;
+        height: 20px;
+        background: url('./img/icons8-dashboard-layout-24.png') center / cover; 
+        margin-right: 10px;
+    }
+    
+    .iconeCommande {
+        width: 24px;
+        height: 24px;
+        background: url('./img/icons8-panier-2-24.png') center / cover; 
+        margin-right: 10px;
+    }
+    .iconeCompte {
+        width: 25px;
+        height: 25px;
+        background: url('./img/icons8-utilisateur-32.png') center / cover; 
+        margin-right: 10px;
+    }
+    .tabcontainer
+    .nav-item
+    .nav-link {    
+        display: flex;
+        width: auto;
+        font-weight: 400;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        align-items: center;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+    }
+    
+    .nameUser {
+        font-size: 20px;
+        font-weight: 300;
+    }
+    
+    .nameUser span {
+        font-weight: bolder;
+    }
+    
+    .welcomeUser {
+        font-size: 15px;
+    }
+    
+    .formUser span{
+        font-size: 11px;
+    }
+    
+    
+    .tab-pane form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 0px;
+        /* padding: 10px; */
+        width: auto;
+    }
+    
+    .tab-pane .form-label {
+        font-size: 16px;
+        width: auto;
+}
+    
+    .tab-pane .custom {
+        margin-bottom: 0px;
+        width: auto;
+    }
+    .tab-pane
+    .btn1 {
+        border: 3px solid blue;
+        width: auto;
+    }
+}

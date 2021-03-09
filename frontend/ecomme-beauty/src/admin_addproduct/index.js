@@ -78,11 +78,11 @@ class AddProduct extends React.Component {
 
 	render() {
 			return (
-			<div>
-				<Form onSubmit={this.handleSubmit}>
+			<div className="addProdi">
+				<Form onSubmit={this.handleSubmit} className="FormGroup">
 					{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
 
-					<Form.Group controlId="formGroupName">
+					<Form.Group controlId="formGroupName" className="form-group">
 						<Form.Label>Nom</Form.Label>
 						<Form.Control
 							type="name"
@@ -90,7 +90,7 @@ class AddProduct extends React.Component {
 							onChange={this.inputNameProduct}
 						/>
 					</Form.Group>
-					<Form.Group controlId="formGroupDescription">
+					<Form.Group controlId="formGroupDescription" className="form-group">
 						<Form.Label>Description</Form.Label>
 						<Form.Control
 							type="description"
@@ -98,7 +98,7 @@ class AddProduct extends React.Component {
 							onChange={this.inputDesc}
 						/>
 					</Form.Group>
-					<Form.Group controlId="formGroupDetails">
+					<Form.Group controlId="formGroupDetails" className="form-group">
 						<Form.Label>Détails</Form.Label>
 						<Form.Control
 							type="détails"
@@ -106,9 +106,9 @@ class AddProduct extends React.Component {
 							onChange={this.inputDetails}
 						/>
 					</Form.Group>
-					<Form.Group controlId="formGroupCategory">
+					<Form.Group controlId="formGroupCategory" className="form-group">
 						<Form.Label>Catégorie</Form.Label>
-						<select value={this.state.selectedOption} onChange={this.handleSelect}>
+						<select className="selectFilter" value={this.state.selectedOption} onChange={this.handleSelect}>
 							<option>Veuillez selectionnez une categorie</option>
 							{this.props.categories.map(({ id_category, denomination }) => (
 								<option key={id_category} value={id_category}>{denomination}</option>
@@ -127,16 +127,16 @@ class AddProduct extends React.Component {
 							})}
 						</Form.Control> */}
 					</Form.Group>
-					<Form.Group controlId="formGroupPrice">
+					<Form.Group controlId="formGroupPrice" className="form-group">
 						<Form.Label>Prix</Form.Label>
 						<Form.Control type="price" placeholder="Price" onChange={this.inputPrice} />
 					</Form.Group>
-					<Form.Group controlId="formGroupImage">
+					<Form.Group controlId="formGroupImage" className="form-group">
 						<Form.Label>Image</Form.Label>
 						<Form.Control placeholder="copy your link picture" onChange={this.inputImage} />
 					</Form.Group>
-					<Button variant="info" type="submit">
-						Ajouter mon produit
+					<Button className="btn1 effect01" variant="light" type="submit">
+						<span>Ajouter mon produit</span>
 					</Button>
 				</Form>
 			</div>

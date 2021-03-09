@@ -1,16 +1,32 @@
+
 .DashAdmin {
     height: auto;
-    margin: 80px;
+    margin: 50px;
     border-top: 3px solid #72532E;
     border-bottom:3px solid #72532E ;
 }
 
 .DashAdmin .flex-column {
-    border: 3px solid black;
     width: 20vw;
 }
 
 .DashAdmin Button {
     align-items: center;
     width: 17vw;
+    margin-top: 20px;
+}
+.DashAdmin
+.nav-link {
+    border-bottom: 1px solid lightgray;
+    text-align: left;
+}
+
+.DashAdmin tab-pane {
+    border: 3px solid;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
+.AllDash {
+    height: auto;
 }

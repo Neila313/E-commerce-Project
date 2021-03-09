@@ -108,7 +108,7 @@ class ClientSignin extends React.Component {
 						<Form.Control type="password" placeholder="Password" onChange={this.signinClientPassword} />
 						<div className="form">{this.state.errors.password}</div>
 					</Form.Group>
-					<Button className="btn2 effect02" variant="light" type="submit">
+					<Button className="btn effect01" variant="light" type="submit">
 						Connexion
 					</Button>
 				</Form>

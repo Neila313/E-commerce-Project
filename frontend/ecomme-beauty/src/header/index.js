@@ -47,8 +47,8 @@ class Header extends React.Component {
 			if (localStorage.getItem('MyToken')) {
 				return (
 					<Nav  defaultActiveKey="/dashboard" className="navGestion">
-						{/* <div className="logoGestion"></div> }
-						 <div className="habillageNav"></div>
+						 {/* <div className="logoGestion"></div>   */}
+						 {/* <div className="habillageNav"></div>
 						<Nav.Item className="navItemGestion">
 							<Nav.Link as={Link} to="/admin/product">
 								Ajouter un produit
@@ -62,7 +62,7 @@ class Header extends React.Component {
 							<Nav.Link as={Link} to="/admin/listcategory">
 								Vos catégories
 							</Nav.Link>
-						</Nav.Item>  */}
+						</Nav.Item>   */}
 					</Nav>
 				);
 			} else {
