@@ -4,3 +4,13 @@
     border-top: 3px solid #72532E;
     border-bottom:3px solid #72532E ;
 }
+
+.DashAdmin .flex-column {
+    border: 3px solid black;
+    width: 20vw;
+}
+
+.DashAdmin Button {
+    align-items: center;
+    width: 17vw;
+}

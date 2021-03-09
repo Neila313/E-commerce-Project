@@ -1,5 +1,4 @@
 import React from 'react';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import { connect } from 'react-redux';
 import { newCategory } from '../store/action/category'
 import Form from 'react-bootstrap/Form';
@@ -52,16 +51,8 @@ class AddCategory extends React.Component {
     render() {
         return (
            <div>
-				<Jumbotron>
-					<h1>Gérer nos catégorie</h1>
-					<Button variant="info" type="submit" onClick={this.returnSubmit.bind(this)}>
-						Retour sur mon Dashboard
-					</Button>
-				</Jumbotron>
-
 				<Form onSubmit={this.handleSubmit}>
 					{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
-
 					<Form.Group controlId="formGroupName">
 						<Form.Label>Dénomination</Form.Label>
 						<Form.Control
@@ -70,7 +61,6 @@ class AddCategory extends React.Component {
 							onChange={this.inputDenomination}
 						/>
 					</Form.Group>
-
                     <Button variant="info" type="submit">
 						Ajouter ma catégorie
 					</Button>

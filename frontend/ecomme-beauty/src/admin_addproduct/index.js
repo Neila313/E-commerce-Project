@@ -1,5 +1,4 @@
 import React from 'react';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import './style.css';
 import { connect } from 'react-redux';
 import { newProduct } from '../store/action/products';
@@ -80,13 +79,6 @@ class AddProduct extends React.Component {
 	render() {
 			return (
 			<div>
-				<Jumbotron>
-					<h1>Gérer nos produits</h1>
-					<Button variant="info" type="submit" onClick={this.returnSubmit.bind(this)}>
-						Retour sur mon Dashboard
-					</Button>
-				</Jumbotron>
-
 				<Form onSubmit={this.handleSubmit}>
 					{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
 

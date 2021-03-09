@@ -47,9 +47,9 @@ class Header extends React.Component {
 			if (localStorage.getItem('MyToken')) {
 				return (
 					<Nav  defaultActiveKey="/dashboard" className="navGestion">
-						{/* <div className="logoGestion"></div> */}
-						{/* <div className="habillageNav"></div> */}
-						{/* <Nav.Item className="navItemGestion">
+						{/* <div className="logoGestion"></div> }
+						 <div className="habillageNav"></div>
+						<Nav.Item className="navItemGestion">
 							<Nav.Link as={Link} to="/admin/product">
 								Ajouter un produit
 							</Nav.Link>
@@ -62,7 +62,7 @@ class Header extends React.Component {
 							<Nav.Link as={Link} to="/admin/listcategory">
 								Vos catégories
 							</Nav.Link>
-						</Nav.Item> */}
+						</Nav.Item>  */}
 					</Nav>
 				);
 			} else {
@@ -91,26 +91,6 @@ class Header extends React.Component {
 							<Nav.Link className="homeImg" as={Link} to="/home" />
 						</Nav.Item>
 						<div className="ligne" />
-					</div>
-					<div className="ProductMaster">
-						<Nav.Item className="ProductHead">
-							<Nav.Link className="nav-link" as={Link} to="/catalogue">
-								Nos produits
-							</Nav.Link>
-						</Nav.Item>
-						<Nav.Item className="ProductHead">
-							<Nav.Link className="nav-link">Nos routines</Nav.Link>
-						</Nav.Item>
-						<Nav.Item className="ProductHead">
-							<div className="cartLink">
-								<Nav.Link as={Link} to="/panier" className="cartP" />
-								{this.props.cartproducts.length > 0 && (
-									<div className="cartNumber">{this.props.cartproducts.length} </div>
-								)}
-							</div>
-							<Nav.Link as={Link} to="/wishlist" className="favorisP" />
-						</Nav.Item>
-					</div>
 
 					{localStorage.getItem('tokenUser') ? (
 						<div className="headCustomConnect">
@@ -134,6 +114,27 @@ class Header extends React.Component {
 							</Nav.Item>
 						</div>
 					)}
+					</div>
+					<div className="ProductMaster">
+						<Nav.Item className="ProductHead">
+							<Nav.Link className="nav-link" as={Link} to="/catalogue">
+								Nos produits
+							</Nav.Link>
+						</Nav.Item>
+						<Nav.Item className="ProductHead">
+							<Nav.Link className="nav-link">Nos routines</Nav.Link>
+						</Nav.Item>
+						<Nav.Item className="ProductHead">
+							<div className="cartLink">
+								<Nav.Link as={Link} to="/panier" className="cartP" />
+								{this.props.cartproducts.length > 0 && (
+									<div className="cartNumber">{this.props.cartproducts.length} </div>
+								)}
+							</div>
+							<Nav.Link as={Link} to="/wishlist" className="favorisP" />
+						</Nav.Item>
+					</div>
+
 				</Nav>
 			);
 		}

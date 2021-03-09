@@ -194,3 +194,95 @@
 	background: url('./img/My\ Precious.png') center / cover;
 
 }
+
+@media all and (max-width: 1024px)
+{
+	.headCustom {
+		/* border: 3px solid blue; */
+		height: auto;
+		width: auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.headCustomConnect {
+		position: relative;
+		left: 0px;
+		top: 20px; 
+		margin-bottom: auto;
+		width: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+	}
+	
+	.Sinscrire,
+	.Seconnecter,
+	.nav-link {
+		font-family: Josefin Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 17px;
+		line-height: 20px;
+		margin-bottom: auto;
+		text-align: center;
+		color: black;
+	}
+	.MasterHead {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100vw;
+		margin-bottom: 10px;
+		height: auto;
+	}
+	
+	.homeImg {
+		width: 41vw;
+		height: 15vh;
+		margin-left: 12px;
+		background: url('./img/My\ Precious.png') center / cover;
+	}
+	
+	.ProductMaster {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-end;
+		margin-bottom: 20px;
+		padding: 0px;
+		width: 100vw;
+		height: auto;
+	}
+	
+	.ProductHead {
+		/* border: 3px solid black; */
+		width: auto;
+		height: auto;
+		display: flex;
+		justify-content: center;
+		margin: 0px;
+		padding: 0px;
+		flex-direction: row;
+	}
+	
+	.ligne {
+		display: none;
+		/* background: url('./img/Line\ 1.png') center / cover; */
+	}
+
+	.cartP {
+		width: 32px;
+		height: 36px;
+		margin-right: 20px;
+		background: url('./img/icons8-caddie-64.png') center / cover;
+	}
+	.favorisP {
+		width: 31px;
+		height: 36px;
+		background: url('./img/coeur-transparent.png') center / cover;
+	}
+
+}
