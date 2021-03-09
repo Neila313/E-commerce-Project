@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import ListGroup from 'react-bootstrap/ListGroup'
 
 export class FilterCateg extends Component {
 	constructor(props) {

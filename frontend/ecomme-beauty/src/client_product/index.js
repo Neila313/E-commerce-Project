@@ -10,6 +10,8 @@ import FilterCateg from '../Filter';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
 import '../client_product/style.css';
 // import axios from 'axios';
 
@@ -59,8 +61,17 @@ class ProductClient extends React.Component {
 		const count = this.props.products.length
 		console.log(count);
 		return (
-			<div className="Prod">
+<div>
+			<div className="filArianeProd">
+					<Breadcrumb className="breadcrumb">
+					<Breadcrumb.Item className="breadcrumb-item" href="/home">
+						Accueil
+					</Breadcrumb.Item>
+					<Breadcrumb.Item active>Nos produits</Breadcrumb.Item>
+				</Breadcrumb>
+			</div>
 
+			<div className="Prod">
 				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
 			<FilterCateg handleSelect={(val) => this.setState({selectedCategory : parseInt(val)})} />
 			
@@ -73,7 +84,7 @@ class ProductClient extends React.Component {
 					
 					}).map((elem) => {
 						return (
-							<Card className="oneProd" key={elem.name} style={{ width: '23rem', height: '47rem' }}>
+							<Card className="oneProd" key={elem.name}>
 								<link
 									href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
 									rel="stylesheet"
@@ -82,8 +93,8 @@ class ProductClient extends React.Component {
 								<Card.Img
 									variant="top"
 									src={elem.image}
-									style={{ width: '22rem', height: '27rem' }}
-									className="elemPic"
+									// style={{ width: '23rem', height: '23rem	' }}
+									className="card-img"
 								/>
 								{ (this.props.favoris.includes(elem.id_product)) ? <Button
 									variant="outline-light"
@@ -113,8 +124,10 @@ class ProductClient extends React.Component {
 					})}
 				</div>
 			</div>
+</div>
 		);
-	}
+		}
+		
 }
 
 const mapStateToProps = (state) => {

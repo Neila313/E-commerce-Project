@@ -37,3 +37,36 @@
     color: #72532E;
 }
 
+@media all and (max-width: 1400px) {
+
+    .filter {
+        margin: 0px;
+        height: auto;
+        width: auto;
+    }
+    .filterResutl {
+        font-family: Josefin Sans;
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .ContainerFilter {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top:0 ;
+        border-right: none;
+        border-bottom: 1px solid lightgray;
+        width: auto;
+    }
+    .selectFilter {
+        padding: 7px;
+        font-size: 15px;
+        margin: 20px;
+    }
+    
+    .selectFilter:hover {
+        color: #72532E;
+    }
+
+}
