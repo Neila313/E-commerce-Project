@@ -60,6 +60,7 @@ class ProductClient extends React.Component {
 		console.log(count);
 		return (
 			<div className="Prod">
+
 				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
 			<FilterCateg handleSelect={(val) => this.setState({selectedCategory : parseInt(val)})} />
 			
@@ -81,7 +82,7 @@ class ProductClient extends React.Component {
 								<Card.Img
 									variant="top"
 									src={elem.image}
-									style={{ width: '23rem', height: '30rem' }}
+									style={{ width: '22rem', height: '27rem' }}
 									className="elemPic"
 								/>
 								{ (this.props.favoris.includes(elem.id_product)) ? <Button

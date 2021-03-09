@@ -1,17 +1,36 @@
-.CardAll {
-	/* border: 3px solid red; */
+.Prod {
 	display: flex;
-	flex-wrap: wrap;
-	padding: 30px;
-	margin: 50px;
-	justify-content: space-between;
+	height: auto;
+	background-color: #f8f4ea65 ;
+	/* flex-direction: column; */
+	justify-content: space-around;
+	margin: 20px;
+	margin-bottom: 40px;
+	padding: 10px;
+	width: auto;
+	/* border: 3px solid red; */
+
+}
+
+.CardAll {
+	display: flex;
+	flex-flow:  row wrap;
+	justify-content: space-around;
+	width: 60vw;
+	padding: 10px;
+	margin: 10px;
+	height: auto;
+	/* border: 3px solid red; */
 }
 
 .oneProd {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
+	padding: 10px;
 	font-family: Josefin Sans;
+	height: auto;
+	border: 1px solid lightgray;
 }
 
 .titleProd {
@@ -39,7 +58,7 @@
 	position: relative;
 	text-decoration: none;
 	text-transform: uppercase;
-	width: 100%;
+	width: auto;
   }
   .btn:hover {
 	text-decoration: none;
@@ -56,7 +75,7 @@
 	transition: all 0.3s ease-in-out;
 	align-items: center;
 	width: 90vw;
-	height: 7vh;
+	height: auto;
   }
   .effect01:hover {
 	border: 4px solid #666;
@@ -99,8 +118,3 @@
 			transform: rotate(40deg);
   }
 
- 
-/* 
-  .btn-icone:hover {
-    background-color: #EEE;
-  } */

@@ -1,0 +1,39 @@
+.filter {
+    margin: 10px;
+    height: 100vh;
+    width: auto;
+    /* border: 3px solid red; */
+}
+.filterResutl {
+	position: relative;
+    /* border: 3px solid pink; */
+	top: 0%;
+    font-family: Josefin Sans;
+    text-align: center;
+    font-size: 19px;
+}
+
+.ContainerFilter {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: auto;
+    height: auto;
+/* border: 3px solid purple; */
+    margin-top:1% ;
+    border-right: 1px solid lightgray;
+}
+.selectFilter {
+    border: 2px solid #72532E;
+    border-radius: 3px;
+    width: auto;
+    padding: 10px;
+    font-family: Josefin Sans;
+    text-align: center;
+    font-size: 19px;
+}
+
+.selectFilter:hover {
+    color: #72532E;
+}
+

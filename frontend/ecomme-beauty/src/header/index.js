@@ -86,11 +86,11 @@ class Header extends React.Component {
 						rel="stylesheet"
 					/>
 					<div className="MasterHead">
-						<div className="ligne" />
+						<div className="ligne1" />
 						<Nav.Item className="logoHead">
 							<Nav.Link className="homeImg" as={Link} to="/home" />
 						</Nav.Item>
-						<div className="ligne" />
+									
 
 					{localStorage.getItem('tokenUser') ? (
 						<div className="headCustomConnect">

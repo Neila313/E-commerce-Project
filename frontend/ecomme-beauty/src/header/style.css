@@ -1,5 +1,5 @@
 .headCustom {
-	/* border: 3px solid blue; */
+	width: auto;
 	height: auto;
 	display: flex;
 	justify-content: center;
@@ -7,15 +7,15 @@
 }
 
 .headCustomConnect {
-	/* border: 3px solid pink; */
-	position: absolute;
-	left: 1150px;
-	top: 22px;
-	margin-bottom: 70px;
-	width: 20vw;
+	position: absolute;	
+	left: 81%;
+	top: 5%;
+	width: auto;
+	height: 4vh;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	align-items: center;
 }
 
 .Sinscrire,
@@ -25,8 +25,8 @@
 	font-style: normal;
 	font-weight: normal;
 	font-size: 20px;
-	line-height: 24px;
-	margin-bottom: 30px;
+	line-height: 20px;
+	/* margin-bottom: 30px; */
 	text-align: center;
 	color: black;
 }
@@ -36,44 +36,62 @@
 }
 
 .MasterHead {
-	/* border: 3px solid lightcoral; */
 	display: flex;
-	justify-content: center;
-	width: 100vw;
+	flex-direction: column;
+	justify-content:first baseline;
+	align-items: flex-start;
+	width: auto;
 	height: 20vh;
 }
 
 .homeImg {
 	width: 15vw;
 	height: 18vh;
+	align-items: center;
+	position: relative;
+	left: 279%;
+	bottom: 80px;
 	background: url('./img/My\ Precious.png') center / cover;
 }
 
 .ProductMaster {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	margin: 10px;
-	padding-bottom: 30px;
-	/* border: 3px solid red; */
 	width: 50vw;
 	height: 7vh;
 }
 
 .ProductHead {
-	/* border: 3px solid black; */
-	width: 20vw;
+	width: 30vw;
 	height: 5vh;
 	display: flex;
+	justify-content: center;
 	/* margin-top: 80px; */
 }
 
-.ligne {
+
+.ligne1 {
 	border: 1px solid #9E8631;
-	width: 50vw;
+	width: 100vw;
 	height: 2px;
+	left: 30px;
 	margin-top: 80px;
-	margin-left: 20px;
-	margin-right: 20px;
+	/* margin-left: 20px; */
+	/* margin-right: 20px; */
+	align-items: center;
+	/* background: url('./img/Line\ 1.png') center / cover; */
+}
+.ligne2 {
+	border: 1px solid #9E8631;
+	width: 100vw;
+	height: 2px;
+	left: 30px;
+	margin-top: 80px;
+	/* margin-left: 20px; */
+	/* margin-right: 20px; */
+	align-items: center;
 	/* background: url('./img/Line\ 1.png') center / cover; */
 }
 
@@ -195,7 +213,7 @@
 
 }
 
-@media all and (max-width: 1024px)
+@media all and (max-width: 1400px)
 {
 	.headCustom {
 		/* border: 3px solid blue; */
@@ -207,9 +225,11 @@
 	}
 	
 	.headCustomConnect {
+		/* border: 3px solid pink; */
 		position: relative;
 		left: 0px;
 		top: 20px; 
+		height: auto;
 		margin-bottom: auto;
 		width: auto;
 		display: flex;
@@ -232,6 +252,7 @@
 	}
 	.MasterHead {
 		display: flex;
+		/* border: 3px solid green; */
 		flex-direction: row;
 		justify-content: space-between;
 		width: 100vw;
@@ -241,7 +262,11 @@
 	
 	.homeImg {
 		width: 41vw;
-		height: 15vh;
+		height: 19vh;
+		position: auto;
+		left: auto;
+		top: auto;
+		bottom: auto;
 		margin-left: 12px;
 		background: url('./img/My\ Precious.png') center / cover;
 	}
@@ -268,19 +293,19 @@
 		flex-direction: row;
 	}
 	
-	.ligne {
+	.ligne1 {
 		display: none;
 		/* background: url('./img/Line\ 1.png') center / cover; */
 	}
 
 	.cartP {
-		width: 32px;
+		width: 25px;
 		height: 36px;
 		margin-right: 20px;
 		background: url('./img/icons8-caddie-64.png') center / cover;
 	}
 	.favorisP {
-		width: 31px;
+		width: 25px;
 		height: 36px;
 		background: url('./img/coeur-transparent.png') center / cover;
 	}

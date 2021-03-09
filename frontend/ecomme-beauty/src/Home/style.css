@@ -1,6 +1,7 @@
 .Section1 {
 	height: auto;
-	padding: 8%;
+	width: auto;
+	padding: 9%;
 	background: url('./img/AdobeStock_209858112.jpeg') center / cover;
 	display: flex;
 	flex-direction: column;
@@ -27,12 +28,13 @@
 
 .Section2 {
 	height: auto;
+	width: auto;
 	display: flex;
+	padding: 10px;
 	justify-content: space-between;
 }
 
 .img1Home {
-	/* border: 3px solid blue; */
 	background: url('./img/Rectangle\ 3.png') center / cover;
 	margin: 20px;
 	height: 100vh;
@@ -40,44 +42,43 @@
 }
 
 .para1Home {
-	/* border: 3px solid lightblue; */
-	height: 70vh;
-	margin-right: 100px;
-	padding-top: 15%;
-	width: 40vw;
+	height: auto;
+	margin: 20px;
+	width: 46vw;
 }
 
 .para1Homebis {
 	font-family: Josefin Sans;
+	text-align: justify;
 	padding: 10px;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 25px;
+	font-size: 23px;
 	line-height: 216.5%;
 	letter-spacing: 0.09em;
 }
 
 .Section3 {
-	/* border: 3px solid red; */
 	background: rgba(200, 163, 123, 0.17);
 	height: auto;
+	width: auto;
 	display: flex;
+	padding: 10px;
 	justify-content: space-between;
 }
 
 .para2Home {
-	/* border: 3px solid yellow; */
-	height: 80vh;
-	margin: 60px;
-	padding-top: 10%;
-	width: 50vw;
+	height: auto;
+	margin: 20px;
+	width: 46vw;
 }
 
 .para2Homebis {
 	font-family: Josefin Sans;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 25px;
+	padding: 10px;
+	font-size: 23px;
 	line-height: 216.5%;
 	letter-spacing: 0.09em;
 }
@@ -87,28 +88,23 @@
 	background: url('./img/Rectangle\ 5.png') center / cover;
 	margin: 20px;
 	height: auto;
-	width: 55vw;
+	width: 50vw;
+	
 }
 
 /* Responsive de la page home  */
 
-@media all and (max-width: 1024px)
+@media all and (max-width: 1400px)
 {
-	/* * {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	} */
 	body {
 		border: 3px solid red;
 		overflow-x: hidden;
-		margin: 0;
-		padding: 0;
 	}
 	.Section1 {
 		width: auto;
 		padding: auto;
-		height: 28vh;
+		margin: auto;
+		height: auto;
 		background: url('./img/AdobeStock_209858112.jpeg') center / cover;
 		display: flex;
 		flex-direction: column;
@@ -119,18 +115,71 @@
 		width: 40vw;
 		height: auto;
 		margin-bottom: 40%;
-		margin-right: 10%;
-		margin-left: 1%;
 	}
 	
 	.titleHomebis {
-		text-align: center;
-		font-family: 'Dancing Script', cursive;
-		text-transform: capitalize;
-		color: #7b3f27;
-		font-style: normal;
-		font-weight: bold;
-		font-size: 20px;
-		line-height: 20px;
+		font-size: 24px;
+		line-height: 24px;
 	}
+
+	.Section2 {
+		margin: auto;
+		height: auto;
+		width: auto;
+		display:flex;
+		flex-direction: column-reverse;
+	}
+	
+	.img1Home {
+		background: url('./img/AdobeStock_262306609.jpeg') center / cover;
+		margin: 10px;
+		height: 50vh;
+		width: auto;
+	}
+	
+	.para1Home {
+		height: auto;
+		margin: auto;
+		padding: 10px;
+		width: auto;
+	}
+	
+	.para1Homebis {
+		text-align: center;
+		padding: 10px;
+		font-size: 18px;
+	}
+
+	.Section3 {
+		height: auto;
+		width: auto;
+		display: flex;
+		margin: auto;
+		flex-direction: column-reverse;
+		justify-content: center;
+	}
+	
+	.para2Home {
+		height: auto;
+		margin: auto;
+		padding: 10px;
+		width: auto;
+	}
+	
+	.para2Homebis {
+		text-align: center;
+		padding: 10px;
+		font-size: 18px;
+	}
+	
+	.img2Home {
+		background: url('./img/Rectangle\ 5.png') center / cover;
+		margin: 10px;
+		height: 60vh;
+		width: auto;
+	}
+	
+
+
 }
+
