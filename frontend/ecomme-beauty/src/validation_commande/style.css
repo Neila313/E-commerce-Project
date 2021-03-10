@@ -1,0 +1,37 @@
+.validation {
+    border: 5px solid lightgray;
+    margin: 20px;
+    height: 40vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-transform: capitalize;
+font-family: Josefin sans;
+font-size: 30px;
+font-weight: bold;
+}
+
+@media all and (max-width: 1400px) {
+
+    .Containervalidation {
+        width: auto;
+    }
+
+    .validation {
+        border: 5px solid lightgray;
+        margin: 20px;
+        height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: Josefin sans;
+    font-size: 30px;
+    font-weight: bold;
+    }
+
+
+}

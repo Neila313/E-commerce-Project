@@ -130,7 +130,7 @@ class CartProduct extends React.Component {
 					console.log(res.data);
 					this.setState({ commande: res.data });						
 				}
-				this.props.history.push('/commande');
+				this.props.history.push('/commandevalide');
 			})
 			.catch((error) => {
 				// this.setState({ error : res.data });
@@ -143,7 +143,7 @@ class CartProduct extends React.Component {
 		console.log(this.state);
 		if (localStorage.getItem('tokenUser')) {
 			return (
-				<div>
+				<div className="AllCardProd">
 					<Breadcrumb className="breadcrumb">
 						<Breadcrumb.Item className="breadcrumb-item" href="/home">
 							Accueil
@@ -172,17 +172,22 @@ class CartProduct extends React.Component {
 													<Button
 														className="moins"
 														onClick={() => this.decrement(item.id_product)}
+														variant="link"
+
 													/>
 													{item.qty}
 													<Button
 														onClick={() => this.increment(item.id_product)}
 														className="plus"
+														variant="link"
+
 													/>
 												</td>
 												<td>{item.total}€</td>
 												<td className="containersuPanier">
 													<Button
 														className="suPanier"
+														variant="link"
 														onClick={() => this.deleteCart(item.id_product)}
 													/>
 												</td>

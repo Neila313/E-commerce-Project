@@ -124,7 +124,6 @@ class DashboardClient extends React.Component {
 									</p>
 								</Tab.Pane>
 								<Tab.Pane className="tab-pane" eventKey="second">
-									<p>Vos commandes ici</p>
 									<CommandeClient></CommandeClient>
 								</Tab.Pane>
 								<Tab.Pane className="tab-pane" eventKey="third">

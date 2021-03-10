@@ -8,24 +8,10 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { connect } from 'react-redux';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-import { listFavoris, deleteFavorisProduct } from '../store/action/favoris';
+import { deleteFavorisProduct } from '../store/action/favoris';
 
 class FavorisClient extends React.Component {
 
-	componentDidMount() {
-		console.log(this);
-		this.loadFavoris();
-	}
-
-	loadFavoris() {
-		HTTP.get('/favoris').then((res) => {
-			console.log(res.data);
-			// this.setState({ favorisProduct: res.data });
-			// console.log('fav', this.state.favorisProduct);
-			this.props.listFavoris(res.data);
-			// this.setState({productdetails: res.data[0]});
-		});
-	}
 
     deleteFavoris(id_product) {
 		HTTP.delete(`/favoris/${id_product}`).then((res) => {
@@ -51,7 +37,7 @@ class FavorisClient extends React.Component {
 					<div className="CardAll">
 						{this.props.favorisproducts.map((elem) => {
 							return (
-								<Card className="oneProd" key={elem.name} style={{ width: '23rem', height: '47rem' }}>
+								<Card className="oneProd" key={elem.id_product} style={{ width: '23rem', height: '47rem' }}>
 									<link
 										href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
 										rel="stylesheet"
@@ -59,8 +45,7 @@ class FavorisClient extends React.Component {
 									<Card.Img
 										variant="top"
 										src={elem.image}
-										style={{ width: '23rem', height: '30rem' }}
-										className="elemPic"
+										className="card-img"
 									/>
 									<Button
 										variant="outline-light"
@@ -110,6 +95,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { listFavoris, deleteFavorisProduct };
+const mapDispatchToProps = {  deleteFavorisProduct };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavorisClient);

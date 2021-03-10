@@ -110,3 +110,136 @@ width: 10px;
 	font-size: 20px;
 	text-transform: capitalize;
 }
+
+@media all and (max-width: 1400px) {
+	.AllCardProd {
+		width: auto;
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.panier{
+		border: 3px solid rgb(235, 235, 235);
+		margin: 10px;
+		padding: 0px;
+		font-size: 15px;
+		/* border: 3px solid red; */
+	}
+	
+	.suPanier {
+		width: auto;
+		height: 30px;
+		background: url('./img/icons8-supprimer-100.png') center / cover; ;
+	}
+	
+	.table td {
+		text-transform: capitalize;
+		font-family: Josefin Sans;
+		font-style: normal;
+		font-size: 15px;
+		line-height: 20px;
+	
+	}
+	
+	.plus {
+		width: 0px;
+		height: 30px;
+		background: url('./img/icons8-plus-64.png') center / cover; ;
+	}
+	.moins {
+		width: 0px;
+		height: 30px;
+		background: url('./img/icons8-moins-64.png') center / cover; ;
+	}
+	
+	.containersuPanier{
+	width: 10px;
+
+	}
+	
+	.ContainerPaniervide{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: auto;
+	
+	}
+	.paniervide {
+		font-size: 30px;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	.breadcrumb {
+		background-color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 0px;
+		color: #ad7c34;
+	}
+	.breadcrumb-item {
+		height: 3vh;
+		font-family: Josefin Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 20px;
+		line-height: 24px;
+	}
+	
+	
+	.breadcrumb-item a {
+		text-decoration: none;
+		color:black;
+	}
+	.totalContainer{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 20px;
+		margin: 20px;
+		height: auto;
+		width: auto;
+	}
+	
+	.totalPanier {
+		text-transform: uppercase;
+		font-family: Josefin Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		text-align: center;
+		line-height: 24px;
+		padding: 10px;
+	}
+	
+	.defTotal {
+		display: flex;
+		background-color: rgb(233, 233, 233);
+		justify-content: space-between;
+		align-items: center;
+		width: auto;
+		padding: 10px;
+		margin-bottom: 20px;
+		font-family: Josefin Sans;
+		font-style: normal;
+		font-size: 18px;
+		text-transform: capitalize;
+	}
+	
+	.price {
+		font-size: 18px;
+		font-weight: bold;
+	}
+	
+	.prixtotal {
+		font-size: 20px;
+		text-transform: capitalize;
+	}
+
+
+}

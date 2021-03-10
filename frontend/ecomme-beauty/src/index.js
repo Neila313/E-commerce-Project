@@ -34,6 +34,7 @@ import OneProductPage from './one_product';
 import CartProduct from './cart_product';
 import FavorisClient from './favoris_product'
 import CommandeClient from './commande_client'
+import CommandeValidation from './validation_commande'
 import FilterCateg from './Filter'
 
 
@@ -66,6 +67,7 @@ const myRouter = (
 				<Route exact path="/panier" component={CartProduct} />
 				<Route exact path="/wishlist" component={FavorisClient} />
 				<Route exact path="/commande" component={CommandeClient} />
+				<Route exact path="/commandevalide" component={CommandeValidation} />
 				<Route exact path="/filtre" component={FilterCateg} />
 			
 			</Switch>

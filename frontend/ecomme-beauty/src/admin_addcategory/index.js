@@ -61,7 +61,7 @@ class AddCategory extends React.Component {
 							onChange={this.inputDenomination}
 						/>
 					</Form.Group>
-                    <Button className="btn2 effect02" variant="light"type="submit">
+                    <Button className="btn1 effect01" variant="light"type="submit">
 						<span>Ajouter ma catégorie</span>
 					</Button>
                     </Form>

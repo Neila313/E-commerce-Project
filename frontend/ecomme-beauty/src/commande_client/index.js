@@ -32,14 +32,12 @@ class CommandeClient extends React.Component {
 		return (
 		<div className="tabCont">
 			
-				<Table striped bordered hover size="sm" className="table">
+				<Table striped bordered hover size="sm" className="tableCommande">
 					<thead>
 						<tr>
 							<th>Commande</th>
 							<th>Date</th>
-							<th>Status</th>
 							<th>produit</th>
-							<th>Quantité</th>
 							<th>total</th>
 						</tr>
 					</thead>
@@ -50,9 +48,7 @@ class CommandeClient extends React.Component {
 								<tr key={id_product} className="commande">
 									<td>{elem.id_commande}</td>
 									<td>{elem.date_commande}</td>
-									<td>validée</td>
 									<td>{elem.name}</td>
-									<td>{elem.qty}</td>
 									<td>{elem.total}</td>
 								</tr>
 							);

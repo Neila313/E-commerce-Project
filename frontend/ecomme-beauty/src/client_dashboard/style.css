@@ -90,6 +90,7 @@
 @media all and (max-width: 1400px) {
 
     .tabcontainer {
+        padding: 10px;
         width: auto;
         height: auto;
         font-family: Josefin Sans;
@@ -97,6 +98,7 @@
     
     .rowDash{
         margin: 0%;
+
         align-items: center;
         width: auto;
         height: auto;
@@ -130,9 +132,10 @@
     }
     .tabcontainer
     .nav-item
-    .nav-link {    
+    .nav-link {  
         display: flex;
         width: auto;
+        margin: 20px;
         font-weight: 400;
         flex-direction: row-reverse;
         justify-content: flex-end;
@@ -180,7 +183,7 @@
     }
     .tab-pane
     .btn1 {
-        border: 3px solid blue;
         width: auto;
+        margin-bottom: 20px;
     }
 }

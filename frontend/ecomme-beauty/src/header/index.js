@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { listCategory } from '../store/action/category';
 import { listProducts } from '../store/action/products';
 import { listCartProducts } from '../store/action/cartproducts';
+import {  listFavoris } from '../store/action/favoris';
 import Nav from 'react-bootstrap/Nav';
 import { Link, withRouter } from 'react-router-dom';
 import HTTP from '../provider/http';
@@ -38,6 +39,12 @@ class Header extends React.Component {
 				// this.setState({ error : res.data });
 				console.log(error);
 			});
+			if(localStorage.getItem('tokenUser')) {
+				HTTP.get('/favoris').then((res) => {
+					console.log(res.data);
+					this.props.listFavoris(res.data);
+				});
+			}
 	}
 	// ConnexionSubmit = () => {
 	// 	this.props.history.push('/admin/dashboard');
@@ -149,7 +156,7 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = { listCategory, listProducts, listCartProducts };
+const mapDispatchToProps = { listCategory, listProducts, listCartProducts,  listFavoris };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
 

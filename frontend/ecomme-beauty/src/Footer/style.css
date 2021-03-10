@@ -93,3 +93,110 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+@media all and (max-width: 1400px) {
+.footerM {
+	/* border: 3px solid black; */
+	height: auto;
+}
+	.Allfooter {
+		/* border: 3px solid red; */
+		height: auto;
+		background-color: black;
+		display: flex;
+		flex-direction: center	;		
+		justify-content: center;
+	}
+	
+	.containerFooter {
+		/* border: 3px solid red; */
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: auto;
+		width: auto;
+		margin: 10px;
+		padding: 0px;
+	}
+	
+	.containername {
+		/* border: 3px solid blue; */
+		width: auto;
+		height: 20vh;
+	}
+	
+	.nameFooter {
+		color: white;
+		font-family: Josefin Sans;
+		font-weight: bolder;
+		font-style: normal;
+		font-size: 20px;
+		text-align: center;
+	}
+	
+	.footersousname {
+		font-family: Josefin Sans;
+		font-weight: lighter;
+		font-style: italic;
+		font-size: 17px;
+		padding: 0px;
+	}
+	
+	.socialmedia {
+		/* border: 3px solid white; */
+		width: auto;
+		height: 10vh;
+		display: flex;
+		justify-content: center;
+	}
+	.facebook {
+		/* border: 3px solid pink; */
+		width: 40px;
+		height: 40px;
+		background: url('./icone/icons8-facebook-160.png') center / cover;
+		z-index: 7;
+	}
+	
+	.instagram {
+		/* border: 3px solid pink; */
+		width: 40px;
+		height: 40px;
+		background: url('./icone/icons8-instagram-128.png') center / cover;
+		z-index: 7;
+	}
+	
+	.containerFooter2 {
+		/* border: 3px solid lightblue; */
+		width: auto;
+	}
+	
+	.infoess {
+		/* border: 3px solid lightcoral; */
+		text-align: center;
+		color: white;
+		font-family: Josefin Sans;
+		font-weight:inherit;
+		text-transform: capitalize;
+		font-style: normal;
+		font-size: 20px;
+	}
+	
+	.cgvall {
+		/* border: 3px solid lightgoldenrodyellow; */
+		color: #ad7c34;
+		font-family: Josefin Sans;
+		font-weight:inherit;
+		text-align: center;
+		text-transform: uppercase;
+		font-style: normal;
+		font-size: 20px;
+	}
+	
+	.hrfooter {
+		/* border: 1px solid white; */
+		width: 80vw;
+		height: 1px;
+		color: white;
+		margin: 20px;
+	}
+}

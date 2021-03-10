@@ -5,7 +5,6 @@ import HTTP from '../provider/http';
 import Button from 'react-bootstrap/esm/Button';
 import { newFavorisProduct, deleteFavorisProduct } from '../store/action/favoris';
 import { Link } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
 import FilterCateg from '../Filter';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -20,23 +19,11 @@ class ProductClient extends React.Component {
 		selectedCategory: 0,
 		favoris: []
 	};
-	componentDidMount() {
-		this.loadFavorite();
-	}
-	loadFavorite() {
-		HTTP.get('/favoris').then((res) => {
-			this.setState({favoris: res.data});
-		});
-	}
+	
 
 	toggleFavorite = (id_product) => {
 		// event.preventDefault();
-		const favorisProduct = {
-			id_product: id_product
-		};
-		console.log(favorisProduct);
-
-		HTTP.post('/favoris', favorisProduct)
+		HTTP.post('/favoris', {id_product})
 			//recuperation du token stocké dans le localStorage comme ca y'a plus "no token"
 			.then((res) => {
 				console.log(res);
@@ -44,12 +31,11 @@ class ProductClient extends React.Component {
 					console.log(res.data);
 					this.setState({ msgSuccess: 'ajouté avec succès au favoris' });
 					if (res.data.isFavoris){
-						this.props.newFavorisProduct(favorisProduct);
+						this.props.newFavorisProduct(this.props.products.find(ele => ele.id_product === id_product));
 					} else {
-						this.props.deleteFavorisProduct(favorisProduct.id_product)
+						this.props.deleteFavorisProduct(id_product)
 					}
 				}
-				console.log(favorisProduct);
 			})
 			.catch((error) => {
 				// this.setState({ error : res.data });
@@ -72,7 +58,6 @@ class ProductClient extends React.Component {
 			</div>
 
 			<div className="Prod">
-				{this.state.msgSuccess ? <Alert variant="success"> {this.state.msgSuccess} </Alert> : null}
 			<FilterCateg handleSelect={(val) => this.setState({selectedCategory : parseInt(val)})} />
 			
 				<div className="CardAll">
@@ -84,7 +69,7 @@ class ProductClient extends React.Component {
 					
 					}).map((elem) => {
 						return (
-							<Card className="oneProd" key={elem.name}>
+							<Card className="oneProd" key={elem.name} style={{ width : '18rem'}}>
 								<link
 									href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
 									rel="stylesheet"
@@ -93,7 +78,7 @@ class ProductClient extends React.Component {
 								<Card.Img
 									variant="top"
 									src={elem.image}
-									// style={{ width: '23rem', height: '23rem	' }}
+									// style={{ width: 'auto', height: '18rem	' }}
 									className="card-img"
 								/>
 								{ (this.props.favoris.includes(elem.id_product)) ? <Button

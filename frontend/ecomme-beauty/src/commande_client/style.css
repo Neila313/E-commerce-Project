@@ -1,0 +1,19 @@
+@media all and (max-width: 1400px) {
+.tabCont{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.tableCommande{
+    width: auto;
+}
+    .commande {
+      width: auto;
+
+    }
+
+}
